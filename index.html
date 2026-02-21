@@ -1,45 +1,728 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DOUBLE CROSS® Official</title>
-<style>
-body{
-margin:0;
-background:#070a10;
-color:white;
-font-family:system-ui;
-display:flex;
-align-items:center;
-justify-content:center;
-height:100vh;
-text-align:center;
-}
-.box{
-padding:40px;
-border:1px solid rgba(255,255,255,.2);
-border-radius:20px;
-}
-a{
-display:inline-block;
-margin-top:20px;
-padding:12px 20px;
-background:gold;
-color:black;
-text-decoration:none;
-border-radius:10px;
-font-weight:bold;
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>DOUBLE CROSS® | Official Vision Portal</title>
+  <meta name="description" content="DOUBLE CROSS® 공식 대문 - 모바일 포스터 경험 + 공식 안내 + 비전 쇼케이스 + 영상 + 문의" />
+
+  <!-- OG -->
+  <meta property="og:title" content="DOUBLE CROSS® | Official Vision Portal" />
+  <meta property="og:description" content="모바일 포스터 경험 + 공식 안내 + 비전 쇼케이스 + 영상 + 문의" />
+  <meta property="og:image" content="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" />
+
+  <style>
+    :root{
+      --bg:#070a10;
+      --panel:rgba(16,24,38,.70);
+      --panel2:rgba(0,0,0,.35);
+      --line:rgba(255,255,255,.12);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.72);
+      --muted2:rgba(234,240,255,.58);
+      --gold:#ffd36a;
+      --blue:#67b7ff;
+      --shadow:0 22px 70px rgba(0,0,0,.55);
+      --r:26px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Malgun Gothic,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 10% 0%, rgba(255,211,106,.20), transparent 60%),
+        radial-gradient(1100px 700px at 90% 0%, rgba(103,183,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(141,98,255,.10), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    /* 모바일 포스터 스테이지 */
+    .stage{
+      min-height:100%;
+      display:flex;
+      justify-content:center;
+      padding:14px 10px 52px;
+    }
+    .poster{
+      width:min(460px, 100%);
+      border-radius:var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(16,24,38,.86), rgba(16,24,38,.48));
+      box-shadow:0 30px 90px rgba(0,0,0,.62);
+      overflow:hidden;
+      position:relative;
+      transform:translateZ(0);
+    }
+    .poster::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(800px 420px at 30% -10%, rgba(255,211,106,.20), transparent 55%),
+        radial-gradient(700px 380px at 90% 0%, rgba(103,183,255,.18), transparent 55%),
+        radial-gradient(700px 380px at 50% 110%, rgba(141,98,255,.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    /* 상단 헤더 */
+    header.top{
+      position:relative;
+      padding:16px 16px 10px;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 12px;border-radius:999px;
+      border:1px solid rgba(255,211,106,.35);
+      background:rgba(255,211,106,.10);
+      font-weight:950;font-size:12px;letter-spacing:.3px;
+    }
+    .heroRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top:12px;
+    }
+    .dcMark{
+      width:52px;height:52px;border-radius:16px;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.06);
+      overflow:hidden;
+      flex:0 0 auto;
+      box-shadow:0 14px 40px rgba(0,0,0,.45);
+      position:relative;
+      z-index:1;
+    }
+    .dcMark img{
+      width:100%;height:100%;
+      object-fit:cover;
+      transform:scale(1.05);
+    }
+    .titleWrap{min-width:0}
+    .title{
+      margin:0;
+      font-size:26px;
+      line-height:1.08;
+      letter-spacing:.6px;
+      font-weight:1000;
+      text-shadow:0 10px 36px rgba(0,0,0,.55);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .subtitle{
+      margin:6px 0 0;
+      font-size:12px;
+      color:rgba(234,240,255,.72);
+      font-weight:900;
+      letter-spacing:.15px;
+    }
+    .metaRow{
+      display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;
+      color:rgba(234,240,255,.70);font-size:12px;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      backdrop-filter: blur(6px);
+      font-weight:900;
+    }
+    .dot{
+      width:7px;height:7px;border-radius:50%;
+      background:rgba(255,211,106,.95);
+      box-shadow:0 0 12px rgba(255,211,106,.70);
+    }
+
+    /* ✅ 상단 대표 이미지(가장 상위 노출) */
+    .heroImage{
+      position:relative;
+      margin:0 16px 12px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+      background:#000;
+      box-shadow:0 26px 80px rgba(0,0,0,.62);
+    }
+    .heroImage::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.62));
+      pointer-events:none;
+    }
+    .heroImage img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:cover;
+      transform:scale(1.02);
+    }
+    .heroImageCaption{
+      position:absolute;
+      left:12px; right:12px; bottom:10px;
+      z-index:1;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .heroImageCaption .txt{
+      font-weight:1000;
+      font-size:12px;
+      color:rgba(234,240,255,.85);
+      text-shadow:0 10px 30px rgba(0,0,0,.55);
+      line-height:1.25;
+    }
+    .heroImageCaption .tag{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,211,106,.35);
+      background:rgba(255,211,106,.10);
+      color:rgba(255,211,106,.95);
+      font-weight:1000;
+      white-space:nowrap;
+    }
+
+    /* ✅ 문의/안내 티커(위로 스크롤) */
+    .ticker{
+      position:relative;
+      margin:0 16px 12px;
+      border-radius:22px;
+      border:1px solid rgba(255,211,106,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.32));
+      box-shadow:0 18px 60px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .tickerTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .tickerTitle{
+      font-weight:1000;
+      font-size:12px;
+      letter-spacing:.35px;
+      color:rgba(234,240,255,.85);
+    }
+    .tickerPill{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(234,240,255,.72);
+      font-weight:1000;
+      white-space:nowrap;
+    }
+    .tickerBody{
+      height:114px; /* ✅ 여기 높이 조절 가능 */
+      position:relative;
+      overflow:hidden;
+    }
+    .tickerList{
+      margin:0;
+      padding:10px 12px 12px;
+      list-style:none;
+      display:grid;
+      gap:8px;
+      animation:tickerUp 14s linear infinite;
+    }
+    .ticker:hover .tickerList{ animation-play-state:paused; }
+    @keyframes tickerUp{
+      0%{ transform:translateY(0); }
+      100%{ transform:translateY(-50%); }
+    }
+    .tItem{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 10px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+    }
+    .tIcon{
+      width:28px;height:28px;border-radius:10px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.08);
+      flex:0 0 auto;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    .tText{min-width:0}
+    .tText b{display:block;font-size:12px;font-weight:1000;color:#fff;line-height:1.15}
+    .tText span{display:block;margin-top:4px;font-size:11px;color:rgba(234,240,255,.70);font-weight:850;line-height:1.25}
+
+    /* CTA 버튼 */
+    .cta{
+      position:relative;
+      display:grid;
+      gap:10px;
+      padding:0 16px 12px;
+    }
+    .btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 14px;border-radius:16px;
+      text-decoration:none;font-weight:1000;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      transition:transform .12s ease, background .12s ease, filter .12s ease;
+      backdrop-filter: blur(6px);
+      user-select:none;
+    }
+    .btn:active{transform:scale(.985); filter:brightness(1.05);}
+    .btn.primary{
+      border-color:rgba(255,211,106,.65);
+      background:linear-gradient(135deg, rgba(255,211,106,.40), rgba(184,135,26,.14));
+      color:#111;
+      box-shadow:0 0 0 1px rgba(255,211,106,.12), 0 18px 55px rgba(255,211,106,.10);
+    }
+    .btn.kakao{
+      border-color:rgba(254,229,0,.75);
+      background:linear-gradient(135deg, rgba(254,229,0,.55), rgba(255,211,106,.12));
+      color:#111;
+    }
+    .btn.news{
+      border-color:rgba(103,183,255,.45);
+      background:linear-gradient(135deg, rgba(103,183,255,.22), rgba(60,120,255,.10));
+    }
+    .btn.band{
+      border-color:rgba(255,211,106,.45);
+      background:linear-gradient(135deg, rgba(255,211,106,.18), rgba(103,183,255,.12));
+    }
+    .liveDot{
+      width:9px;height:9px;border-radius:50%;
+      background:#ff3b30;
+      box-shadow:0 0 12px rgba(255,59,48,.85);
+      animation:pulse 1.2s infinite;
+    }
+    @keyframes pulse{
+      0%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.35);opacity:.55}
+      100%{transform:scale(1);opacity:1}
+    }
+
+    /* 섹션 공통 */
+    .section{
+      position:relative;
+      margin:0 16px 14px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(16,24,38,.62), rgba(16,24,38,.40));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .sectionHeader{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 12px;border-bottom:1px solid rgba(255,255,255,.10);
+      gap:10px;
+    }
+    .sectionTitle{
+      font-weight:1000;font-size:12px;letter-spacing:.2px;
+      display:flex;align-items:center;gap:8px;
+      min-width:0;
+    }
+    .pill{
+      font-size:11px;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(234,240,255,.72);
+      font-weight:1000;
+      white-space:nowrap;
+    }
+
+    /* ✅ AUTHORITY LAYER (아래로 내려갈 섹션) */
+    .support{
+      position:relative;
+      margin:8px 16px 14px;
+      padding:12px 12px;
+      border-radius:22px;
+      border:1px solid rgba(255,211,106,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.32));
+      box-shadow:0 18px 60px rgba(0,0,0,.55);
+      overflow:hidden;
+      transform:translateZ(0);
+    }
+    .support::before{
+      content:"";
+      position:absolute; inset:-60px -40px;
+      background:
+        radial-gradient(280px 160px at 20% 0%, rgba(255,211,106,.14), transparent 60%),
+        radial-gradient(260px 160px at 95% 20%, rgba(103,183,255,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .supportTop{
+      position:relative;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .supportTitle{
+      font-weight:1000;font-size:12px;letter-spacing:.4px;
+      color:rgba(234,240,255,.82);
+    }
+    .supportTitle b{
+      color:var(--gold);
+      text-shadow:0 0 18px rgba(255,211,106,.22);
+    }
+    .supportPill{
+      font-size:11px;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.08);
+      color:rgba(255,211,106,.95);
+      font-weight:1000;
+      white-space:nowrap;
+    }
+
+    /* Partner Grid: 모바일에서도 2열 유지 */
+    .logoGrid{
+      position:relative;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .logoCardLink{display:block; text-decoration:none; color:inherit;}
+    .logoCard{
+      position:relative;
+      padding:12px 12px 30px;
+      border-radius:20px;
+      border:1px solid rgba(255,211,106,.18);
+      background:linear-gradient(180deg, rgba(0,0,0,.26), rgba(0,0,0,.55));
+      box-shadow:0 18px 45px rgba(0,0,0,.65);
+      overflow:hidden;
+      transition:transform .12s ease, filter .12s ease;
+    }
+    .logoCard:active{transform:scale(.985); filter:brightness(1.07);}
+
+    /* ✅ 로고 박스: "짤림 방지" 버전 */
+    .logoImgWrap{
+      height:92px;
+      border-radius:16px;
+      overflow:hidden;
+      background:radial-gradient(circle at 50% 40%, rgba(255,211,106,.15), transparent 70%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px; /* ✅ 여백 */
+    }
+    .logoImgWrap img{
+      width:100%;
+      height:100%;
+      object-fit:contain;           /* ✅ 핵심: contain으로 변경 */
+      object-position:center center;
+      filter:saturate(1.05) contrast(1.05);
+      transform:none;               /* ✅ 확대 제거 */
+    }
+
+    .logoLabel{
+      margin-top:10px;
+      font-size:11px;
+      font-weight:1000;
+      color:#fff;
+      letter-spacing:.1px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .logoSub{
+      margin-top:4px;
+      font-size:10px;
+      font-weight:800;
+      color:rgba(255,255,255,.60);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .logoCard::after{
+      content:"OFFICIAL PARTNER • VERIFIED";
+      position:absolute;
+      left:12px;
+      bottom:10px;
+      font-size:9px;
+      font-weight:1000;
+      color:rgba(255,211,106,.90);
+      letter-spacing:.35px;
+      text-shadow:0 0 10px rgba(255,211,106,.18);
+      pointer-events:none;
+    }
+
+    /* VISION */
+    .viewer{
+      position:relative;
+      width:100%;
+      aspect-ratio:9/16;
+      max-height:72vh;
+      overflow:hidden;
+      background:#000;
+    }
+    .shotImg{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity .85s ease;
+      filter:saturate(1.04) contrast(1.04);
+    }
+    .shotImg.on{opacity:1; animation:slowZoom 6s ease-in-out infinite alternate;}
+    @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+    .caption{
+      padding:10px 12px;
+      border-top:1px solid rgba(255,255,255,.10);
+      font-size:12px;
+      color:rgba(234,240,255,.65);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .counter{font-weight:1000;color:#fff}
+    .hint{color:rgba(234,240,255,.60); font-weight:900}
+
+    /* VIDEO */
+    .videoBox{padding:12px}
+    .videoWrap{
+      position:relative;
+      width:100%;
+      padding-bottom:56.25%;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:#000;
+    }
+    .videoWrap iframe{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
+    }
+
+    .footer{
+      margin:10px 16px 16px;
+      text-align:center;
+      font-size:11px;
+      color:rgba(234,240,255,.55);
+    }
+
+    @media (max-width:360px){
+      .poster{border-radius:22px}
+      .title{font-size:24px}
+      .logoImgWrap{height:86px}
+    }
+  </style>
 </head>
+
 <body>
-<div class="box">
-<h1>DOUBLE CROSS®</h1>
-<p>Official Landing Page</p>
-<a href="https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ" target="_blank">
-Official YouTube
-</a>
-</div>
+  <div class="stage">
+    <main class="poster" aria-label="DOUBLE CROSS Official Portal">
+
+      <!-- TOP -->
+      <header class="top">
+        <div class="badge">⚡ OFFICIAL VISION PORTAL</div>
+
+        <div class="heroRow">
+          <div class="dcMark" aria-hidden="true">
+            <img src="https://static.wixstatic.com/media/abf917_0792f5404ec84ffc9368a8eff33b2a50~mv2.png" alt="DOUBLE CROSS Logo">
+          </div>
+
+          <div class="titleWrap">
+            <h1 class="title">DOUBLE CROSS®</h1>
+            <div class="subtitle">STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009</div>
+          </div>
+        </div>
+
+        <div class="metaRow">
+          <div class="chip"><span class="dot"></span> Mobile Poster</div>
+          <div class="chip">Official Notice</div>
+          <div class="chip">Vision + Video</div>
+        </div>
+      </header>
+
+      <!-- ✅ 가장 상위 노출: 대표 이미지 -->
+      <section class="heroImage" aria-label="Key Visual">
+        <img src="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" alt="DOUBLE CROSS Key Visual">
+        <div class="heroImageCaption">
+          <div class="txt">공식지정도장 모집 · 세미나 안내 · 콘텐츠/캐릭터 문의</div>
+          <div class="tag">LIVE</div>
+        </div>
+      </section>
+
+      <!-- ✅ 상단 공지/문의 티커 -->
+      <section class="ticker" aria-label="Official Updates">
+        <div class="tickerTop">
+          <div class="tickerTitle">📌 지금 문의가 몰리는 항목</div>
+          <div class="tickerPill">자동 스크롤 · 터치하면 멈춤</div>
+        </div>
+
+        <div class="tickerBody">
+          <!-- ✅ 같은 리스트를 2번 넣어야 자연스럽게 무한 스크롤 됩니다 -->
+          <ul class="tickerList">
+            <li class="tItem"><div class="tIcon">🏛️</div><div class="tText"><b>공식지정도장 가입문의</b><span>지역별 도장 문의가 계속 들어오고 있습니다.</span></div></li>
+            <li class="tItem"><div class="tIcon">🎓</div><div class="tText"><b>세미나/교육 안내 문의</b><span>일정·지역·참가 조건을 빠르게 확인하세요.</span></div></li>
+            <li class="tItem"><div class="tIcon">🎭</div><div class="tText"><b>캐릭터/원본 디자인 문의</b><span>브랜딩·홍보물 제작 관련 요청이 증가 중입니다.</span></div></li>
+            <li class="tItem"><div class="tIcon">✅</div><div class="tText"><b>공식지정도장 확인하기</b><span>공식 인증/지정 여부를 먼저 확인하세요.</span></div></li>
+            <li class="tItem"><div class="tIcon">💬</div><div class="tText"><b>실시간 상담</b><span>카카오톡으로 가장 빠르게 연결됩니다.</span></div></li>
+
+            <!-- duplicate for loop -->
+            <li class="tItem"><div class="tIcon">🏛️</div><div class="tText"><b>공식지정도장 가입문의</b><span>지역별 도장 문의가 계속 들어오고 있습니다.</span></div></li>
+            <li class="tItem"><div class="tIcon">🎓</div><div class="tText"><b>세미나/교육 안내 문의</b><span>일정·지역·참가 조건을 빠르게 확인하세요.</span></div></li>
+            <li class="tItem"><div class="tIcon">🎭</div><div class="tText"><b>캐릭터/원본 디자인 문의</b><span>브랜딩·홍보물 제작 관련 요청이 증가 중입니다.</span></div></li>
+            <li class="tItem"><div class="tIcon">✅</div><div class="tText"><b>공식지정도장 확인하기</b><span>공식 인증/지정 여부를 먼저 확인하세요.</span></div></li>
+            <li class="tItem"><div class="tIcon">💬</div><div class="tText"><b>실시간 상담</b><span>카카오톡으로 가장 빠르게 연결됩니다.</span></div></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA (✅ 우선순위 재배치) -->
+      <section class="cta" aria-label="Quick actions">
+        <!-- ✅ 전총재님 원하신 “먼저 보이기” 버튼 -->
+        <a class="btn primary" href="https://tk7890kr12.wixsite.com/double-cross-officia/%EA%B3%B5%EC%8B%9D%EC%A7%80%EC%A0%95%EB%8F%84%EC%9E%A5-%EC%8B%A0%EC%B2%AD" target="_blank" rel="noopener">✅ 공식지정도장 확인/신청하기</a>
+
+        <a class="btn kakao" href="https://open.kakao.com/o/gPxTAxhi" target="_blank" rel="noopener">
+          <span class="liveDot"></span> 💬 실시간 카카오톡 상담
+        </a>
+
+        <a class="btn band" href="https://www.band.us/n/a4a2b4Y8gaIfb" target="_blank" rel="noopener">🎟️ 밴드 참여</a>
+
+        <a class="btn" href="https://tk7890kr12.wixsite.com/double-cross-officia" target="_blank" rel="noopener">🌐 공식 홈페이지</a>
+
+        <a class="btn news" href="https://www.news24.ai.kr/news/1203" target="_blank" rel="noopener">📰 신문 보기</a>
+
+        <a class="btn" href="https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ" target="_blank" rel="noopener">🎬 유튜브 채널</a>
+        <a class="btn" href="tel:010-4477-2772">📞 010-4477-2772</a>
+      </section>
+
+      <!-- VISION -->
+      <section class="section" aria-label="Vision showcase">
+        <div class="sectionHeader">
+          <div class="sectionTitle">🛰️ VISION SHOWCASE <span class="pill">Mobile • 9:16</span></div>
+          <span class="pill">Auto Slide</span>
+        </div>
+
+        <div class="viewer">
+          <img class="shotImg on" id="imgA" alt="DOUBLE CROSS Vision 1">
+          <img class="shotImg" id="imgB" alt="DOUBLE CROSS Vision 2">
+        </div>
+
+        <div class="caption">
+          <div><span class="counter" id="counter">01 / 02</span></div>
+          <div class="hint">아래에서 영상도 확인하세요</div>
+        </div>
+      </section>
+
+      <!-- VIDEO -->
+      <section class="section" aria-label="Promo video">
+        <div class="sectionHeader">
+          <div class="sectionTitle">🎬 PROMO VIDEO <span class="pill">YouTube</span></div>
+          <span class="pill">Official</span>
+        </div>
+
+        <div class="videoBox">
+          <div class="videoWrap">
+            <iframe
+              src="https://www.youtube.com/embed/y_uqYZEU9uw?rel=0&modestbranding=1"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              title="DOUBLE CROSS Promo Video"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ AUTHORITY (요구대로 아래로 이동) -->
+      <section class="support" aria-label="Supported by organizations">
+        <div class="supportTop">
+          <div class="supportTitle">SUPPORTED BY <b>TRUSTED PARTNERS</b></div>
+          <div class="supportPill">Authority Layer • Since 2009</div>
+        </div>
+
+        <div class="logoGrid">
+          <a class="logoCardLink" href="https://tk7890kr12.wixsite.com/ipma" target="_blank" rel="noopener">
+            <div class="logoCard">
+              <div class="logoImgWrap">
+                <img src="https://static.wixstatic.com/media/abf917_5065003bfd5d4e55933374e8e122c7fc~mv2.png" alt="국제경찰무도연합회 로고">
+              </div>
+              <div class="logoLabel">국제경찰무도연합회</div>
+              <div class="logoSub">International Police Martial Arts Alliance</div>
+            </div>
+          </a>
+
+          <a class="logoCardLink" href="https://tk7890kr12.wixsite.com/tkkd" target="_blank" rel="noopener">
+            <div class="logoCard">
+              <div class="logoImgWrap">
+                <img src="https://static.wixstatic.com/media/abf917_022bb49ad81143f3bb3fb1d7de57cec3~mv2.png" alt="세계태권검도연맹 로고">
+              </div>
+              <div class="logoLabel">세계태권검도연맹</div>
+              <div class="logoSub">World TaekwonKumdo Federation</div>
+            </div>
+          </a>
+
+          <a class="logoCardLink" href="https://tk7890kr12.wixsite.com/ica-atic" target="_blank" rel="noopener">
+            <div class="logoCard">
+              <div class="logoImgWrap">
+                <img src="https://static.wixstatic.com/media/abf917_474049ab56494eb194d48aef7c5558b5~mv2.png" alt="국제자격관리본부 로고">
+              </div>
+              <div class="logoLabel">국제자격관리본부</div>
+              <div class="logoSub">International Certification Authority</div>
+            </div>
+          </a>
+
+          <a class="logoCardLink" href="https://www.news24.ai.kr/" target="_blank" rel="noopener">
+            <div class="logoCard">
+              <div class="logoImgWrap">
+                <img src="https://static.wixstatic.com/media/abf917_459f0009ee10433a9869ee30c49f8926~mv2.png" alt="글로벌뉴스24 로고">
+              </div>
+              <div class="logoLabel">글로벌뉴스24</div>
+              <div class="logoSub">GLOBAL NEWS 24</div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <div class="footer">© DOUBLE CROSS. All rights reserved.</div>
+    </main>
+  </div>
+
+  <script>
+    // VISION 슬라이드
+    const imgs = [
+      "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png",
+      "https://static.wixstatic.com/media/abf917_9514788de8834dcbbe4f71a02c2b875a~mv2.png"
+    ];
+    const imgA = document.getElementById("imgA");
+    const imgB = document.getElementById("imgB");
+    const counter = document.getElementById("counter");
+    let idx = 0, usingA = true;
+
+    imgA.src = imgs[0];
+
+    function updateCounter(){
+      counter.textContent = String(idx+1).padStart(2,"0") + " / " + imgs.length;
+    }
+    function show(i){
+      idx = (i + imgs.length) % imgs.length;
+      updateCounter();
+      if(usingA){
+        imgB.src = imgs[idx];
+        imgB.classList.add("on");
+        imgA.classList.remove("on");
+      } else {
+        imgA.src = imgs[idx];
+        imgA.classList.add("on");
+        imgB.classList.remove("on");
+      }
+      usingA = !usingA;
+    }
+    setInterval(()=>show(idx+1), 4500);
+    updateCounter();
+  </script>
 </body>
 </html>
