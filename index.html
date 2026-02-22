@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>DOUBLE CROSS® | Official Vision Portal</title>
-  <meta name="description" content="DOUBLE CROSS® 공식 대문 - 대표 이미지 + 빠른 문의/확인 + 비전 쇼케이스 + 영상 + 파트너" />
+  <meta name="description" content="DOUBLE CROSS® 공식 대문 - 대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
 
   <!-- OG -->
   <meta property="og:title" content="DOUBLE CROSS® | Official Vision Portal" />
-  <meta property="og:description" content="대표 이미지 + 빠른 문의/확인 + 비전 쇼케이스 + 영상 + 파트너" />
+  <meta property="og:description" content="대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
   <meta property="og:image" content="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" />
 
   <style>
@@ -140,7 +140,7 @@
       box-shadow:0 0 12px rgba(255,211,106,.70);
     }
 
-    /* ✅ 상단 대표 이미지(히어로) - 갤러리 슬라이드 1곳만 */
+    /* ✅ 상단 대표 이미지: 우→좌 슬라이드(한 곳만) */
     .heroImage{
       position:relative;
       margin:0 16px 12px;
@@ -149,7 +149,7 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 22px 70px rgba(0,0,0,.55);
       background:#000;
-      aspect-ratio: 9/16;
+      aspect-ratio: 9/16; /* 모바일 포스터 */
     }
     .heroImage::after{
       content:"";
@@ -158,30 +158,30 @@
         radial-gradient(900px 480px at 50% 0%, rgba(255,211,106,.14), transparent 60%),
         radial-gradient(800px 420px at 90% 10%, rgba(103,183,255,.12), transparent 60%);
       pointer-events:none;
-      z-index:2;
+      z-index:3;
     }
-    .heroSlide{
-      position:absolute;
-      inset:0;
+
+    .heroTrack{
+      display:flex;
       width:100%;
       height:100%;
-      object-fit:contain;  /* ✅ 잘림 방지 */
+      transform:translateX(0);
+      transition:transform .9s ease;
+    }
+    .heroTrack img{
+      width:100%;
+      height:100%;
+      flex:0 0 100%;
+      object-fit:contain; /* 세로 이미지 보호 */
       background:#000;
-      opacity:0;
-      transition:opacity .85s ease;
       filter:saturate(1.02) contrast(1.04);
     }
-    .heroSlide.on{
-      opacity:1;
-      animation:slowZoom 6s ease-in-out infinite alternate;
-    }
-    @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
 
     .heroOverlay{
       position:absolute;
       left:12px; right:12px; bottom:12px;
       display:flex; gap:8px; flex-wrap:wrap;
-      z-index:3;
+      z-index:4;
     }
     .heroTag{
       font-size:11px;
@@ -195,7 +195,7 @@
       text-shadow:0 0 12px rgba(255,211,106,.18);
     }
 
-    /* ✅ 빠른 메뉴(상단에 먼저 보이게) */
+    /* ✅ 먼저 노출: 문의가 많은 항목들 */
     .quick{
       position:relative;
       display:grid;
@@ -485,8 +485,7 @@
     /* PC 최적화 */
     @media (min-width: 900px){
       .poster{ width:min(980px, 100%); }
-      .heroImage{ aspect-ratio: 16/9; }  /* PC에서는 더 시원하게 */
-      .heroSlide{ object-fit:contain; }
+      .heroImage{ aspect-ratio: 16/9; } /* PC에서는 더 시원하게 */
     }
   </style>
 </head>
@@ -517,10 +516,9 @@
         </div>
       </header>
 
-      <!-- ✅ 상단 대표 이미지: 갤러리 슬라이드(여기 한 곳만) -->
+      <!-- ✅ 상단 대표 이미지: 우→좌로 한장씩 흘러감 -->
       <section class="heroImage" aria-label="Top hero image">
-        <img class="heroSlide on" id="heroA" alt="DOUBLE CROSS Hero 1">
-        <img class="heroSlide" id="heroB" alt="DOUBLE CROSS Hero 2">
+        <div class="heroTrack" id="heroTrack"></div>
 
         <div class="heroOverlay">
           <div class="heroTag">Official Dojang</div>
@@ -561,7 +559,7 @@
         <a class="btn" href="tel:010-4477-2772">📞 010-4477-2772</a>
       </section>
 
-      <!-- VIDEO (VISION 섹션 삭제: 이미지 슬라이드는 상단 한 곳만) -->
+      <!-- VIDEO -->
       <section class="section" aria-label="Promo video">
         <div class="sectionHeader">
           <div class="sectionTitle">🎬 PROMO VIDEO <span class="pill">YouTube</span></div>
@@ -646,38 +644,50 @@
   </div>
 
   <script>
-    // ✅ 상단 HERO 슬라이드(갤러리 이미지)
+    // ✅ HERO: 우→좌 슬라이드 (무한루프)
     const imgs = [
       "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png",
       "https://static.wixstatic.com/media/abf917_9514788de8834dcbbe4f71a02c2b875a~mv2.png"
     ];
 
-    const heroA = document.getElementById("heroA");
-    const heroB = document.getElementById("heroB");
+    const track = document.getElementById("heroTrack");
 
-    let idx = 0;
-    let usingA = true;
+    // 이미지 주입
+    imgs.forEach(src=>{
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "DOUBLE CROSS Hero";
+      track.appendChild(img);
+    });
 
-    // 첫 이미지
-    heroA.src = imgs[0];
+    // 첫 장 복제(끊김 없는 무한루프)
+    const firstClone = track.children[0].cloneNode(true);
+    track.appendChild(firstClone);
 
-    function show(i){
-      idx = (i + imgs.length) % imgs.length;
+    let index = 0;
 
-      if(usingA){
-        heroB.src = imgs[idx];
-        heroB.classList.add("on");
-        heroA.classList.remove("on");
-      } else {
-        heroA.src = imgs[idx];
-        heroA.classList.add("on");
-        heroB.classList.remove("on");
+    function slide(){
+      index++;
+      track.style.transform = `translateX(-${index * 100}%)`;
+
+      // 마지막(복제본)까지 도달하면 순간 이동
+      if(index === imgs.length){
+        setTimeout(()=>{
+          track.style.transition = "none";
+          track.style.transform = "translateX(0)";
+          index = 0;
+          // 다음 애니메이션을 위해 transition 복구
+          requestAnimationFrame(()=>{
+            requestAnimationFrame(()=>{
+              track.style.transition = "transform .9s ease";
+            });
+          });
+        }, 900);
       }
-      usingA = !usingA;
     }
 
-    // 4.5초마다 변경
-    setInterval(()=>show(idx+1), 4500);
+    // 4.5초마다 1장씩
+    setInterval(slide, 4500);
   </script>
 </body>
 </html>
