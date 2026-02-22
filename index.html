@@ -140,7 +140,7 @@
       box-shadow:0 0 12px rgba(255,211,106,.70);
     }
 
-    /* ✅ 상단 대표 이미지(히어로) */
+    /* ✅ 상단 대표 이미지(히어로) - 갤러리 슬라이드 1곳만 */
     .heroImage{
       position:relative;
       margin:0 16px 12px;
@@ -149,6 +149,7 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 22px 70px rgba(0,0,0,.55);
       background:#000;
+      aspect-ratio: 9/16;
     }
     .heroImage::after{
       content:"";
@@ -157,25 +158,30 @@
         radial-gradient(900px 480px at 50% 0%, rgba(255,211,106,.14), transparent 60%),
         radial-gradient(800px 420px at 90% 10%, rgba(103,183,255,.12), transparent 60%);
       pointer-events:none;
+      z-index:2;
     }
-    .heroImage img{
+    .heroSlide{
+      position:absolute;
+      inset:0;
       width:100%;
-        height:100%;
-  object-fit:contain;   /* ✅ 잘림 방지 */
-  background:#000;      /* ✅ 남는 여백이 생기면 검정으로 */
-}
-      display:block;
-      /* 모바일은 포스터 느낌(세로), PC는 보기 편하게 */
-      aspect-ratio: 9/16;
-      object-fit: cover;
-      object-position:center;
+      height:100%;
+      object-fit:contain;  /* ✅ 잘림 방지 */
+      background:#000;
+      opacity:0;
+      transition:opacity .85s ease;
       filter:saturate(1.02) contrast(1.04);
     }
+    .heroSlide.on{
+      opacity:1;
+      animation:slowZoom 6s ease-in-out infinite alternate;
+    }
+    @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+
     .heroOverlay{
       position:absolute;
       left:12px; right:12px; bottom:12px;
       display:flex; gap:8px; flex-wrap:wrap;
-      z-index:1;
+      z-index:3;
     }
     .heroTag{
       font-size:11px;
@@ -288,6 +294,23 @@
       color:rgba(234,240,255,.72);
       font-weight:1000;
       white-space:nowrap;
+    }
+
+    /* VIDEO */
+    .videoBox{padding:12px}
+    .videoWrap{
+      position:relative;
+      width:100%;
+      padding-bottom:56.25%;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:#000;
+    }
+    .videoWrap iframe{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
     }
 
     /* AUTHORITY LAYER */
@@ -409,13 +432,13 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:10px; /* 여백 줘서 로고 숨 안 막힘 */
+      padding:10px;
     }
     .logoImgWrap img{
       width:100%;
       height:100%;
-      object-fit:contain;     /* 핵심 */
-      object-position:center; /* 핵심 */
+      object-fit:contain;
+      object-position:center;
       transition:.25s ease;
       filter:drop-shadow(0 10px 22px rgba(0,0,0,.40));
     }
@@ -452,55 +475,6 @@
       pointer-events:none;
     }
 
-    /* VISION */
-    .viewer{
-      position:relative;
-      width:100%;
-      aspect-ratio:9/16;
-      max-height:90vh;
-      overflow:hidden;
-      background:#000;
-    }
-    .shotImg{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:contain;
-      opacity:0;
-      transition:opacity .85s ease;
-      filter:saturate(1.04) contrast(1.04);
-    }
-    .shotImg.on{opacity:1; animation:slowZoom 6s ease-in-out infinite alternate;}
-    @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
-    .caption{
-      padding:10px 12px;
-      border-top:1px solid rgba(255,255,255,.10);
-      font-size:12px;
-      color:rgba(234,240,255,.65);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .counter{font-weight:1000;color:#fff}
-    .hint{color:rgba(234,240,255,.60); font-weight:900}
-
-    /* VIDEO */
-    .videoBox{padding:12px}
-    .videoWrap{
-      position:relative;
-      width:100%;
-      padding-bottom:56.25%;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background:#000;
-    }
-    .videoWrap iframe{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      border:0;
-    }
-
     .footer{
       margin:10px 16px 16px;
       text-align:center;
@@ -508,21 +482,11 @@
       color:rgba(234,240,255,.55);
     }
 
-@media (min-width: 900px){
-  .poster{ width:min(980px, 100%); }
-
-  /* ✅ PC에서도 대표/비전 이미지를 9:16로 유지 */
-  .heroImage{ aspect-ratio: 9/16; }
-  .heroImage img{ aspect-ratio: 9/16; object-fit: contain; }
-
-  .viewer{ aspect-ratio: 9/16; max-height: 72vh; }
-}
-
-    /* ✅ PC에서 “다 안보이고 작게” 느껴지는 것 해결 */
+    /* PC 최적화 */
     @media (min-width: 900px){
       .poster{ width:min(980px, 100%); }
-      .heroImage img{ aspect-ratio: 16/9; }
-      .viewer{ aspect-ratio: 16/9; max-height: 70vh; }
+      .heroImage{ aspect-ratio: 16/9; }  /* PC에서는 더 시원하게 */
+      .heroSlide{ object-fit:contain; }
     }
   </style>
 </head>
@@ -553,11 +517,11 @@
         </div>
       </header>
 
-      <!-- ✅ 가장 먼저 보이는 대표 이미지 -->
+      <!-- ✅ 상단 대표 이미지: 갤러리 슬라이드(여기 한 곳만) -->
       <section class="heroImage" aria-label="Top hero image">
-        <img
-          src="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png"
-          alt="DOUBLE CROSS Main Visual" />
+        <img class="heroSlide on" id="heroA" alt="DOUBLE CROSS Hero 1">
+        <img class="heroSlide" id="heroB" alt="DOUBLE CROSS Hero 2">
+
         <div class="heroOverlay">
           <div class="heroTag">Official Dojang</div>
           <div class="heroTag">Seminars</div>
@@ -572,17 +536,14 @@
           ✅ 공식지정도장 가입 문의(신청)
         </a>
 
-        <!-- 공식지정도장 확인하기: 링크가 아직 없다면 임시로 홈페이지로 연결 -->
         <a class="btn verify" href="https://tk7890kr12.wixsite.com/double-cross-officia" target="_blank" rel="noopener">
           🔎 공식지정도장 확인하기
         </a>
 
-        <!-- 세미나 안내 문의: 카카오 상담으로 바로 -->
         <a class="btn seminar" href="https://open.kakao.com/o/gPxTAxhi" target="_blank" rel="noopener">
           <span class="liveDot"></span> 📣 세미나 안내 문의(카카오)
         </a>
 
-        <!-- 캐릭터/원본문의: 밴드 또는 카카오로 연결 -->
         <a class="btn source" href="https://www.band.us/n/a4a2b4Y8gaIfb" target="_blank" rel="noopener">
           🧩 캐릭터 · 원본 문의(밴드)
         </a>
@@ -600,25 +561,7 @@
         <a class="btn" href="tel:010-4477-2772">📞 010-4477-2772</a>
       </section>
 
-      <!-- VISION -->
-      <section class="section" aria-label="Vision showcase">
-        <div class="sectionHeader">
-          <div class="sectionTitle">🛰️ VISION SHOWCASE <span class="pill">Auto Slide</span></div>
-          <span class="pill">Gallery</span>
-        </div>
-
-        <div class="viewer">
-          <img class="shotImg on" id="imgA" alt="DOUBLE CROSS Vision 1">
-          <img class="shotImg" id="imgB" alt="DOUBLE CROSS Vision 2">
-        </div>
-
-        <div class="caption">
-          <div><span class="counter" id="counter">01 / 02</span></div>
-          <div class="hint">아래에서 영상도 확인하세요</div>
-        </div>
-      </section>
-
-      <!-- VIDEO -->
+      <!-- VIDEO (VISION 섹션 삭제: 이미지 슬라이드는 상단 한 곳만) -->
       <section class="section" aria-label="Promo video">
         <div class="sectionHeader">
           <div class="sectionTitle">🎬 PROMO VIDEO <span class="pill">YouTube</span></div>
@@ -636,7 +579,7 @@
         </div>
       </section>
 
-      <!-- ✅ 4개 단체는 “아래로” 이동 -->
+      <!-- ✅ 4개 단체 -->
       <section class="support" aria-label="Supported by organizations">
         <div class="supportTop">
           <div class="supportTitle">SUPPORTED BY <b>TRUSTED PARTNERS</b></div>
@@ -703,37 +646,38 @@
   </div>
 
   <script>
-    // VISION 슬라이드
+    // ✅ 상단 HERO 슬라이드(갤러리 이미지)
     const imgs = [
       "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png",
       "https://static.wixstatic.com/media/abf917_9514788de8834dcbbe4f71a02c2b875a~mv2.png"
     ];
-    const imgA = document.getElementById("imgA");
-    const imgB = document.getElementById("imgB");
-    const counter = document.getElementById("counter");
-    let idx = 0, usingA = true;
 
-    imgA.src = imgs[0];
+    const heroA = document.getElementById("heroA");
+    const heroB = document.getElementById("heroB");
 
-    function updateCounter(){
-      counter.textContent = String(idx+1).padStart(2,"0") + " / " + imgs.length;
-    }
+    let idx = 0;
+    let usingA = true;
+
+    // 첫 이미지
+    heroA.src = imgs[0];
+
     function show(i){
       idx = (i + imgs.length) % imgs.length;
-      updateCounter();
+
       if(usingA){
-        imgB.src = imgs[idx];
-        imgB.classList.add("on");
-        imgA.classList.remove("on");
+        heroB.src = imgs[idx];
+        heroB.classList.add("on");
+        heroA.classList.remove("on");
       } else {
-        imgA.src = imgs[idx];
-        imgA.classList.add("on");
-        imgB.classList.remove("on");
+        heroA.src = imgs[idx];
+        heroA.classList.add("on");
+        heroB.classList.remove("on");
       }
       usingA = !usingA;
     }
+
+    // 4.5초마다 변경
     setInterval(()=>show(idx+1), 4500);
-    updateCounter();
   </script>
 </body>
 </html>
