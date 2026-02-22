@@ -6,40 +6,15 @@
 
   <title>DOUBLE CROSS® | Official Vision Portal</title>
   <meta name="description" content="DOUBLE CROSS® 공식 대문 - 대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://doublecross.kr/" />
 
-  <!-- Naver site verification -->
+  <!-- ✅ NAVER / GOOGLE site verification -->
   <meta name="naver-site-verification" content="a94ef3fb8b8bcf4f51fc7b475f0791878a4e0218" />
+  <meta name="google-site-verification" content="_CDEvm1X63aFd6KAohpT32QK5ICbTRUTSFZ7jGNo9Rk" />
 
   <!-- OG -->
-  <meta property="og:site_name" content="DOUBLE CROSS®" />
-  <meta property="og:type" content="website" />
   <meta property="og:title" content="DOUBLE CROSS® | Official Vision Portal" />
   <meta property="og:description" content="대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
-  <meta property="og:url" content="https://doublecross.kr/" />
   <meta property="og:image" content="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" />
-
-  <!-- Twitter (선택이지만 도움이 됨) -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DOUBLE CROSS® | Official Vision Portal" />
-  <meta name="twitter:description" content="대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
-  <meta name="twitter:image" content="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" />
-
-  <!-- JSON-LD (검색엔진 이해 도움) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"DOUBLE CROSS",
-    "url":"https://doublecross.kr/",
-    "logo":"https://static.wixstatic.com/media/abf917_0792f5404ec84ffc9368a8eff33b2a50~mv2.png",
-    "sameAs":[
-      "https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ",
-      "https://www.news24.ai.kr/"
-    ]
-  }
-  </script>
 
   <style>
     :root{
@@ -170,7 +145,7 @@
       box-shadow:0 0 12px rgba(255,211,106,.70);
     }
 
-    /* ✅ 상단 대표 이미지 */
+    /* ✅ 상단 대표 이미지: 우→좌 슬라이드(한 곳만) */
     .heroImage{
       position:relative;
       margin:0 16px 12px;
@@ -179,7 +154,7 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 22px 70px rgba(0,0,0,.55);
       background:#000;
-      aspect-ratio: 9/16;
+      aspect-ratio: 9/16; /* 모바일 포스터 */
     }
     .heroImage::after{
       content:"";
@@ -202,7 +177,7 @@
       width:100%;
       height:100%;
       flex:0 0 100%;
-      object-fit:contain;
+      object-fit:contain; /* 세로 이미지 보호 */
       background:#000;
       filter:saturate(1.02) contrast(1.04);
     }
@@ -432,7 +407,7 @@
     .brandText .name{font-weight:1000;letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
     .brandText .sub{margin-top:4px;font-size:11px;color:rgba(234,240,255,.70);font-weight:800;}
 
-    /* Partner Grid */
+    /* Partner Grid: 모바일에서도 2열 유지 */
     .logoGrid{
       position:relative;
       display:grid;
@@ -478,27 +453,33 @@
       font-weight:1000;
       color:#fff;
       letter-spacing:.1px;
+
       white-space:normal;
       overflow:hidden;
       display:-webkit-box;
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
+
       line-height:1.18;
       min-height: calc(1.18em * 1);
     }
+
     .logoSub{
       margin-top:6px;
       font-size:10px;
       font-weight:800;
       color:rgba(255,255,255,.60);
+
       white-space:normal;
       overflow:hidden;
       text-overflow:ellipsis;
       display:-webkit-box;
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
+
       overflow-wrap:anywhere;
       word-break:break-word;
+
       line-height:1.2;
       min-height: calc(1.2em * 2);
     }
@@ -516,55 +497,6 @@
       pointer-events:none;
     }
 
-    /* SEO 텍스트 섹션(검색엔진용 + 사용자도 읽기 가능: 깔끔하게) */
-    .seoBox{
-      margin:0 16px 14px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:22px;
-      background:linear-gradient(180deg, rgba(16,24,38,.42), rgba(0,0,0,.22));
-      box-shadow:0 18px 60px rgba(0,0,0,.45);
-      overflow:hidden;
-    }
-    .seoInner{
-      padding:14px 14px;
-      color:rgba(234,240,255,.78);
-      line-height:1.75;
-      font-size:12px;
-    }
-    .seoInner h2{
-      margin:0 0 8px;
-      font-size:13px;
-      font-weight:1000;
-      letter-spacing:.2px;
-      color:#fff;
-    }
-    .seoInner h3{
-      margin:12px 0 6px;
-      font-size:12px;
-      font-weight:1000;
-      color:rgba(255,211,106,.92);
-    }
-    .seoInner a{
-      color:rgba(103,183,255,.95);
-      text-decoration:none;
-      border-bottom:1px solid rgba(103,183,255,.25);
-    }
-    .seoLinks{
-      display:flex; flex-wrap:wrap; gap:8px;
-      margin-top:10px;
-    }
-    .seoMini{
-      display:inline-flex;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
-      color:rgba(234,240,255,.85);
-      font-weight:900;
-      font-size:11px;
-      text-decoration:none;
-    }
-
     .footer{
       margin:10px 16px 16px;
       text-align:center;
@@ -572,7 +504,6 @@
       color:rgba(234,240,255,.55);
     }
 
-    /* PC 최적화 */
     @media (min-width: 900px){
       .poster{ width:min(980px, 100%); }
       .heroImage{ aspect-ratio: 16/9; }
@@ -584,7 +515,6 @@
   <div class="stage">
     <main class="poster" aria-label="DOUBLE CROSS Official Portal">
 
-      <!-- TOP -->
       <header class="top">
         <div class="badge">⚡ OFFICIAL VISION PORTAL</div>
 
@@ -606,9 +536,8 @@
         </div>
       </header>
 
-      <!-- ✅ 상단 대표 이미지 -->
       <section class="heroImage" aria-label="Top hero image">
-        <div class="heroTrack" id="heroTrack" aria-live="off" aria-label="Hero slideshow"></div>
+        <div class="heroTrack" id="heroTrack"></div>
 
         <div class="heroOverlay">
           <div class="heroTag">Official Dojang</div>
@@ -618,7 +547,6 @@
         </div>
       </section>
 
-      <!-- ✅ 먼저 노출: 문의가 많은 항목들 -->
       <section class="quick" aria-label="Top quick actions">
         <a class="btn primary" href="https://tk7890kr12.wixsite.com/double-cross-officia/%EA%B3%B5%EC%8B%9D%EC%A7%80%EC%A0%95%EB%8F%84%EC%9E%A5-%EC%8B%A0%EC%B2%AD" target="_blank" rel="noopener">
           ✅ 공식지정도장 가입 문의(신청)
@@ -637,7 +565,6 @@
         </a>
       </section>
 
-      <!-- CTA -->
       <section class="cta" aria-label="Quick actions">
         <a class="btn" href="https://tk7890kr12.wixsite.com/double-cross-officia" target="_blank" rel="noopener">🌐 공식 홈페이지</a>
         <a class="btn kakao" href="https://open.kakao.com/o/gPxTAxhi" target="_blank" rel="noopener">
@@ -649,7 +576,6 @@
         <a class="btn" href="tel:010-4477-2772">📞 010-4477-2772</a>
       </section>
 
-      <!-- VIDEO -->
       <section class="section" aria-label="Promo video">
         <div class="sectionHeader">
           <div class="sectionTitle">🎬 PROMO VIDEO <span class="pill">YouTube</span></div>
@@ -667,27 +593,6 @@
         </div>
       </section>
 
-      <!-- ✅ 검색/등록 도움: 최소한의 설명 텍스트 (너무 길지 않게, 하지만 확실하게) -->
-      <section class="seoBox" aria-label="Site summary">
-        <div class="seoInner">
-          <h2>DOUBLE CROSS® 공식 포털</h2>
-          <div>
-            DOUBLE CROSS®는 교차원리 기반 무도 시스템과 공식 네트워크 운영을 중심으로,
-            공식지정도장 안내, 세미나 소식, 미디어/보도, 파트너 기관 정보를 제공합니다.
-          </div>
-
-          <h3>바로가기</h3>
-          <div class="seoLinks">
-            <a class="seoMini" href="https://doublecross.kr/" target="_self" rel="noopener">doublecross.kr</a>
-            <a class="seoMini" href="https://doublecross.kr/sitemap.xml" target="_self" rel="noopener">sitemap.xml</a>
-            <a class="seoMini" href="https://doublecross.kr/robots.txt" target="_self" rel="noopener">robots.txt</a>
-            <a class="seoMini" href="https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ" target="_blank" rel="noopener">YouTube</a>
-            <a class="seoMini" href="https://www.news24.ai.kr/" target="_blank" rel="noopener">GLOBAL NEWS 24</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ✅ 4개 단체 -->
       <section class="support" aria-label="Supported by organizations">
         <div class="supportTop">
           <div class="supportTitle">SUPPORTED BY <b>TRUSTED PARTNERS</b></div>
@@ -749,12 +654,6 @@
         </div>
       </section>
 
-      <noscript>
-        <div style="margin:0 16px 16px;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(0,0,0,.25);color:rgba(234,240,255,.85);font-weight:900;">
-          이 페이지는 일부 기능(대표 이미지 자동 전환)을 위해 자바스크립트를 사용합니다. 자바스크립트를 켜면 더 부드럽게 보입니다.
-        </div>
-      </noscript>
-
       <div class="footer">© DOUBLE CROSS. All rights reserved.</div>
     </main>
   </div>
@@ -768,46 +667,37 @@
 
     const track = document.getElementById("heroTrack");
 
-    // 안전장치: 트랙이 없으면 종료
-    if (track) {
-      // 이미지 주입
-      imgs.forEach(src=>{
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = "DOUBLE CROSS Hero";
-        track.appendChild(img);
-      });
+    imgs.forEach(src=>{
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "DOUBLE CROSS Hero";
+      track.appendChild(img);
+    });
 
-      // 첫 장 복제(끊김 없는 무한루프)
-      const firstClone = track.children[0].cloneNode(true);
-      track.appendChild(firstClone);
+    const firstClone = track.children[0].cloneNode(true);
+    track.appendChild(firstClone);
 
-      let index = 0;
+    let index = 0;
 
-      function slide(){
-        index++;
-        track.style.transform = `translateX(-${index * 100}%)`;
+    function slide(){
+      index++;
+      track.style.transform = `translateX(-${index * 100}%)`;
 
-        // 마지막(복제본)까지 도달하면 순간 이동
-        if(index === imgs.length){
-          setTimeout(()=>{
-            track.style.transition = "none";
-            track.style.transform = "translateX(0)";
-            index = 0;
-
-            // 다음 애니메이션을 위해 transition 복구
+      if(index === imgs.length){
+        setTimeout(()=>{
+          track.style.transition = "none";
+          track.style.transform = "translateX(0)";
+          index = 0;
+          requestAnimationFrame(()=>{
             requestAnimationFrame(()=>{
-              requestAnimationFrame(()=>{
-                track.style.transition = "transform .9s ease";
-              });
+              track.style.transition = "transform .9s ease";
             });
-          }, 900);
-        }
+          });
+        }, 900);
       }
-
-      // 4.5초마다 1장씩
-      setInterval(slide, 4500);
     }
+
+    setInterval(slide, 4500);
   </script>
 </body>
 </html>
