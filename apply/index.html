@@ -1,1 +1,272 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>문의/신청 | DOUBLE CROSS</title>
+  <meta name="description" content="DOUBLE CROSS 문의/신청 페이지" />
 
+  <!-- =========================
+       ✅ CHANGE ZONE (여기만 수정!)
+       ========================= -->
+  <script>
+    const CONFIG = {
+      brand: "DOUBLE CROSS",
+      pageTitle: "문의/신청",
+      phone: "010-4477-2772",
+      email: "help@doublecross.kr",          // 없으면 비워도 됨: ""
+      kakaoChatLink: "https://pf.kakao.com/", // 카톡 채널/오픈채팅 링크
+      bandLink: "https://www.band.us/",       // 밴드 링크
+      homeLink: "/index.html",
+      links: {
+        check: "/check/index.html",
+        gallery: "/gallery/index.html",
+        about: "/about/index.html",
+        apply: "/apply/index.html",
+        library: "/library/index.html",
+      }
+    };
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b0f19; --panel:#0f1628; --card:#121c33; --line:#24345a;
+      --text:#e9eefc; --muted:#a9b6d6; --accent:#ff7a18; --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:radial-gradient(1200px 800px at 50% -200px, rgba(255,122,24,.18), transparent 55%),
+                 radial-gradient(900px 600px at 20% 0%, rgba(80,120,255,.14), transparent 55%),
+                 var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,"Segoe UI","Noto Sans KR",sans-serif;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:980px;margin:0 auto;padding:18px 14px 30px}
+    .topbar{
+      display:flex;align-items:center;gap:10px;
+      background:rgba(18,28,51,.65);
+      border:1px solid rgba(36,52,90,.6);
+      padding:12px 12px;border-radius:22px;
+      backdrop-filter: blur(8px);
+    }
+    .brand{font-weight:900;letter-spacing:.4px}
+    .badge{
+      margin-left:auto;font-size:12px;color:var(--muted);
+      border:1px solid rgba(36,52,90,.7);
+      padding:7px 10px;border-radius:999px;
+      background:rgba(15,22,40,.7);
+      white-space:nowrap;
+    }
+    .nav{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0,1fr));
+      gap:8px;
+    }
+    .nav a{
+      text-align:center;
+      padding:10px 8px;
+      border-radius:14px;
+      background:rgba(15,22,40,.65);
+      border:1px solid rgba(36,52,90,.55);
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    .nav a.active{
+      color:var(--text);
+      border-color:rgba(255,122,24,.55);
+      box-shadow:0 0 0 1px rgba(255,122,24,.15) inset;
+    }
+    .hero{margin-top:16px;padding:18px;border-radius:22px;
+      background:linear-gradient(180deg, rgba(18,28,51,.85), rgba(15,22,40,.65));
+      border:1px solid rgba(36,52,90,.65);
+    }
+    .title{font-size:22px;font-weight:900;margin:0 0 6px}
+    .sub{color:var(--muted);margin:0 0 14px;line-height:1.5}
+    .card{
+      margin-top:12px;
+      padding:16px;border-radius:22px;
+      background:rgba(18,28,51,.72);
+      border:1px solid rgba(36,52,90,.65);
+    }
+    label{display:block;font-size:13px;color:var(--muted);margin:10px 0 6px}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(36,52,90,.8);
+      background:rgba(15,22,40,.85);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr;gap:10px}
+    @media(min-width:720px){ .row{grid-template-columns:1fr 1fr;} }
+    .cta{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    @media(min-width:720px){ .cta{grid-template-columns:1.2fr .8fr;} }
+    .btn{
+      padding:13px 14px;border-radius:14px;
+      border:1px solid rgba(255,122,24,.55);
+      background:linear-gradient(180deg, rgba(255,122,24,.95), rgba(255,122,24,.75));
+      color:#111;
+      font-weight:900;
+      cursor:pointer;
+      text-align:center;
+    }
+    .btn2{
+      padding:13px 14px;border-radius:14px;
+      border:1px solid rgba(36,52,90,.75);
+      background:rgba(15,22,40,.85);
+      color:var(--text);
+      font-weight:900;
+      cursor:pointer;
+      text-align:center;
+    }
+    .helper{
+      margin-top:10px;color:var(--muted);font-size:12px;line-height:1.5
+    }
+    .quick{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    @media(min-width:720px){ .quick{grid-template-columns:repeat(3,1fr);} }
+    .q{
+      padding:12px;border-radius:18px;
+      background:rgba(15,22,40,.75);
+      border:1px solid rgba(36,52,90,.6);
+      text-align:center;
+      font-weight:800;
+    }
+    footer{margin-top:18px;color:rgba(233,238,252,.45);font-size:12px;text-align:center}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" id="brand" href="/index.html">DOUBLE CROSS</a>
+      <div class="badge" id="badge">문의/신청</div>
+    </div>
+
+    <div class="nav" id="nav"></div>
+
+    <section class="hero">
+      <h1 class="title" id="pageTitle">문의/신청</h1>
+      <p class="sub">간단히 내용을 남겨주시면, 카카오/전화/이메일로 빠르게 안내드릴게요.</p>
+
+      <div class="card">
+        <div class="row">
+          <div>
+            <label>성함</label>
+            <input id="name" placeholder="예: 홍길동" />
+          </div>
+          <div>
+            <label>연락처</label>
+            <input id="phone" placeholder="예: 010-1234-5678" />
+          </div>
+        </div>
+
+        <label>이메일(선택)</label>
+        <input id="email" placeholder="예: example@email.com" />
+
+        <label>문의 내용</label>
+        <textarea id="msg" placeholder="문의/신청 내용을 적어주세요. (도장명, 지역, 희망 일정 등)"></textarea>
+
+        <div class="cta">
+          <div class="btn" onclick="sendKakao()">카카오로 문의 보내기</div>
+          <div class="btn2" onclick="callNow()">전화 연결</div>
+        </div>
+
+        <div class="helper" id="helper"></div>
+
+        <div class="quick">
+          <a class="q" id="kakaoLink" href="#" target="_blank" rel="noopener">카카오 채널/오픈채팅</a>
+          <a class="q" id="bandLink" href="#" target="_blank" rel="noopener">밴드</a>
+          <a class="q" id="mailLink" href="#" target="_blank" rel="noopener">이메일</a>
+        </div>
+      </div>
+
+      <footer>© <span id="year"></span> DOUBLE CROSS. All rights reserved.</footer>
+    </section>
+  </div>
+
+<script>
+  // apply CONFIG
+  document.getElementById("brand").textContent = CONFIG.brand;
+  document.getElementById("badge").textContent = CONFIG.pageTitle;
+  document.getElementById("pageTitle").textContent = CONFIG.pageTitle;
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // nav
+  const nav = document.getElementById("nav");
+  const items = [
+    {k:"check", t:"조회"},
+    {k:"gallery", t:"갤러리"},
+    {k:"about", t:"소개"},
+    {k:"apply", t:"문의", active:true},
+    {k:"library", t:"자료실"},
+  ];
+  items.forEach(it=>{
+    const a = document.createElement("a");
+    a.href = CONFIG.links[it.k];
+    a.textContent = it.t;
+    if(it.active) a.classList.add("active");
+    nav.appendChild(a);
+  });
+
+  // quick links
+  document.getElementById("kakaoLink").href = CONFIG.kakaoChatLink || "#";
+  document.getElementById("bandLink").href = CONFIG.bandLink || "#";
+  document.getElementById("mailLink").href = CONFIG.email ? `mailto:${CONFIG.email}` : "#";
+
+  // helper
+  const helper = document.getElementById("helper");
+  helper.innerHTML =
+    `📞 대표번호: <b>${CONFIG.phone}</b><br>` +
+    (CONFIG.email ? `✉ 이메일: <b>${CONFIG.email}</b><br>` : "") +
+    (CONFIG.kakaoChatLink ? `💬 카카오 링크: <b>설정됨</b><br>` : `💬 카카오 링크: <b>미설정</b><br>`) +
+    `※ 신청 정보는 카카오/전화로 빠르게 연결하는 방식입니다.`;
+
+  function callNow(){
+    location.href = `tel:${(CONFIG.phone||"").replaceAll("-","")}`;
+  }
+
+  function sendKakao(){
+    const n = document.getElementById("name").value.trim();
+    const p = document.getElementById("phone").value.trim();
+    const e = document.getElementById("email").value.trim();
+    const m = document.getElementById("msg").value.trim();
+
+    const text =
+`[DOUBLE CROSS 문의/신청]
+성함: ${n||"-"}
+연락처: ${p||"-"}
+이메일: ${e||"-"}
+내용: ${m||"-"}`;
+
+    // 카카오 링크가 없으면 복사 안내
+    if(!CONFIG.kakaoChatLink){
+      navigator.clipboard?.writeText(text);
+      alert("카카오 링크가 아직 설정되지 않았습니다. 내용이 복사되었습니다. 카카오톡에 붙여넣어 보내주세요!");
+      return;
+    }
+
+    // 링크만 열고, 내용은 자동전송 불가(카카오 정책)
+    // 대신 복사 후 안내
+    navigator.clipboard?.writeText(text);
+    window.open(CONFIG.kakaoChatLink, "_blank", "noopener");
+    alert("문의 내용이 복사되었습니다. 열린 카카오톡 대화창에 붙여넣어 보내주세요!");
+  }
+</script>
+</body>
+</html>
