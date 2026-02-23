@@ -5,24 +5,28 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>조회/검색 | DOUBLE CROSS</title>
 
-  <!-- ===================================================
-    🔴🔴🔴 CHANGE ZONE (여기만 수정하세요!) 🔴🔴🔴
-    ✅ Ctrl+F 로 "CHANGE ZONE" 검색
-  =================================================== -->
+  <!-- =========================================
+   🔴🔴🔴 CHANGE ZONE (여기만 자주 수정) 🔴🔴🔴
+   ✅ Ctrl+F 로 "CHANGE ZONE" 또는 "🔴" 검색
+   ========================================= -->
   <script>
     const CONFIG = {
       BRAND: {
-        TITLE: "DOUBLE CROSS®",
+        TITLE: "DOUBLE CROSS",
         SUBTITLE: "STRUCTURE >> 교차원리 · 교차원리 기반 무도"
       },
-      // ✅ 상단으로 돌아가기(대문)
       LINKS: {
         HOME: "https://doublecross.kr/"
       },
-      // ✅ 기본 안내 문구
       TEXT: {
         PLACEHOLDER: "도장명 / 관장명 / 지역 / 인증번호 입력",
-        TIP: "도장·지부는 이름/지역으로 검색 가능 · 단증/자격증은 인증번호로 확인"
+        TIP: "도장·지부는 이름/지역/도장명으로 검색 가능 · 단증/자격증은 인증번호로 확인",
+        EMPTY: "검색 결과가 없습니다. 다른 검색어로 다시 시도해 주세요.",
+        NEED_CERT_NO: "단증/자격증은 '인증번호'로 조회됩니다.\n인증번호를 입력해 주세요."
+      },
+      DATA: {
+        // ✅ data.js 캐시 갱신용(수정 후 숫자만 올리면 즉시 반영됨)
+        VERSION: "3" // 예: "4", "5" ...
       }
     };
   </script>
@@ -31,13 +35,13 @@
   <style>
     :root{
       --bg:#070a10;
-      --card:rgba(16,24,38,.72);
+      --panel:rgba(16,24,38,.78);
       --line:rgba(255,255,255,.12);
       --text:#eaf0ff;
       --muted:rgba(234,240,255,.72);
       --gold:#ffd36a;
       --shadow:0 22px 70px rgba(0,0,0,.55);
-      --r:22px;
+      --r:26px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -46,56 +50,115 @@
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Malgun Gothic,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1100px 700px at 10% 0%, rgba(255,211,106,.18), transparent 60%),
-        radial-gradient(1100px 700px at 90% 0%, rgba(103,183,255,.14), transparent 60%),
-        radial-gradient(900px 520px at 50% 120%, rgba(141,98,255,.08), transparent 60%),
+        radial-gradient(1100px 700px at 10% 0%, rgba(255,211,106,.20), transparent 60%),
+        radial-gradient(1100px 700px at 90% 0%, rgba(103,183,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(141,98,255,.10), transparent 60%),
         var(--bg);
       overflow-x:hidden;
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
     }
-    .wrap{
+    .stage{
       min-height:100%;
       display:flex;
       justify-content:center;
-      padding:14px 10px 60px;
+      padding:18px 12px 52px;
     }
-    .panel{
+    .card{
       width:min(520px, 100%);
-      border-radius:28px;
+      border-radius:var(--r);
       border:1px solid rgba(255,255,255,.12);
-      background:linear-gradient(180deg, rgba(16,24,38,.86), rgba(16,24,38,.46));
+      background:linear-gradient(180deg, rgba(16,24,38,.86), rgba(16,24,38,.48));
       box-shadow:0 30px 90px rgba(0,0,0,.62);
       overflow:hidden;
       position:relative;
     }
-    header{
-      padding:16px 16px 12px;
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:14px 14px;
       border-bottom:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
     }
-    .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 12px;border-radius:999px;
-      border:1px solid rgba(255,211,106,.35);
-      background:rgba(255,211,106,.10);
-      font-weight:950;font-size:12px;letter-spacing:.3px;
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      min-width:0;
+    }
+    .logo{
+      width:34px;height:34px;border-radius:12px;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.06);
+      display:grid;place-items:center;
+      font-weight:1000;
+      color:rgba(255,211,106,.95);
+      box-shadow:0 14px 40px rgba(0,0,0,.45);
+      flex:0 0 auto;
+    }
+    .brandText{min-width:0}
+    .brandTitle{
+      font-weight:1000;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .pill{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(234,240,255,.72);
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .menu{
+      display:flex;
+      gap:10px;
+      padding:12px 14px 0;
+      flex-wrap:wrap;
+    }
+    .menu a{
+      text-decoration:none;
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      font-weight:900;
+      font-size:12px;
+    }
+    .menu a.active{
+      border-color:rgba(255,211,106,.50);
+      box-shadow:0 0 0 1px rgba(255,211,106,.08);
+    }
+
+    .body{
+      padding:14px;
     }
     h1{
-      margin:12px 0 6px;
-      font-size:22px;
+      margin:10px 0 6px;
+      font-size:20px;
       font-weight:1000;
-      letter-spacing:.4px;
+      letter-spacing:.2px;
     }
     .sub{
+      margin:0 0 12px;
       color:var(--muted);
       font-size:12px;
-      font-weight:850;
-      line-height:1.35;
+      font-weight:800;
+      letter-spacing:.15px;
     }
-    .searchBox{
-      padding:14px 16px 16px;
-      display:grid;
-      gap:10px;
+
+    .searchWrap{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;
+      background:rgba(0,0,0,.20);
+      padding:12px;
+      box-shadow:var(--shadow);
     }
     .input{
       width:100%;
@@ -104,56 +167,57 @@
       border:1px solid rgba(255,255,255,.14);
       background:rgba(0,0,0,.25);
       color:var(--text);
-      outline:none;
       font-weight:900;
-      font-size:14px;
+      outline:none;
     }
-    .btnRow{
+    .row{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap:10px;
+      margin-top:10px;
     }
     .btn{
-      display:flex;align-items:center;justify-content:center;
-      gap:10px;
-      padding:13px 14px;
-      border-radius:16px;
-      text-decoration:none;
-      font-weight:1000;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 12px;border-radius:16px;
+      text-decoration:none;font-weight:1000;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
       color:var(--text);
       user-select:none;
+      text-align:center;
       cursor:pointer;
     }
-    .btn:active{transform:scale(.985)}
+    .btn:active{transform:scale(.985); filter:brightness(1.05);}
     .btn.primary{
       border-color:rgba(255,211,106,.65);
-      background:linear-gradient(135deg, rgba(255,211,106,.42), rgba(184,135,26,.14));
+      background:linear-gradient(135deg, rgba(255,211,106,.36), rgba(184,135,26,.14));
       color:#111;
     }
-    .hint{
-      color:rgba(234,240,255,.65);
+    .tip{
+      margin:10px 2px 0;
+      color:rgba(234,240,255,.70);
       font-size:12px;
       font-weight:800;
-      line-height:1.4;
+      line-height:1.35;
     }
+
     .results{
-      padding:0 16px 18px;
+      margin-top:12px;
       display:grid;
       gap:10px;
     }
-    .card{
-      border:1px solid rgba(255,255,255,.12);
+    .resultCard{
       border-radius:18px;
-      background:rgba(0,0,0,.22);
-      padding:12px 12px;
-      box-shadow:0 10px 30px rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(16,24,38,.45);
+      padding:12px;
+      box-shadow:0 18px 55px rgba(0,0,0,.35);
     }
-    .type{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
+    .rTop{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:8px;
+    }
+    .rType{
       font-size:11px;
       font-weight:1000;
       padding:6px 10px;
@@ -161,245 +225,276 @@
       border:1px solid rgba(255,211,106,.28);
       background:rgba(255,211,106,.08);
       color:rgba(255,211,106,.95);
-      margin-bottom:10px;
+      white-space:nowrap;
     }
-    .row{
-      display:flex;
-      gap:10px;
-      justify-content:space-between;
-      padding:7px 0;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      font-size:13px;
-    }
-    .row:last-child{border-bottom:none}
-    .k{
-      color:rgba(234,240,255,.68);
-      font-weight:850;
-      min-width:92px;
-    }
-    .v{
-      color:var(--text);
-      font-weight:950;
-      text-align:right;
-      overflow-wrap:anywhere;
-      word-break:break-word;
-    }
-    .miniLink{
-      margin-top:10px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .miniLink a{
-      flex:1;
-      min-width:120px;
-      text-align:center;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      text-decoration:none;
+    .rTitle{
       font-weight:1000;
-      font-size:12px;
+      font-size:14px;
+      letter-spacing:.1px;
+      line-height:1.25;
+      margin:0;
     }
-    .miniLink a.gold{
-      border-color:rgba(255,211,106,.55);
-      background:rgba(255,211,106,.14);
+    .rMeta{
+      margin-top:6px;
+      font-size:12px;
+      color:rgba(234,240,255,.80);
+      line-height:1.45;
+      font-weight:800;
+    }
+    .rLinks{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .mini{
+      text-decoration:none;
+      color:var(--text);
+      font-size:12px;
+      font-weight:900;
+      padding:9px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+    }
+    .mini.gold{
+      border-color:rgba(255,211,106,.45);
+      background:rgba(255,211,106,.12);
       color:#111;
     }
+
     .empty{
-      padding:14px 16px 22px;
+      margin-top:12px;
+      padding:12px;
+      border-radius:18px;
+      border:1px dashed rgba(255,255,255,.22);
       color:rgba(234,240,255,.70);
-      font-weight:850;
-      font-size:13px;
-      line-height:1.5;
+      font-weight:900;
+      font-size:12px;
+      line-height:1.45;
     }
-    footer{
-      padding:12px 16px 16px;
+
+    .footer{
+      padding:14px;
       text-align:center;
-      color:rgba(234,240,255,.55);
       font-size:11px;
-      border-top:1px solid rgba(255,255,255,.08);
+      color:rgba(234,240,255,.55);
+      border-top:1px solid rgba(255,255,255,.10);
     }
   </style>
-
-  <!-- ✅ data.js 불러오기 (같은 폴더) -->
-  <script src="./data.js"></script>
 </head>
 
 <body>
-  <div class="wrap">
-    <main class="panel" aria-label="DOUBLE CROSS 통합 조회">
+  <div class="stage">
+    <main class="card" aria-label="DOUBLE CROSS 조회/검색">
 
-      <header>
-        <div class="badge">🔎 통합 조회/검색</div>
-        <h1 id="title">공식 지정도장 / 지부 / 단증 / 자격증</h1>
-        <div class="sub" id="subtitle"></div>
-      </header>
-
-      <section class="searchBox">
-        <input id="q" class="input" type="text" autocomplete="off" />
-        <div class="btnRow">
-          <button class="btn primary" id="btnSearch">조회하기</button>
-          <a class="btn" id="btnHome" href="#" target="_blank" rel="noopener">대문으로</a>
+      <!-- 상단바 -->
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo">DC</div>
+          <div class="brandText">
+            <div class="brandTitle" id="brandTitle">DOUBLE CROSS</div>
+          </div>
         </div>
-        <div class="hint" id="tip"></div>
+        <div class="pill">조회</div>
+      </div>
+
+      <!-- 공통 메뉴 -->
+      <nav class="menu" aria-label="Common menu">
+        <a class="active" href="/check/">조회</a>
+        <a href="/gallery/">갤러리</a>
+        <a href="/about/">소개</a>
+        <a href="/apply/">문의</a>
+        <a href="/library/">자료실</a>
+      </nav>
+
+      <section class="body">
+        <h1>공식 지정도장 / 지부 / 단증 / 자격증</h1>
+        <p class="sub" id="brandSubtitle">STRUCTURE >> 교차원리 · 교차원리 기반 무도</p>
+
+        <div class="searchWrap">
+          <input class="input" id="q" type="text" autocomplete="off" />
+          <div class="row">
+            <button class="btn primary" id="btnSearch" type="button">조회하기</button>
+            <a class="btn" id="btnHome" href="#" target="_blank" rel="noopener">대문으로</a>
+          </div>
+          <div class="tip" id="tipText"></div>
+
+          <div class="results" id="results"></div>
+          <div class="empty" id="emptyBox" style="display:none;"></div>
+        </div>
       </section>
 
-      <section class="results" id="results"></section>
-
-      <div class="empty" id="emptyBox" style="display:none;"></div>
-
-      <footer>© DOUBLE CROSS. All rights reserved.</footer>
+      <div class="footer">© 2026 DOUBLE CROSS. All rights reserved.</div>
     </main>
   </div>
 
+  <!-- ✅✅✅ (가장 중요) 데이터 먼저 로드 -->
   <script>
-    // ====== UI 텍스트 적용 ======
-    document.getElementById("subtitle").textContent = CONFIG.BRAND.SUBTITLE;
-    document.getElementById("q").placeholder = CONFIG.TEXT.PLACEHOLDER;
-    document.getElementById("tip").textContent = "💡 " + CONFIG.TEXT.TIP;
+    // data.js 캐시 우회 버전 적용
+    const s = document.createElement("script");
+    s.src = "./data.js?v=" + encodeURIComponent(CONFIG.DATA.VERSION);
+    document.body.appendChild(s);
+  </script>
+
+  <!-- ✅ 검색 로직 (data.js 로드 후 실행 보장) -->
+  <script>
+    // UI 텍스트 적용
+    document.getElementById("brandTitle").textContent = CONFIG.BRAND.TITLE;
+    document.getElementById("brandSubtitle").textContent = CONFIG.BRAND.SUBTITLE;
     document.getElementById("btnHome").href = CONFIG.LINKS.HOME;
 
-    // ====== 유틸 ======
-    const $results = document.getElementById("results");
-    const $empty = document.getElementById("emptyBox");
+    const input = document.getElementById("q");
+    const tip = document.getElementById("tipText");
+    const resultsEl = document.getElementById("results");
+    const emptyBox = document.getElementById("emptyBox");
+
+    input.placeholder = CONFIG.TEXT.PLACEHOLDER;
+    tip.textContent = "💡 " + CONFIG.TEXT.TIP;
 
     function norm(s){
-      return String(s ?? "").trim().toLowerCase();
+      return String(s || "")
+        .toLowerCase()
+        .replace(/\s+/g,"")
+        .replace(/[·•\-\(\)\[\]{}]/g,"");
     }
 
-    function includesAny(target, keyword){
-      const t = norm(target);
-      const k = norm(keyword);
-      return k && t.includes(k);
+    function escapeHtml(str){
+      return String(str||"")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#39;");
     }
 
     function isCertType(t){
-      return t === "단증" || t === "자격증";
-    }
-
-    function renderCard(item){
-      const type = item.type || "기타";
-
-      // 카드에 표시할 필드 목록(타입별)
-      let fields = [];
-
-      if(type === "도장"){
-        fields = [
-          ["도장명", item.도장명],
-          ["지역", item.지역],
-          ["관장명", item.관장명],
-          ["연락처", item.연락처],
-        ];
-      }else if(type === "지부"){
-        fields = [
-          ["구분", item.구분],
-          ["국가", item.국가],
-          ["지역", item.지역],
-          ["지부명", item.지부명],
-          ["책임자", item.책임자],
-        ];
-      }else if(type === "단증"){
-        fields = [
-          ["종목", item.종목],
-          ["이름", item.이름],
-          ["단", item.단],
-          ["인증번호", item.인증번호],
-        ];
-      }else if(type === "자격증"){
-        fields = [
-          ["자격분류", item.자격분류],
-          ["자격명", item.자격명],
-          ["이름", item.이름],
-          ["인증번호", item.인증번호],
-        ];
-      }else{
-        // fallback
-        fields = Object.keys(item).filter(k=>k!=="type").slice(0,6).map(k=>[k, item[k]]);
-      }
-
-      const rows = fields
-        .filter(([k,v]) => v !== undefined && v !== null && String(v).trim() !== "")
-        .map(([k,v]) => `<div class="row"><div class="k">${k}</div><div class="v">${String(v)}</div></div>`)
-        .join("");
-
-      const photo = item.사진 ? `<div class="row"><div class="k">사진</div><div class="v"><a href="${item.사진}" target="_blank" rel="noopener">보기</a></div></div>` : "";
-
-      const go = item.바로가기 ? `<a class="gold" href="${item.바로가기}" target="_blank" rel="noopener">바로가기</a>` : "";
-
-      return `
-        <div class="card">
-          <div class="type">✅ ${type}</div>
-          ${photo}
-          ${rows}
-          <div class="miniLink">
-            ${go}
-            <a href="${CONFIG.LINKS.HOME}" target="_blank" rel="noopener">대문</a>
-          </div>
-        </div>
-      `;
+      return ["단증","자격증","CERT","CERTS","DAN","LICENSE"].some(k => norm(t).includes(norm(k)));
     }
 
     function showEmpty(msg){
-      $results.innerHTML = "";
-      $empty.style.display = "block";
-      $empty.textContent = msg;
+      resultsEl.innerHTML = "";
+      emptyBox.style.display = "block";
+      emptyBox.textContent = msg;
     }
 
     function showResults(list){
-      $empty.style.display = "none";
-      $results.innerHTML = list.map(renderCard).join("");
+      emptyBox.style.display = "none";
+      resultsEl.innerHTML = "";
+
+      list.forEach(item=>{
+        const type = item.type || "정보";
+        const title =
+          item.dojangName || item.branchName || item.name || item.title || "결과";
+
+        const regionText = [item.country, item.region, item.city].filter(Boolean).join(" / ");
+        const master = item.masterName ? `관장: ${item.masterName}` : "";
+        const contact = item.contact ? `연락처: ${item.contact}` : "";
+        const certNo = item.certNo ? `인증번호: ${item.certNo}` : "";
+        const kind = item.kind ? `종목: ${item.kind}` : "";
+
+        const link = item.link || "";
+        const photo = item.photo || "";
+
+        const metaLines = [
+          regionText ? `지역: ${regionText}` : "",
+          master,
+          contact,
+          kind,
+          certNo
+        ].filter(Boolean);
+
+        const card = document.createElement("div");
+        card.className = "resultCard";
+        card.innerHTML = `
+          <div class="rTop">
+            <div class="rType">${escapeHtml(type)}</div>
+          </div>
+          <p class="rTitle">${escapeHtml(title)}</p>
+          <div class="rMeta">${metaLines.map(x=>escapeHtml(x)).join("<br>")}</div>
+          <div class="rLinks">
+            ${link ? `<a class="mini gold" href="${escapeHtml(link)}" target="_blank" rel="noopener">바로가기</a>` : ""}
+            ${photo ? `<a class="mini" href="${escapeHtml(photo)}" target="_blank" rel="noopener">사진</a>` : ""}
+          </div>
+        `;
+        resultsEl.appendChild(card);
+      });
     }
 
-    function search(){
-      const keyword = document.getElementById("q").value.trim();
-      if(!keyword){
-        showEmpty("검색어를 입력해 주세요.\n예) 도장명 / 관장명 / 지역 / 인증번호");
-        return;
+    // ✅ data.js 로드 완료 확인 후 이벤트 연결
+    function bootWhenDataReady(){
+      const hasData = Array.isArray(window.DOJANGS) || Array.isArray(window.CERTS) || Array.isArray(window.DB);
+      if(!hasData){
+        // 아직 로딩중이면 조금 기다림
+        return false;
       }
 
-      // 1) 1차: 전체에서 키워드 포함 찾기
-      const hits = (window.DB || []).filter(item=>{
-        const t = item.type || "";
+      // 통합 DB 구성
+      const list = [];
+      if(Array.isArray(window.DB)) list.push(...window.DB);
+      if(Array.isArray(window.DOJANGS)) list.push(...window.DOJANGS);
+      if(Array.isArray(window.CERTS)) list.push(...window.CERTS);
 
-        // 단증/자격증은 인증번호 중심(보안/정확)
-        if(isCertType(t)){
-          return includesAny(item.인증번호, keyword);
+      function search(){
+        const q = input.value.trim();
+        if(!q){
+          showEmpty("검색어를 입력해 주세요.");
+          return;
         }
 
-        // 도장/지부는 여러 필드에 포함되면 ok
-        const blob = Object.values(item).join(" ");
-        return includesAny(blob, keyword);
-      });
+        const nq = norm(q);
 
-      if(hits.length){
-        showResults(hits);
-        return;
+        const hits = list.filter(x=>{
+          // 도장/지부: 이름/지역/도장명/관장명
+          const pool =
+            [
+              x.type,
+              x.country, x.region, x.city,
+              x.dojangName, x.branchName, x.name, x.title,
+              x.masterName, x.contact,
+              x.kind,
+              x.certNo, x.id
+            ].filter(Boolean).join(" ");
+
+          // 인증번호 전용(단증/자격증) 안내 로직
+          // 입력이 한글(이름/지역)인데 cert 타입만 존재하면 안내
+          return norm(pool).includes(nq);
+        });
+
+        if(hits.length){
+          showResults(hits);
+          return;
+        }
+
+        // 단증/자격증은 인증번호만으로 찾게 유도
+        const maybeCert = list.some(x => isCertType(x.type));
+        if(maybeCert){
+          showEmpty(CONFIG.TEXT.EMPTY + "\n\n💡 " + CONFIG.TEXT.NEED_CERT_NO);
+          return;
+        }
+
+        showEmpty(CONFIG.TEXT.EMPTY);
       }
 
-      // 2) 단증/자격증인데 인증번호가 아닌 것으로 검색하려는 경우 안내
-      const maybeCert = (window.DB || []).some(x => isCertType(x.type));
-      if(maybeCert){
-        showEmpty("검색 결과가 없습니다.\n\n💡 단증/자격증은 '인증번호'로 조회됩니다.\n인증번호를 입력해 주세요.");
-        return;
-      }
+      document.getElementById("btnSearch").addEventListener("click", search);
+      input.addEventListener("keydown", (e)=>{ if(e.key==="Enter") search(); });
 
-      showEmpty("검색 결과가 없습니다.\n다른 검색어로 다시 시도해 주세요.");
+      // 첫 안내
+      showEmpty("검색어를 입력하면 결과가 카드로 표시됩니다.\n✅ 도장/지부: 이름·지역·도장명\n✅ 단증/자격증: 인증번호");
+      return true;
     }
 
-    document.getElementById("btnSearch").addEventListener("click", search);
-    document.getElementById("q").addEventListener("keydown", (e)=>{
-      if(e.key === "Enter") search();
-    });
-
-    // 첫 안내
-    showEmpty("검색어를 입력하면 결과가 카드로 표시됩니다.\n\n✅ 도장/지부: 이름·지역·도장명\n✅ 단증/자격증: 인증번호");
-</script>
-
-<!-- ✅ 데이터 먼저 로드 -->
-<script src="./data.js?v=3"></script>
-
+    // 최대 3초 동안 data.js 로드 기다리기
+    let tries = 0;
+    const timer = setInterval(()=>{
+      tries++;
+      if(bootWhenDataReady()){
+        clearInterval(timer);
+      }else if(tries > 60){
+        clearInterval(timer);
+        showEmpty("데이터 로드에 실패했습니다.\n(data.js 경로 또는 문법 오류 가능)\n\n✅ 확인: /check/data.js 가 열리는지 확인해주세요.");
+      }
+    }, 50);
+  </script>
 </body>
 </html>
