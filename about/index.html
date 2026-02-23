@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>소개 | DOUBLE CROSS</title>
-  <meta name="description" content="DOUBLE CROSS 소개 페이지" />
+  <meta name="description" content="소개" />
 
   <!-- =========================
        ✅ CHANGE ZONE (여기만 수정!)
@@ -12,79 +12,87 @@
   <script>
     const CONFIG = {
       brand: "DOUBLE CROSS",
+      pageKey: "about",
       pageTitle: "소개",
       tagline: "구조 >> 교차원리, 교차원리 기반 무도",
       heroTitle: "DOUBLE CROSS는 ‘구조’로 훈련을 설계합니다.",
-      heroDesc: "교차원리를 기반으로 한 무도 시스템으로, 움직임을 단순화하고 재현성을 높이는 것을 목표로 합니다.",
+      heroDesc: "교차원리를 기반으로 움직임을 단순화하고 재현성을 높이는 것을 목표로 합니다.",
       links: {
+        home: "/index.html",
         check: "/check/index.html",
         gallery: "/gallery/index.html",
         about: "/about/index.html",
         apply: "/apply/index.html",
-        library: "/library/index.html",
-        home: "/index.html"
+        library: "/library/index.html"
       }
     };
   </script>
 
   <style>
     :root{
-      --bg:#0b0f19; --panel:#0f1628; --card:#121c33; --line:#24345a;
-      --text:#e9eefc; --muted:#a9b6d6; --accent:#ff7a18; --r:18px;
+      --bg:#0b0f19; --panel:rgba(18,28,51,.72); --panel2:rgba(15,22,40,.78);
+      --line:rgba(36,52,90,.65); --text:#e9eefc; --muted:#a9b6d6;
+      --accent:#ff7a18; --r:18px; --shadow:0 18px 60px rgba(0,0,0,.55);
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      background:radial-gradient(1200px 800px at 50% -200px, rgba(255,122,24,.16), transparent 55%),
-                 radial-gradient(900px 600px at 80% 0%, rgba(80,120,255,.12), transparent 55%),
-                 var(--bg);
+      background:
+        radial-gradient(1200px 800px at 50% -220px, rgba(255,122,24,.16), transparent 55%),
+        radial-gradient(900px 600px at 80% 0%, rgba(80,120,255,.12), transparent 55%),
+        var(--bg);
       color:var(--text);
       font-family:system-ui,-apple-system,"Segoe UI","Noto Sans KR",sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:980px;margin:0 auto;padding:18px 14px 30px}
+    .wrap{max-width:980px;margin:0 auto;padding:16px 14px 30px}
+
     .topbar{
       display:flex;align-items:center;gap:10px;
       background:rgba(18,28,51,.65);
-      border:1px solid rgba(36,52,90,.6);
+      border:1px solid rgba(36,52,90,.60);
       padding:12px 12px;border-radius:22px;
       backdrop-filter: blur(8px);
+      box-shadow:var(--shadow);
     }
-    .brand{font-weight:900;letter-spacing:.4px}
+    .brand{font-weight:1000;display:flex;align-items:center;gap:10px;min-width:0}
+    .mark{
+      width:34px;height:34px;border-radius:12px;
+      border:1px solid rgba(255,122,24,.35);
+      background:rgba(255,122,24,.08);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1000;color:rgba(255,122,24,.95);
+      flex:0 0 auto;
+    }
+    .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .badge{
       margin-left:auto;font-size:12px;color:var(--muted);
-      border:1px solid rgba(36,52,90,.7);
-      padding:7px 10px;border-radius:999px;
-      background:rgba(15,22,40,.7);
+      border:1px solid rgba(36,52,90,.70);
+      padding:7px 10px;border-radius:999px;background:rgba(15,22,40,.70);
       white-space:nowrap;
     }
     .nav{
       margin-top:12px;
-      display:grid;
-      grid-template-columns:repeat(5, minmax(0,1fr));
-      gap:8px;
+      display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:8px;
     }
     .nav a{
-      text-align:center;
-      padding:10px 8px;
-      border-radius:14px;
+      text-align:center;padding:10px 8px;border-radius:14px;
       background:rgba(15,22,40,.65);
       border:1px solid rgba(36,52,90,.55);
-      color:var(--muted);
-      font-weight:700;
-      font-size:13px;
+      color:var(--muted);font-weight:900;font-size:13px;user-select:none;
     }
     .nav a.active{
       color:var(--text);
       border-color:rgba(255,122,24,.55);
       box-shadow:0 0 0 1px rgba(255,122,24,.15) inset;
     }
+
     .hero{
-      margin-top:16px;
-      padding:18px;
-      border-radius:22px;
+      margin-top:14px;padding:18px;border-radius:22px;
       background:linear-gradient(180deg, rgba(18,28,51,.85), rgba(15,22,40,.65));
       border:1px solid rgba(36,52,90,.65);
+      box-shadow:var(--shadow);
     }
     .kicker{
       display:inline-flex;align-items:center;gap:8px;
@@ -93,9 +101,11 @@
       padding:7px 10px;border-radius:999px;
       background:rgba(15,22,40,.75);
       margin-bottom:12px;
+      font-weight:900;
     }
-    h1{margin:0 0 8px;font-size:22px;font-weight:900}
+    h1{margin:0 0 8px;font-size:22px;font-weight:1000}
     .sub{margin:0 0 14px;color:var(--muted);line-height:1.6}
+
     .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
     @media(min-width:780px){ .grid{grid-template-columns:repeat(2,1fr);} }
     .card{
@@ -114,23 +124,26 @@
       padding:13px 14px;border-radius:14px;
       border:1px solid rgba(255,122,24,.55);
       background:linear-gradient(180deg, rgba(255,122,24,.95), rgba(255,122,24,.75));
-      color:#111;font-weight:900;text-align:center;
+      color:#111;font-weight:1000;text-align:center;user-select:none;
     }
     .btn2{
       padding:13px 14px;border-radius:14px;
       border:1px solid rgba(36,52,90,.75);
       background:rgba(15,22,40,.85);
-      color:var(--text);font-weight:900;text-align:center;
+      color:var(--text);font-weight:1000;text-align:center;user-select:none;
     }
-    footer{margin-top:18px;color:rgba(233,238,252,.45);font-size:12px;text-align:center}
+    footer{margin-top:16px;color:rgba(233,238,252,.45);font-size:12px;text-align:center}
   </style>
 </head>
 
 <body>
 <div class="wrap">
   <div class="topbar">
-    <a class="brand" id="brand" href="/index.html">DOUBLE CROSS</a>
-    <div class="badge" id="badge">소개</div>
+    <a class="brand" id="homeLink" href="/index.html">
+      <span class="mark">DC</span>
+      <span class="name" id="brandName">DOUBLE CROSS</span>
+    </a>
+    <div class="badge" id="pageBadge">소개</div>
   </div>
 
   <div class="nav" id="nav"></div>
@@ -151,17 +164,17 @@
       </div>
       <div class="card">
         <h3>운영 방식</h3>
-        <p>온라인/오프라인 네트워크, 공식 지정도장, 교육/세미나, 자료 제공을 통해 확장합니다.</p>
+        <p>공식 지정도장, 교육/세미나, 자료 제공을 통해 확장합니다.</p>
       </div>
       <div class="card">
         <h3>다음 단계</h3>
-        <p>조회 시스템 고도화(데이터 기반), 갤러리/영상 정리, 신청 흐름 자동화를 진행합니다.</p>
+        <p>조회 시스템 고도화(데이터 기반)와 갤러리/영상 정리, 신청 흐름 자동화를 진행합니다.</p>
       </div>
     </div>
 
     <div class="cta">
       <a class="btn" href="/apply/index.html">문의/신청하기</a>
-      <a class="btn2" href="/check/index.html">공식 지정도장/지도자 조회</a>
+      <a class="btn2" href="/check/index.html">공식 확인/조회</a>
     </div>
 
     <footer>© <span id="year"></span> DOUBLE CROSS. All rights reserved.</footer>
@@ -169,18 +182,15 @@
 </div>
 
 <script>
-  document.getElementById("brand").textContent = CONFIG.brand;
-  document.getElementById("badge").textContent = CONFIG.pageTitle;
-  document.getElementById("tagline").textContent = CONFIG.tagline;
-  document.getElementById("heroTitle").textContent = CONFIG.heroTitle;
-  document.getElementById("heroDesc").textContent = CONFIG.heroDesc;
-  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("brandName").textContent = CONFIG.brand;
+  document.getElementById("pageBadge").textContent = CONFIG.pageTitle;
+  document.getElementById("homeLink").href = CONFIG.links.home;
 
   const nav = document.getElementById("nav");
   const items = [
     {k:"check", t:"조회"},
     {k:"gallery", t:"갤러리"},
-    {k:"about", t:"소개", active:true},
+    {k:"about", t:"소개"},
     {k:"apply", t:"문의"},
     {k:"library", t:"자료실"},
   ];
@@ -188,9 +198,14 @@
     const a = document.createElement("a");
     a.href = CONFIG.links[it.k];
     a.textContent = it.t;
-    if(it.active) a.classList.add("active");
+    if(it.k === CONFIG.pageKey) a.classList.add("active");
     nav.appendChild(a);
   });
+
+  document.getElementById("tagline").textContent = CONFIG.tagline;
+  document.getElementById("heroTitle").textContent = CONFIG.heroTitle;
+  document.getElementById("heroDesc").textContent = CONFIG.heroDesc;
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
