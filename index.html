@@ -7,37 +7,38 @@
   <!--
   🔴🔴🔴 CHANGE ZONE (여기만 자주 수정하세요!) 🔴🔴🔴
   ✅ Ctrl+F 로 "CHANGE ZONE" 또는 "🔴" 검색하면 바로 찾음
-  ✅ 이미지/유튜브/버튼 링크/페이지 이름(타이틀) 등 “바뀌는 것”만 모아둠
+  ✅ 메뉴명/버튼링크/이미지/유튜브/파트너 로고 등 “바뀌는 것”만 모아둠
   ✅ 아래 본문은 웬만하면 건드리지 않아도 됨
   -->
 
-  <title id="pageTitleTag">DOUBLE CROSS® | Official Vision Portal</title>
-  <meta id="pageDescTag" name="description" content="DOUBLE CROSS® 공식 대문 - 대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
+  <title id="pageTitleTag">DOUBLE CROSS® | 공식 포털</title>
+  <meta id="pageDescTag" name="description" content="DOUBLE CROSS® 공식 포털 - 핵심 바로가기 + 영상 + 파트너" />
 
   <!-- ✅ NAVER / GOOGLE site verification (필요시만 변경) -->
   <meta name="naver-site-verification" content="a94ef3fb8b8bcf4f51fc7b475f0791878a4e0218" />
   <meta name="google-site-verification" content="_CDEvm1X63aFd6KAohpT32QK5ICbTRUTSFZ7jGNo9Rk" />
 
-  <!-- OG (공유 썸네일/설명 자주 바뀌면 여기만 수정) -->
-  <meta property="og:title" content="DOUBLE CROSS® | Official Vision Portal" />
-  <meta property="og:description" content="대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
+  <!-- OG (공유 썸네일/설명) -->
+  <meta property="og:title" content="DOUBLE CROSS® | 공식 포털" />
+  <meta property="og:description" content="핵심 바로가기 + 영상 + 파트너" />
   <meta property="og:image" content="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" />
 
-  <!-- 🔴 CHANGE ZONE: “설정값”을 JS로 한 번에 관리 -->
   <script>
     const CONFIG = {
-      // 🔴 1) 페이지 표시 이름(타이틀/부제)
+      // 🔴 1) 상단 표기
       PAGE: {
+        BADGE: "⚡ OFFICIAL VISION PORTAL",
         TITLE: "DOUBLE CROSS®",
-        SUBTITLE: "STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009"
+        SUBTITLE: "STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009",
+        META_CHIPS: ["핵심 바로가기", "모바일 최적화", "Vision + Video"]
       },
 
-      // 🔴 2) 로고 이미지(좌상단/브랜드 로우)
+      // 🔴 2) 로고 이미지
       IMAGES: {
         DC_LOGO: "https://static.wixstatic.com/media/abf917_0792f5404ec84ffc9368a8eff33b2a50~mv2.png",
       },
 
-      // 🔴 3) 상단 슬라이드(히어로 이미지) — 순서 = 노출 순서
+      // 🔴 3) 히어로 슬라이드(순서=노출 순서)
       HERO: {
         IMGS: [
           "https://static.wixstatic.com/media/abf917_5ecb854dd47046a5ae26cb06192f2b43~mv2.png",
@@ -46,8 +47,6 @@
           "https://static.wixstatic.com/media/abf917_fd4d9988b9b3420cae33180810fc5d6b~mv2.png",
           "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png"
         ],
-
-        // 🔴 4) (B안) 1~2장만 강하게 오버레이 문구
         OVERLAY_TEXT: [
           "STRUCTURE >> 교차원리",
           "교차원리 기반 무도",
@@ -55,33 +54,36 @@
           null,
           null
         ],
-
-        // 🔴 5) 자동 슬라이드 속도(밀리초)
         AUTO_MS: 4500,
         RESUME_MS: 6500
       },
 
-      // 🔴 6) 유튜브(임베드/채널)
+      // 🔴 4) 유튜브
       YOUTUBE: {
-        EMBED_ID: "y_uqYZEU9uw", // https://www.youtube.com/watch?v=여기부분
+        EMBED_ID: "y_uqYZEU9uw",
         CHANNEL_URL: "https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ"
       },
 
-      // 🔴 7) 버튼/링크(자주 바뀌는 이동 주소는 전부 여기!)
-      LINKS: {
-        OFFICIAL_APPLY: "https://tk7890kr12.wixsite.com/double-cross-officia/%EA%B3%B5%EC%8B%9D%EC%A7%80%EC%A0%95%EB%8F%84%EC%9E%A5-%EC%8B%A0%EC%B2%AD",
-        OFFICIAL_CHECK: "https://tk7890kr12.wixsite.com/double-cross-officia",
-        SEMINAR_KAKAO: "https://open.kakao.com/o/gPxTAxhi",
-        BAND_SOURCE: "https://www.band.us/n/a4a2b4Y8gaIfb",
+      // 🔴 5) 핵심 바로가기(= GitHub 내부 공통페이지 링크)
+      // ✅ 흰 화면 방지: "/폴더/index.html" 형태로 통일
+      CORE_LINKS: [
+        { label: "공식 확인/조회", icon: "🔎", href: "/check/index.html", style: "primary" },
+        { label: "가입/신청",     icon: "✅", href: "/apply/index.html", style: "gold" },
+        { label: "소개",         icon: "📌", href: "/about/index.html", style: "basic" },
+        { label: "갤러리/영상",   icon: "🎬", href: "/gallery/index.html", style: "blue" },
+        { label: "자료실",       icon: "📚", href: "/library/index.html", style: "basic" },
+      ],
 
-        HOME: "https://tk7890kr12.wixsite.com/double-cross-officia",
-        KAKAO: "https://open.kakao.com/o/gPxTAxhi",
-        BAND: "https://www.band.us/n/a4a2b4Y8gaIfb",
-        NEWS: "https://www.news24.ai.kr/news/1203",
-        PHONE: "tel:010-4477-2772"
-      },
+      // 🔴 6) 연락/채널(덜 중요한 것들은 아래로)
+      CHANNELS: [
+        { label: "실시간 카카오톡 상담", icon: "💬", href: "https://open.kakao.com/o/gPxTAxhi", style: "kakao", live: true },
+        { label: "밴드 참여",           icon: "🎟️", href: "https://www.band.us/n/a4a2b4Y8gaIfb", style: "band" },
+        { label: "신문 보기",           icon: "📰", href: "https://www.news24.ai.kr/news/1203", style: "news" },
+        { label: "유튜브 채널",         icon: "▶️", href: "https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ", style: "basic" },
+        { label: "전화 연결",           icon: "📞", href: "tel:010-4477-2772", style: "basic" },
+      ],
 
-      // 🔴 8) 파트너 로고(이미지/링크)
+      // 🔴 7) 파트너 로고
       PARTNERS: [
         {
           name: "국제경찰무도연합회",
@@ -315,26 +317,6 @@
       100%{opacity:1; transform:translateY(0); filter:blur(0);}
     }
 
-    .heroOverlay{
-      position:absolute;
-      left:12px; right:12px;
-      bottom:26px;
-      display:flex; gap:8px; flex-wrap:wrap;
-      z-index:4;
-      pointer-events:none;
-    }
-    .heroTag{
-      font-size:11px;
-      font-weight:1000;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,211,106,.30);
-      background:rgba(0,0,0,.35);
-      backdrop-filter: blur(8px);
-      color:rgba(255,211,106,.95);
-      text-shadow:0 0 12px rgba(255,211,106,.18);
-    }
-
     .dots{
       position:absolute;
       left:0; right:0;
@@ -362,19 +344,7 @@
       box-shadow:0 0 12px rgba(255,211,106,.35), 0 10px 20px rgba(0,0,0,.35);
     }
 
-    .quick{
-      position:relative;
-      display:grid;
-      gap:10px;
-      padding:0 16px 12px;
-    }
-
-    .cta{
-      position:relative;
-      display:grid;
-      gap:10px;
-      padding:0 16px 12px;
-    }
+    /* ✅ 버튼 공통 */
     .btn{
       display:flex;align-items:center;justify-content:center;gap:10px;
       padding:14px 14px;border-radius:16px;
@@ -388,37 +358,6 @@
       text-align:center;
     }
     .btn:active{transform:scale(.985); filter:brightness(1.05);}
-    .btn.primary{
-      border-color:rgba(255,211,106,.65);
-      background:linear-gradient(135deg, rgba(255,211,106,.40), rgba(184,135,26,.14));
-      color:#111;
-      box-shadow:0 0 0 1px rgba(255,211,106,.12), 0 18px 55px rgba(255,211,106,.10);
-    }
-    .btn.kakao{
-      border-color:rgba(254,229,0,.75);
-      background:linear-gradient(135deg, rgba(254,229,0,.55), rgba(255,211,106,.12));
-      color:#111;
-    }
-    .btn.news{
-      border-color:rgba(103,183,255,.45);
-      background:linear-gradient(135deg, rgba(103,183,255,.22), rgba(60,120,255,.10));
-    }
-    .btn.band{
-      border-color:rgba(255,211,106,.45);
-      background:linear-gradient(135deg, rgba(255,211,106,.18), rgba(103,183,255,.12));
-    }
-    .btn.verify{
-      border-color:rgba(255,211,106,.45);
-      background:linear-gradient(135deg, rgba(255,211,106,.20), rgba(0,0,0,.20));
-    }
-    .btn.seminar{
-      border-color:rgba(141,98,255,.40);
-      background:linear-gradient(135deg, rgba(141,98,255,.18), rgba(0,0,0,.20));
-    }
-    .btn.source{
-      border-color:rgba(255,255,255,.18);
-      background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.22));
-    }
 
     .liveDot{
       width:9px;height:9px;border-radius:50%;
@@ -432,7 +371,8 @@
       100%{transform:scale(1);opacity:1}
     }
 
-    .section{
+    /* ✅ 섹션 카드 */
+    .block{
       position:relative;
       margin:0 16px 14px;
       border:1px solid rgba(255,255,255,.12);
@@ -441,12 +381,12 @@
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-    .sectionHeader{
+    .blockHeader{
       display:flex;align-items:center;justify-content:space-between;
       padding:12px 12px;border-bottom:1px solid rgba(255,255,255,.10);
       gap:10px;
     }
-    .sectionTitle{
+    .blockTitle{
       font-weight:1000;font-size:12px;letter-spacing:.2px;
       display:flex;align-items:center;gap:8px;
       min-width:0;
@@ -460,6 +400,54 @@
       white-space:nowrap;
     }
 
+    /* ✅ 핵심 바로가기: 2열 그리드 */
+    .coreWrap{ padding:12px; display:grid; gap:10px; }
+    .coreGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .coreBtn{
+      padding:16px 12px;
+      border-radius:18px;
+      line-height:1.1;
+    }
+    .coreBtn .big{ font-size:14px; font-weight:1000; }
+    .coreBtn .sub{ font-size:11px; color:rgba(234,240,255,.70); font-weight:900; margin-top:6px; }
+
+    /* ✅ 핵심 버튼 색감(고급 톤 유지) */
+    .coreBtn.primary{
+      border-color:rgba(255,211,106,.65);
+      background:linear-gradient(135deg, rgba(255,211,106,.40), rgba(184,135,26,.14));
+      color:#111;
+      box-shadow:0 0 0 1px rgba(255,211,106,.12), 0 18px 55px rgba(255,211,106,.10);
+    }
+    .coreBtn.gold{
+      border-color:rgba(255,211,106,.40);
+      background:linear-gradient(135deg, rgba(255,211,106,.18), rgba(0,0,0,.20));
+    }
+    .coreBtn.blue{
+      border-color:rgba(103,183,255,.45);
+      background:linear-gradient(135deg, rgba(103,183,255,.20), rgba(0,0,0,.22));
+    }
+
+    /* ✅ 채널 버튼 스타일 */
+    .channelWrap{ padding:12px; display:grid; gap:10px; }
+    .btn.kakao{
+      border-color:rgba(254,229,0,.75);
+      background:linear-gradient(135deg, rgba(254,229,0,.55), rgba(255,211,106,.12));
+      color:#111;
+    }
+    .btn.news{
+      border-color:rgba(103,183,255,.45);
+      background:linear-gradient(135deg, rgba(103,183,255,.22), rgba(60,120,255,.10));
+    }
+    .btn.band{
+      border-color:rgba(255,211,106,.45);
+      background:linear-gradient(135deg, rgba(255,211,106,.18), rgba(103,183,255,.12));
+    }
+
+    /* ✅ 영상 */
     .videoBox{padding:12px}
     .videoWrap{
       position:relative;
@@ -476,9 +464,10 @@
       border:0;
     }
 
+    /* ✅ 파트너 */
     .support{
       position:relative;
-      margin:8px 16px 14px;
+      margin:0 16px 14px;
       padding:12px 12px;
       border-radius:22px;
       border:1px solid rgba(255,211,106,.18);
@@ -504,10 +493,7 @@
       font-weight:1000;font-size:12px;letter-spacing:.4px;
       color:rgba(234,240,255,.82);
     }
-    .supportTitle b{
-      color:var(--gold);
-      text-shadow:0 0 18px rgba(255,211,106,.22);
-    }
+    .supportTitle b{ color:var(--gold); text-shadow:0 0 18px rgba(255,211,106,.22); }
     .supportPill{
       font-size:11px;padding:6px 10px;border-radius:999px;
       border:1px solid rgba(255,211,106,.28);
@@ -516,52 +502,6 @@
       font-weight:1000;
       white-space:nowrap;
     }
-
-    .brandRowLink{display:block; text-decoration:none; color:inherit;}
-    .brandRow{
-      position:relative;
-      display:flex; align-items:center; gap:10px;
-      padding:10px 10px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.22);
-      overflow:hidden;
-      transition:transform .12s ease, filter .12s ease;
-    }
-    .brandRow:active{transform:scale(.985); filter:brightness(1.06);}
-    .brandRow::before{
-      content:"";
-      position:absolute; inset:-40%;
-      background:
-        conic-gradient(from 180deg,
-          rgba(255,211,106,.00),
-          rgba(103,183,255,.10),
-          rgba(255,211,106,.14),
-          rgba(141,98,255,.10),
-          rgba(255,211,106,.00));
-      opacity:.25;
-      filter:blur(14px);
-      animation:holoSpin 10s linear infinite;
-      pointer-events:none;
-    }
-    @keyframes holoSpin{
-      0%{transform:rotate(0deg)}
-      100%{transform:rotate(360deg)}
-    }
-    .brandRow .dcLogo{
-      width:44px;height:44px;border-radius:14px;
-      border:1px solid rgba(255,211,106,.28);
-      background:rgba(255,211,106,.06);
-      overflow:hidden;
-      flex:0 0 auto;
-      box-shadow:0 14px 40px rgba(0,0,0,.45);
-      position:relative;
-      z-index:1;
-    }
-    .brandRow .dcLogo img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);}
-    .brandText{line-height:1.2; position:relative; z-index:1; min-width:0;}
-    .brandText .name{font-weight:1000;letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-    .brandText .sub{margin-top:4px;font-size:11px;color:rgba(234,240,255,.70);font-weight:800;}
 
     .logoGrid{
       position:relative;
@@ -582,58 +522,46 @@
       transition:transform .12s ease, filter .12s ease;
     }
     .logoCard:active{transform:scale(.985); filter:brightness(1.07);}
-
     .logoImgWrap{
       height:92px;
       border-radius:16px;
       overflow:hidden;
       background:radial-gradient(circle at 50% 40%, rgba(255,211,106,.15), transparent 70%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      display:flex; align-items:center; justify-content:center;
       padding:10px;
     }
     .logoImgWrap img{
-      width:100%;
-      height:100%;
+      width:100%; height:100%;
       object-fit:contain;
-      object-position:center;
-      transition:.25s ease;
       filter:drop-shadow(0 10px 22px rgba(0,0,0,.40));
     }
-
     .logoLabel{
       margin-top:10px;
       font-size:11px;
       font-weight:1000;
       color:#fff;
       letter-spacing:.1px;
-      white-space:normal;
-      overflow:hidden;
       display:-webkit-box;
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
+      overflow:hidden;
       line-height:1.18;
       min-height: calc(1.18em * 1);
     }
-
     .logoSub{
       margin-top:6px;
       font-size:10px;
       font-weight:800;
       color:rgba(255,255,255,.60);
-      white-space:normal;
-      overflow:hidden;
-      text-overflow:ellipsis;
       display:-webkit-box;
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
-      overflow-wrap:anywhere;
-      word-break:break-word;
+      overflow:hidden;
       line-height:1.2;
       min-height: calc(1.2em * 2);
+      overflow-wrap:anywhere;
+      word-break:break-word;
     }
-
     .logoCard::after{
       content:"OFFICIAL PARTNER • VERIFIED";
       position:absolute;
@@ -666,7 +594,7 @@
     <main class="poster" aria-label="DOUBLE CROSS Official Portal">
 
       <header class="top">
-        <div class="badge">⚡ OFFICIAL VISION PORTAL</div>
+        <div class="badge" id="badgeText">⚡ OFFICIAL VISION PORTAL</div>
 
         <div class="heroRow">
           <div class="dcMark" aria-hidden="true">
@@ -679,11 +607,7 @@
           </div>
         </div>
 
-        <div class="metaRow">
-          <div class="chip"><span class="dot"></span> Top Image First</div>
-          <div class="chip">Fast Inquiry</div>
-          <div class="chip">Vision + Video</div>
-        </div>
+        <div class="metaRow" id="metaRow"></div>
       </header>
 
       <section class="heroImage" aria-label="Top hero image" id="hero">
@@ -693,48 +617,35 @@
           <div class="glowBox" id="glowBox"></div>
         </div>
 
-        <div class="heroOverlay">
-          <div class="heroTag">Official Dojang</div>
-          <div class="heroTag">Seminars</div>
-          <div class="heroTag">Media & Press</div>
-          <div class="heroTag">Since 2009</div>
-        </div>
-
         <div class="dots" id="dots" aria-hidden="true"></div>
       </section>
 
-      <section class="quick" aria-label="Top quick actions">
-        <a class="btn primary" id="btnApply" href="#" target="_blank" rel="noopener">
-          ✅ 공식지정도장 가입 문의(신청)
-        </a>
+      <!-- ✅ 핵심 바로가기(위로 올림) -->
+      <section class="block" aria-label="Core shortcuts">
+        <div class="blockHeader">
+          <div class="blockTitle">⭐ 핵심 바로가기 <span class="pill">공통페이지</span></div>
+          <span class="pill">빠른 이동</span>
+        </div>
 
-        <a class="btn verify" id="btnCheck" href="#" target="_blank" rel="noopener">
-          🔎 공식지정도장 확인하기
-        </a>
-
-        <a class="btn seminar" id="btnSeminar" href="#" target="_blank" rel="noopener">
-          <span class="liveDot"></span> 📣 세미나 안내 문의(카카오)
-        </a>
-
-        <a class="btn source" id="btnSource" href="#" target="_blank" rel="noopener">
-          🧩 캐릭터 · 원본 문의(밴드)
-        </a>
+        <div class="coreWrap">
+          <div class="coreGrid" id="coreGrid"></div>
+        </div>
       </section>
 
-      <section class="cta" aria-label="Quick actions">
-        <a class="btn" id="btnHome" href="#" target="_blank" rel="noopener">🌐 공식 홈페이지</a>
-        <a class="btn kakao" id="btnKakao" href="#" target="_blank" rel="noopener">
-          <span class="liveDot"></span> 💬 실시간 카카오톡 상담
-        </a>
-        <a class="btn band" id="btnBand" href="#" target="_blank" rel="noopener">🎟️ 밴드 참여</a>
-        <a class="btn news" id="btnNews" href="#" target="_blank" rel="noopener">📰 신문 보기</a>
-        <a class="btn" id="btnYoutube" href="#" target="_blank" rel="noopener">🎬 유튜브 채널</a>
-        <a class="btn" id="btnPhone" href="#">📞 010-4477-2772</a>
+      <!-- ✅ 연락/채널(덜 중요한 것 아래로) -->
+      <section class="block" aria-label="Channels">
+        <div class="blockHeader">
+          <div class="blockTitle">💬 문의/채널 <span class="pill">연락</span></div>
+          <span class="pill">필요할 때</span>
+        </div>
+
+        <div class="channelWrap" id="channelWrap"></div>
       </section>
 
-      <section class="section" aria-label="Promo video">
-        <div class="sectionHeader">
-          <div class="sectionTitle">🎬 PROMO VIDEO <span class="pill">YouTube</span></div>
+      <!-- ✅ 영상 -->
+      <section class="block" aria-label="Promo video">
+        <div class="blockHeader">
+          <div class="blockTitle">🎬 홍보 영상 <span class="pill">YouTube</span></div>
           <span class="pill">Official</span>
         </div>
 
@@ -750,23 +661,12 @@
         </div>
       </section>
 
+      <!-- ✅ 파트너 -->
       <section class="support" aria-label="Supported by organizations">
         <div class="supportTop">
           <div class="supportTitle">SUPPORTED BY <b>TRUSTED PARTNERS</b></div>
           <div class="supportPill">Authority Layer • Since 2009</div>
         </div>
-
-        <a class="brandRowLink" id="brandRowLink" href="#" target="_blank" rel="noopener">
-          <div class="brandRow">
-            <div class="dcLogo">
-              <img id="dcLogoImg2" src="" alt="DOUBLE CROSS Logo">
-            </div>
-            <div class="brandText">
-              <div class="name">DOUBLE CROSS® Official Network</div>
-              <div class="sub">Supported by official organizations & media partners</div>
-            </div>
-          </div>
-        </a>
 
         <div class="logoGrid" id="partnerGrid"></div>
       </section>
@@ -776,34 +676,63 @@
   </div>
 
   <script>
-    // ✅ 0) CONFIG 적용(텍스트/링크/유튜브/로고)
+    // ✅ 0) 상단 텍스트/로고 적용
+    document.getElementById("badgeText").textContent = CONFIG.PAGE.BADGE;
     document.getElementById("pageTitle").textContent = CONFIG.PAGE.TITLE;
     document.getElementById("pageSubtitle").textContent = CONFIG.PAGE.SUBTITLE;
-
     document.getElementById("dcLogoImg").src = CONFIG.IMAGES.DC_LOGO;
-    document.getElementById("dcLogoImg2").src = CONFIG.IMAGES.DC_LOGO;
 
-    // 버튼 링크 적용
-    document.getElementById("btnApply").href   = CONFIG.LINKS.OFFICIAL_APPLY;
-    document.getElementById("btnCheck").href   = CONFIG.LINKS.OFFICIAL_CHECK;
-    document.getElementById("btnSeminar").href = CONFIG.LINKS.SEMINAR_KAKAO;
-    document.getElementById("btnSource").href  = CONFIG.LINKS.BAND_SOURCE;
+    // 상단 칩(메타)
+    const metaRow = document.getElementById("metaRow");
+    metaRow.innerHTML = "";
+    (CONFIG.PAGE.META_CHIPS || []).forEach((t, i) => {
+      const d = document.createElement("div");
+      d.className = "chip";
+      d.innerHTML = (i===0) ? `<span class="dot"></span> ${t}` : `${t}`;
+      metaRow.appendChild(d);
+    });
 
-    document.getElementById("btnHome").href    = CONFIG.LINKS.HOME;
-    document.getElementById("btnKakao").href   = CONFIG.LINKS.KAKAO;
-    document.getElementById("btnBand").href    = CONFIG.LINKS.BAND;
-    document.getElementById("btnNews").href    = CONFIG.LINKS.NEWS;
-    document.getElementById("btnYoutube").href = CONFIG.YOUTUBE.CHANNEL_URL;
-    document.getElementById("btnPhone").href   = CONFIG.LINKS.PHONE;
-    document.getElementById("brandRowLink").href = CONFIG.LINKS.HOME;
+    // ✅ 1) 핵심 바로가기 생성
+    const coreGrid = document.getElementById("coreGrid");
+    coreGrid.innerHTML = "";
+    (CONFIG.CORE_LINKS || []).forEach(item => {
+      const a = document.createElement("a");
+      const style = item.style || "basic";
+      a.className = `btn coreBtn ${style}`;
+      a.href = item.href;
+      a.rel = "noopener";
+      a.innerHTML = `
+        <div style="display:grid;gap:6px;width:100%;">
+          <div class="big">${item.icon} ${item.label}</div>
+          <div class="sub">바로 열기</div>
+        </div>
+      `;
+      coreGrid.appendChild(a);
+    });
 
-    // 유튜브 임베드
+    // ✅ 2) 문의/채널 생성
+    const channelWrap = document.getElementById("channelWrap");
+    channelWrap.innerHTML = "";
+    (CONFIG.CHANNELS || []).forEach(item => {
+      const a = document.createElement("a");
+      const style = item.style || "basic";
+      a.className = `btn ${style}`;
+      a.href = item.href;
+      a.target = item.href.startsWith("tel:") ? "_self" : "_blank";
+      a.rel = "noopener";
+      const live = item.live ? `<span class="liveDot"></span>` : "";
+      a.innerHTML = `${live} ${item.icon} ${item.label}`;
+      channelWrap.appendChild(a);
+    });
+
+    // ✅ 3) 유튜브 임베드
     document.getElementById("youtubeFrame").src =
       `https://www.youtube.com/embed/${CONFIG.YOUTUBE.EMBED_ID}?rel=0&modestbranding=1`;
 
-    // 파트너 그리드 생성
+    // ✅ 4) 파트너 그리드 생성
     const grid = document.getElementById("partnerGrid");
-    CONFIG.PARTNERS.forEach(p=>{
+    grid.innerHTML = "";
+    (CONFIG.PARTNERS || []).forEach(p=>{
       const a = document.createElement("a");
       a.className = "logoCardLink";
       a.href = p.href;
@@ -821,7 +750,7 @@
       grid.appendChild(a);
     });
 
-    // ✅ HERO 슬라이드(기존 로직 유지) — CONFIG에서 가져오기
+    // ✅ 5) HERO 슬라이드(기존 로직 유지)
     const imgs = CONFIG.HERO.IMGS;
     const overlayText = CONFIG.HERO.OVERLAY_TEXT;
 
@@ -834,6 +763,7 @@
     let autoTimer = null;
     let resumeTimer = null;
 
+    track.innerHTML = "";
     imgs.forEach((src, i) => {
       const img = document.createElement("img");
       img.src = src;
