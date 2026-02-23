@@ -145,7 +145,7 @@
       box-shadow:0 0 12px rgba(255,211,106,.70);
     }
 
-    /* ✅ 상단 대표 이미지: 우→좌 슬라이드(한 곳만) */
+    /* ✅ 상단 대표 이미지: 슬라이드 */
     .heroImage{
       position:relative;
       margin:0 16px 12px;
@@ -154,7 +154,9 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 22px 70px rgba(0,0,0,.55);
       background:#000;
-      aspect-ratio: 9/16; /* 모바일 포스터 */
+      aspect-ratio: 9/16;
+      user-select:none;
+      touch-action: pan-y; /* 세로 스크롤은 허용, 좌우는 JS로 */
     }
     .heroImage::after{
       content:"";
@@ -171,22 +173,64 @@
       width:100%;
       height:100%;
       transform:translateX(0);
-      transition:transform .9s ease;
+      transition:transform .65s ease;
+      will-change:transform;
     }
+    .heroTrack.dragging{ transition:none; }
     .heroTrack img{
       width:100%;
       height:100%;
       flex:0 0 100%;
-      object-fit:contain; /* 세로 이미지 보호 */
+      object-fit:contain;
       background:#000;
       filter:saturate(1.02) contrast(1.04);
+      pointer-events:none;
     }
 
+    /* ✅ (B안) 1~2장만 강하게: 빛나는 텍스트 오버레이 */
+    .heroGlow{
+      position:absolute;
+      left:12px; right:12px;
+      top:12px;
+      z-index:4;
+      display:flex;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .heroGlow .glowBox{
+      max-width:100%;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,211,106,.30);
+      background:rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      font-weight:1000;
+      font-size:12px;
+      letter-spacing:.2px;
+      color:rgba(255,211,106,.98);
+      text-shadow:
+        0 0 12px rgba(255,211,106,.22),
+        0 0 24px rgba(255,211,106,.14);
+      opacity:0;
+      transform:translateY(-6px);
+    }
+    .heroGlow .glowBox.show{
+      animation: glowIn .9s ease forwards;
+    }
+    @keyframes glowIn{
+      0%{opacity:0; transform:translateY(-8px); filter:blur(2px);}
+      60%{opacity:1; transform:translateY(0); filter:blur(0);}
+      100%{opacity:1; transform:translateY(0); filter:blur(0);}
+    }
+
+    /* 기존 태그(하단) */
     .heroOverlay{
       position:absolute;
-      left:12px; right:12px; bottom:12px;
+      left:12px; right:12px;
+      bottom:26px; /* dots 때문에 살짝 위로 */
       display:flex; gap:8px; flex-wrap:wrap;
       z-index:4;
+      pointer-events:none;
     }
     .heroTag{
       font-size:11px;
@@ -198,6 +242,34 @@
       backdrop-filter: blur(8px);
       color:rgba(255,211,106,.95);
       text-shadow:0 0 12px rgba(255,211,106,.18);
+    }
+
+    /* ✅ 점(●●●●●) 표시 */
+    .dots{
+      position:absolute;
+      left:0; right:0;
+      bottom:10px;
+      display:flex;
+      justify-content:center;
+      gap:7px;
+      z-index:4;
+      pointer-events:none;
+    }
+    .dots span{
+      width:7px;height:7px;border-radius:999px;
+      background:rgba(255,255,255,.28);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+      transform:scale(1);
+      transition:transform .18s ease, background .18s ease, opacity .18s ease;
+      opacity:.9;
+    }
+    .dots span.active{
+      background:rgba(255,211,106,.95);
+      border-color:rgba(255,211,106,.55);
+      transform:scale(1.35);
+      opacity:1;
+      box-shadow:0 0 12px rgba(255,211,106,.35), 0 10px 20px rgba(0,0,0,.35);
     }
 
     /* ✅ 먼저 노출: 문의가 많은 항목들 */
@@ -407,7 +479,7 @@
     .brandText .name{font-weight:1000;letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
     .brandText .sub{margin-top:4px;font-size:11px;color:rgba(234,240,255,.70);font-weight:800;}
 
-    /* Partner Grid: 모바일에서도 2열 유지 */
+    /* Partner Grid */
     .logoGrid{
       position:relative;
       display:grid;
@@ -453,13 +525,11 @@
       font-weight:1000;
       color:#fff;
       letter-spacing:.1px;
-
       white-space:normal;
       overflow:hidden;
       display:-webkit-box;
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
-
       line-height:1.18;
       min-height: calc(1.18em * 1);
     }
@@ -469,17 +539,14 @@
       font-size:10px;
       font-weight:800;
       color:rgba(255,255,255,.60);
-
       white-space:normal;
       overflow:hidden;
       text-overflow:ellipsis;
       display:-webkit-box;
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
-
       overflow-wrap:anywhere;
       word-break:break-word;
-
       line-height:1.2;
       min-height: calc(1.2em * 2);
     }
@@ -536,8 +603,13 @@
         </div>
       </header>
 
-      <section class="heroImage" aria-label="Top hero image">
+      <section class="heroImage" aria-label="Top hero image" id="hero">
         <div class="heroTrack" id="heroTrack"></div>
+
+        <!-- ✅ (B안) 1~2장만 강한 문구 -->
+        <div class="heroGlow" aria-hidden="true">
+          <div class="glowBox" id="glowBox"></div>
+        </div>
 
         <div class="heroOverlay">
           <div class="heroTag">Official Dojang</div>
@@ -545,6 +617,9 @@
           <div class="heroTag">Media & Press</div>
           <div class="heroTag">Since 2009</div>
         </div>
+
+        <!-- ✅ dots -->
+        <div class="dots" id="dots" aria-hidden="true"></div>
       </section>
 
       <section class="quick" aria-label="Top quick actions">
@@ -659,50 +734,179 @@
   </div>
 
   <script>
-    // ✅ HERO: 우→좌 슬라이드 (무한루프)
-    // ✅ 상단 슬라이드 이미지 3개 추가 완료
-const imgs = [
-  "https://static.wixstatic.com/media/abf917_5ecb854dd47046a5ae26cb06192f2b43~mv2.png",
-  "https://static.wixstatic.com/media/abf917_9514788de8834dcbbe4f71a02c2b875a~mv2.png",
-  "https://static.wixstatic.com/media/abf917_69fa96351e9143c2bdb041b4b45b4086~mv2.png",
-  "https://static.wixstatic.com/media/abf917_fd4d9988b9b3420cae33180810fc5d6b~mv2.png",
-  "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png"
-];
+    // ✅ HERO: 이미지 목록(순서 = 슬라이드 순서)
+    const imgs = [
+      "https://static.wixstatic.com/media/abf917_5ecb854dd47046a5ae26cb06192f2b43~mv2.png",
+      "https://static.wixstatic.com/media/abf917_9514788de8834dcbbe4f71a02c2b875a~mv2.png",
+      "https://static.wixstatic.com/media/abf917_69fa96351e9143c2bdb041b4b45b4086~mv2.png",
+      "https://static.wixstatic.com/media/abf917_fd4d9988b9b3420cae33180810fc5d6b~mv2.png",
+      "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png"
+    ];
 
+    // ✅ (B안) 1~2장만 강하게(나머지는 null = 숨김)
+    const overlayText = [
+      "STRUCTURE >> 교차원리",
+      "교차원리 기반 무도",
+      null,
+      null,
+      null
+    ];
+
+    const hero = document.getElementById("hero");
     const track = document.getElementById("heroTrack");
+    const dotsEl = document.getElementById("dots");
+    const glowBox = document.getElementById("glowBox");
 
-    imgs.forEach(src=>{
+    let index = 0;
+    let autoTimer = null;
+    let resumeTimer = null;
+
+    // --- Build images ---
+    imgs.forEach((src, i) => {
       const img = document.createElement("img");
       img.src = src;
-      img.alt = "DOUBLE CROSS Hero";
+      img.alt = "DOUBLE CROSS Hero " + (i + 1);
       track.appendChild(img);
     });
 
-    // 무한루프용 첫 장 복제
-    const firstClone = track.children[0].cloneNode(true);
-    track.appendChild(firstClone);
+    // --- Build dots ---
+    function buildDots(){
+      dotsEl.innerHTML = "";
+      for(let i=0;i<imgs.length;i++){
+        const s = document.createElement("span");
+        dotsEl.appendChild(s);
+      }
+    }
+    buildDots();
 
-    let index = 0;
-
-    function slide(){
-      index++;
-      track.style.transform = `translateX(-${index * 100}%)`;
-
-      if(index === imgs.length){
-        setTimeout(()=>{
-          track.style.transition = "none";
-          track.style.transform = "translateX(0)";
-          index = 0;
-          requestAnimationFrame(()=>{
-            requestAnimationFrame(()=>{
-              track.style.transition = "transform .9s ease";
-            });
-          });
-        }, 900);
+    function setDots(active){
+      const children = dotsEl.children;
+      for(let i=0;i<children.length;i++){
+        children[i].classList.toggle("active", i === active);
       }
     }
 
-    setInterval(slide, 4500);
+    // --- Overlay (B안) ---
+    function setOverlay(active){
+      const text = overlayText[active] || "";
+      if(!text){
+        glowBox.classList.remove("show");
+        glowBox.textContent = "";
+        return;
+      }
+      glowBox.textContent = text;
+      // 애니메이션 리셋 후 재실행
+      glowBox.classList.remove("show");
+      void glowBox.offsetWidth;
+      glowBox.classList.add("show");
+    }
+
+    // --- Move ---
+    function applyTransform(withTransition=true){
+      track.classList.toggle("dragging", !withTransition);
+      track.style.transform = `translateX(-${index * 100}%)`;
+      setDots(index);
+      setOverlay(index);
+    }
+
+    function goTo(newIndex, withTransition=true){
+      if(newIndex < 0) newIndex = imgs.length - 1;
+      if(newIndex >= imgs.length) newIndex = 0;
+      index = newIndex;
+      applyTransform(withTransition);
+    }
+
+    function next(){
+      goTo(index + 1, true);
+    }
+
+    // --- Auto slide ---
+    function startAuto(){
+      stopAuto();
+      autoTimer = setInterval(next, 4500);
+    }
+    function stopAuto(){
+      if(autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    }
+    // 사용자가 스와이프/드래그하면 자동을 잠깐 멈췄다가 재개
+    function pauseThenResume(){
+      stopAuto();
+      if(resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(startAuto, 6500);
+    }
+
+    // 초기 표시
+    applyTransform(true);
+    startAuto();
+
+    // --- Swipe support (touch + pointer) ---
+    let isDown = false;
+    let startX = 0;
+    let currentX = 0;
+    let deltaX = 0;
+    let width = 1;
+
+    function onDown(clientX){
+      isDown = true;
+      startX = clientX;
+      currentX = clientX;
+      deltaX = 0;
+      width = hero.getBoundingClientRect().width || 1;
+      track.classList.add("dragging");
+      pauseThenResume();
+    }
+
+    function onMove(clientX){
+      if(!isDown) return;
+      currentX = clientX;
+      deltaX = currentX - startX;
+
+      // 드래그 중에는 현재 index 기준으로 픽셀만큼 이동
+      const percent = (deltaX / width) * 100;
+      track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
+    }
+
+    function onUp(){
+      if(!isDown) return;
+      isDown = false;
+      track.classList.remove("dragging");
+
+      const threshold = Math.min(80, width * 0.18); // 스와이프 인정 기준
+      if(deltaX <= -threshold){
+        goTo(index + 1, true);
+      }else if(deltaX >= threshold){
+        goTo(index - 1, true);
+      }else{
+        // 원래 자리로 복귀
+        applyTransform(true);
+      }
+    }
+
+    // Touch events
+    hero.addEventListener("touchstart", (e) => {
+      if(!e.touches || !e.touches[0]) return;
+      onDown(e.touches[0].clientX);
+    }, {passive:true});
+
+    hero.addEventListener("touchmove", (e) => {
+      if(!e.touches || !e.touches[0]) return;
+      onMove(e.touches[0].clientX);
+    }, {passive:true});
+
+    hero.addEventListener("touchend", () => onUp(), {passive:true});
+    hero.addEventListener("touchcancel", () => onUp(), {passive:true});
+
+    // Pointer events (PC 드래그도 자연스럽게)
+    hero.addEventListener("pointerdown", (e) => {
+      hero.setPointerCapture?.(e.pointerId);
+      onDown(e.clientX);
+    });
+
+    hero.addEventListener("pointermove", (e) => onMove(e.clientX));
+    hero.addEventListener("pointerup", () => onUp());
+    hero.addEventListener("pointercancel", () => onUp());
+    hero.addEventListener("pointerleave", () => onUp());
   </script>
 </body>
 </html>
