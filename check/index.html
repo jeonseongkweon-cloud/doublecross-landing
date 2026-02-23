@@ -1,1 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>조회/검색 | DOUBLE CROSS</title>
 
+<style>
+body{
+  margin:0;
+  background:#0b0f19;
+  color:#e9eefc;
+  font-family:'Segoe UI','Noto Sans KR',sans-serif;
+}
+.wrap{
+  max-width:800px;
+  margin:0 auto;
+  padding:20px;
+}
+h1{
+  text-align:center;
+  margin:10px 0 20px;
+}
+.card{
+  background:#121c33;
+  padding:20px;
+  border-radius:18px;
+  border:1px solid #24345a;
+}
+input{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #2c3f66;
+  background:#0f1628;
+  color:#fff;
+  margin-top:10px;
+}
+button{
+  width:100%;
+  margin-top:12px;
+  padding:12px;
+  border-radius:12px;
+  border:none;
+  background:#ff7a18;
+  font-weight:700;
+  cursor:pointer;
+}
+.result{
+  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+  background:#0f1628;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+<h1>공식 지정도장 / 지도자 조회</h1>
+
+<div class="card">
+  <input type="text" id="searchInput" placeholder="도장명 / 지도자명 / 인증번호 입력">
+  <button onclick="search()">조회하기</button>
+
+  <div class="result" id="resultBox">
+    <b>검색 결과 예시</b><br><br>
+    도장명: 더블크로스 울산<br>
+    지도자: 전성권<br>
+    상태: 공식 지정도장
+  </div>
+</div>
+
+</div>
+
+<script>
+function search(){
+  document.getElementById("resultBox").style.display="block";
+}
+</script>
+
+</body>
+</html>
