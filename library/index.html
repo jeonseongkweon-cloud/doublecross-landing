@@ -1,1 +1,194 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>자료실 | DOUBLE CROSS</title>
+  <meta name="description" content="DOUBLE CROSS 자료실" />
 
+  <!-- =========================
+       ✅ CHANGE ZONE (여기만 수정!)
+       ========================= -->
+  <script>
+    const CONFIG = {
+      brand: "DOUBLE CROSS",
+      pageTitle: "자료실",
+      // 자료실은 “링크 제공 방식”이 핵심 (구글드라이브/카톡 전달)
+      안내문구: "자료는 단계별로 제공됩니다. 필요 자료는 문의로 요청해 주세요.",
+      // 구글드라이브 폴더 링크(선택)
+      driveLink: "https://drive.google.com/",
+      // 카카오 오픈채팅/문의 링크
+      kakaoLink: "https://open.kakao.com/o/g7Tq9Sgi",
+      links: {
+        check: "/check/index.html",
+        gallery: "/gallery/index.html",
+        about: "/about/index.html",
+        apply: "/apply/index.html",
+        library: "/library/index.html",
+        home: "/index.html"
+      }
+    };
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b0f19; --panel:#0f1628; --card:#121c33; --line:#24345a;
+      --text:#e9eefc; --muted:#a9b6d6; --accent:#ff7a18; --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:radial-gradient(1200px 800px at 50% -200px, rgba(255,122,24,.16), transparent 55%),
+                 radial-gradient(900px 600px at 20% 0%, rgba(80,120,255,.12), transparent 55%),
+                 var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,"Segoe UI","Noto Sans KR",sans-serif;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:980px;margin:0 auto;padding:18px 14px 30px}
+    .topbar{
+      display:flex;align-items:center;gap:10px;
+      background:rgba(18,28,51,.65);
+      border:1px solid rgba(36,52,90,.6);
+      padding:12px 12px;border-radius:22px;
+      backdrop-filter: blur(8px);
+    }
+    .brand{font-weight:900;letter-spacing:.4px}
+    .badge{
+      margin-left:auto;font-size:12px;color:var(--muted);
+      border:1px solid rgba(36,52,90,.7);
+      padding:7px 10px;border-radius:999px;
+      background:rgba(15,22,40,.7);
+      white-space:nowrap;
+    }
+    .nav{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0,1fr));
+      gap:8px;
+    }
+    .nav a{
+      text-align:center;
+      padding:10px 8px;
+      border-radius:14px;
+      background:rgba(15,22,40,.65);
+      border:1px solid rgba(36,52,90,.55);
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    .nav a.active{
+      color:var(--text);
+      border-color:rgba(255,122,24,.55);
+      box-shadow:0 0 0 1px rgba(255,122,24,.15) inset;
+    }
+    .hero{
+      margin-top:16px;
+      padding:18px;border-radius:22px;
+      background:linear-gradient(180deg, rgba(18,28,51,.85), rgba(15,22,40,.65));
+      border:1px solid rgba(36,52,90,.65);
+    }
+    h1{margin:0 0 8px;font-size:22px;font-weight:900}
+    .sub{margin:0 0 14px;color:var(--muted);line-height:1.6}
+    .card{
+      margin-top:12px;
+      padding:16px;border-radius:22px;
+      background:rgba(18,28,51,.72);
+      border:1px solid rgba(36,52,90,.65);
+    }
+    .btn{
+      display:block;
+      margin-top:12px;
+      padding:13px 14px;border-radius:14px;
+      border:1px solid rgba(255,122,24,.55);
+      background:linear-gradient(180deg, rgba(255,122,24,.95), rgba(255,122,24,.75));
+      color:#111;font-weight:900;text-align:center;
+    }
+    .btn2{
+      display:block;
+      margin-top:10px;
+      padding:13px 14px;border-radius:14px;
+      border:1px solid rgba(36,52,90,.75);
+      background:rgba(15,22,40,.85);
+      color:var(--text);font-weight:900;text-align:center;
+    }
+    .note{
+      margin-top:10px;
+      color:rgba(233,238,252,.55);
+      font-size:12px;
+      line-height:1.6;
+    }
+    footer{margin-top:18px;color:rgba(233,238,252,.45);font-size:12px;text-align:center}
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" id="brand" href="/index.html">DOUBLE CROSS</a>
+    <div class="badge" id="badge">자료실</div>
+  </div>
+
+  <div class="nav" id="nav"></div>
+
+  <section class="hero">
+    <h1>자료실</h1>
+    <p class="sub" id="info"></p>
+
+    <div class="card">
+      <div class="btn2" onclick="openKakao()">카카오로 자료 요청하기</div>
+      <a class="btn" id="driveBtn" href="#" target="_blank" rel="noopener">구글드라이브 열기</a>
+      <div class="note">
+        ✔ 자료는 단계별로 제공됩니다.<br>
+        ✔ 링크 제공 방식(카톡 전달)이 기본입니다.<br>
+        ✔ 필요 자료가 있으면 “도장명/지도자명/요청자료”만 적어주세요.
+      </div>
+    </div>
+
+    <footer>© <span id="year"></span> DOUBLE CROSS. All rights reserved.</footer>
+  </section>
+</div>
+
+<script>
+  document.getElementById("brand").textContent = CONFIG.brand;
+  document.getElementById("badge").textContent = CONFIG.pageTitle;
+  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("info").textContent = CONFIG.안내문구;
+
+  // nav
+  const nav = document.getElementById("nav");
+  const items = [
+    {k:"check", t:"조회"},
+    {k:"gallery", t:"갤러리"},
+    {k:"about", t:"소개"},
+    {k:"apply", t:"문의"},
+    {k:"library", t:"자료실", active:true},
+  ];
+  items.forEach(it=>{
+    const a = document.createElement("a");
+    a.href = CONFIG.links[it.k];
+    a.textContent = it.t;
+    if(it.active) a.classList.add("active");
+    nav.appendChild(a);
+  });
+
+  // buttons
+  document.getElementById("driveBtn").href = CONFIG.driveLink || "#";
+
+  function openKakao(){
+    const txt = `[DOUBLE CROSS 자료 요청]
+도장명:
+지도자명:
+요청자료:
+연락처:`;
+    navigator.clipboard?.writeText(txt);
+    if(CONFIG.kakaoLink){
+      window.open(CONFIG.kakaoLink, "_blank", "noopener");
+      alert("요청 양식이 복사되었습니다. 카카오톡에 붙여넣어 보내주세요!");
+    }else{
+      alert("카카오 링크가 아직 설정되지 않았습니다. 요청 양식이 복사되었습니다.");
+    }
+  }
+</script>
+</body>
+</html>
