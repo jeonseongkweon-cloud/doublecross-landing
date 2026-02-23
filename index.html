@@ -4,17 +4,113 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  <title>DOUBLE CROSS® | Official Vision Portal</title>
-  <meta name="description" content="DOUBLE CROSS® 공식 대문 - 대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
+  <!--
+  🔴🔴🔴 CHANGE ZONE (여기만 자주 수정하세요!) 🔴🔴🔴
+  ✅ Ctrl+F 로 "CHANGE ZONE" 또는 "🔴" 검색하면 바로 찾음
+  ✅ 이미지/유튜브/버튼 링크/페이지 이름(타이틀) 등 “바뀌는 것”만 모아둠
+  ✅ 아래 본문은 웬만하면 건드리지 않아도 됨
+  -->
 
-  <!-- ✅ NAVER / GOOGLE site verification -->
+  <title id="pageTitleTag">DOUBLE CROSS® | Official Vision Portal</title>
+  <meta id="pageDescTag" name="description" content="DOUBLE CROSS® 공식 대문 - 대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
+
+  <!-- ✅ NAVER / GOOGLE site verification (필요시만 변경) -->
   <meta name="naver-site-verification" content="a94ef3fb8b8bcf4f51fc7b475f0791878a4e0218" />
   <meta name="google-site-verification" content="_CDEvm1X63aFd6KAohpT32QK5ICbTRUTSFZ7jGNo9Rk" />
 
-  <!-- OG -->
+  <!-- OG (공유 썸네일/설명 자주 바뀌면 여기만 수정) -->
   <meta property="og:title" content="DOUBLE CROSS® | Official Vision Portal" />
   <meta property="og:description" content="대표 이미지 + 빠른 문의/확인 + 영상 + 파트너" />
   <meta property="og:image" content="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" />
+
+  <!-- 🔴 CHANGE ZONE: “설정값”을 JS로 한 번에 관리 -->
+  <script>
+    const CONFIG = {
+      // 🔴 1) 페이지 표시 이름(타이틀/부제)
+      PAGE: {
+        TITLE: "DOUBLE CROSS®",
+        SUBTITLE: "STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009"
+      },
+
+      // 🔴 2) 로고 이미지(좌상단/브랜드 로우)
+      IMAGES: {
+        DC_LOGO: "https://static.wixstatic.com/media/abf917_0792f5404ec84ffc9368a8eff33b2a50~mv2.png",
+      },
+
+      // 🔴 3) 상단 슬라이드(히어로 이미지) — 순서 = 노출 순서
+      HERO: {
+        IMGS: [
+          "https://static.wixstatic.com/media/abf917_5ecb854dd47046a5ae26cb06192f2b43~mv2.png",
+          "https://static.wixstatic.com/media/abf917_9514788de8834dcbbe4f71a02c2b875a~mv2.png",
+          "https://static.wixstatic.com/media/abf917_69fa96351e9143c2bdb041b4b45b4086~mv2.png",
+          "https://static.wixstatic.com/media/abf917_fd4d9988b9b3420cae33180810fc5d6b~mv2.png",
+          "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png"
+        ],
+
+        // 🔴 4) (B안) 1~2장만 강하게 오버레이 문구
+        OVERLAY_TEXT: [
+          "STRUCTURE >> 교차원리",
+          "교차원리 기반 무도",
+          null,
+          null,
+          null
+        ],
+
+        // 🔴 5) 자동 슬라이드 속도(밀리초)
+        AUTO_MS: 4500,
+        RESUME_MS: 6500
+      },
+
+      // 🔴 6) 유튜브(임베드/채널)
+      YOUTUBE: {
+        EMBED_ID: "y_uqYZEU9uw", // https://www.youtube.com/watch?v=여기부분
+        CHANNEL_URL: "https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ"
+      },
+
+      // 🔴 7) 버튼/링크(자주 바뀌는 이동 주소는 전부 여기!)
+      LINKS: {
+        OFFICIAL_APPLY: "https://tk7890kr12.wixsite.com/double-cross-officia/%EA%B3%B5%EC%8B%9D%EC%A7%80%EC%A0%95%EB%8F%84%EC%9E%A5-%EC%8B%A0%EC%B2%AD",
+        OFFICIAL_CHECK: "https://tk7890kr12.wixsite.com/double-cross-officia",
+        SEMINAR_KAKAO: "https://open.kakao.com/o/gPxTAxhi",
+        BAND_SOURCE: "https://www.band.us/n/a4a2b4Y8gaIfb",
+
+        HOME: "https://tk7890kr12.wixsite.com/double-cross-officia",
+        KAKAO: "https://open.kakao.com/o/gPxTAxhi",
+        BAND: "https://www.band.us/n/a4a2b4Y8gaIfb",
+        NEWS: "https://www.news24.ai.kr/news/1203",
+        PHONE: "tel:010-4477-2772"
+      },
+
+      // 🔴 8) 파트너 로고(이미지/링크)
+      PARTNERS: [
+        {
+          name: "국제경찰무도연합회",
+          sub: "International Police Martial Arts Alliance",
+          href: "https://tk7890kr12.wixsite.com/ipma",
+          img: "https://static.wixstatic.com/media/abf917_5065003bfd5d4e55933374e8e122c7fc~mv2.png"
+        },
+        {
+          name: "세계태권검도연맹",
+          sub: "World TaekwonKumdo Federation",
+          href: "https://tk7890kr12.wixsite.com/tkkd",
+          img: "https://static.wixstatic.com/media/abf917_022bb49ad81143f3bb3fb1d7de57cec3~mv2.png"
+        },
+        {
+          name: "국제자격관리본부",
+          sub: "International Certification Authority",
+          href: "https://tk7890kr12.wixsite.com/ica-atic",
+          img: "https://static.wixstatic.com/media/abf917_474049ab56494eb194d48aef7c5558b5~mv2.png"
+        },
+        {
+          name: "글로벌뉴스24",
+          sub: "GLOBAL NEWS 24",
+          href: "https://www.news24.ai.kr/",
+          img: "https://static.wixstatic.com/media/abf917_459f0009ee10433a9869ee30c49f8926~mv2.png"
+        }
+      ]
+    };
+  </script>
+  <!-- 🔴🔴🔴 CHANGE ZONE END 🔴🔴🔴 -->
 
   <style>
     :root{
@@ -47,7 +143,6 @@
       touch-action: manipulation;
     }
 
-    /* 모바일 포스터 스테이지 */
     .stage{
       min-height:100%;
       display:flex;
@@ -74,7 +169,6 @@
       pointer-events:none;
     }
 
-    /* 상단 헤더 */
     header.top{
       position:relative;
       padding:16px 16px 10px;
@@ -145,7 +239,6 @@
       box-shadow:0 0 12px rgba(255,211,106,.70);
     }
 
-    /* ✅ 상단 대표 이미지: 슬라이드 */
     .heroImage{
       position:relative;
       margin:0 16px 12px;
@@ -156,7 +249,7 @@
       background:#000;
       aspect-ratio: 9/16;
       user-select:none;
-      touch-action: pan-y; /* 세로 스크롤은 허용, 좌우는 JS로 */
+      touch-action: pan-y;
     }
     .heroImage::after{
       content:"";
@@ -187,7 +280,6 @@
       pointer-events:none;
     }
 
-    /* ✅ (B안) 1~2장만 강하게: 빛나는 텍스트 오버레이 */
     .heroGlow{
       position:absolute;
       left:12px; right:12px;
@@ -223,11 +315,10 @@
       100%{opacity:1; transform:translateY(0); filter:blur(0);}
     }
 
-    /* 기존 태그(하단) */
     .heroOverlay{
       position:absolute;
       left:12px; right:12px;
-      bottom:26px; /* dots 때문에 살짝 위로 */
+      bottom:26px;
       display:flex; gap:8px; flex-wrap:wrap;
       z-index:4;
       pointer-events:none;
@@ -244,7 +335,6 @@
       text-shadow:0 0 12px rgba(255,211,106,.18);
     }
 
-    /* ✅ 점(●●●●●) 표시 */
     .dots{
       position:absolute;
       left:0; right:0;
@@ -272,7 +362,6 @@
       box-shadow:0 0 12px rgba(255,211,106,.35), 0 10px 20px rgba(0,0,0,.35);
     }
 
-    /* ✅ 먼저 노출: 문의가 많은 항목들 */
     .quick{
       position:relative;
       display:grid;
@@ -280,7 +369,6 @@
       padding:0 16px 12px;
     }
 
-    /* CTA 버튼 */
     .cta{
       position:relative;
       display:grid;
@@ -344,7 +432,6 @@
       100%{transform:scale(1);opacity:1}
     }
 
-    /* 섹션 공통 */
     .section{
       position:relative;
       margin:0 16px 14px;
@@ -373,7 +460,6 @@
       white-space:nowrap;
     }
 
-    /* VIDEO */
     .videoBox{padding:12px}
     .videoWrap{
       position:relative;
@@ -390,7 +476,6 @@
       border:0;
     }
 
-    /* AUTHORITY LAYER */
     .support{
       position:relative;
       margin:8px 16px 14px;
@@ -432,7 +517,6 @@
       white-space:nowrap;
     }
 
-    /* DOUBLE CROSS Network Row */
     .brandRowLink{display:block; text-decoration:none; color:inherit;}
     .brandRow{
       position:relative;
@@ -479,7 +563,6 @@
     .brandText .name{font-weight:1000;letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
     .brandText .sub{margin-top:4px;font-size:11px;color:rgba(234,240,255,.70);font-weight:800;}
 
-    /* Partner Grid */
     .logoGrid{
       position:relative;
       display:grid;
@@ -587,12 +670,12 @@
 
         <div class="heroRow">
           <div class="dcMark" aria-hidden="true">
-            <img src="https://static.wixstatic.com/media/abf917_0792f5404ec84ffc9368a8eff33b2a50~mv2.png" alt="DOUBLE CROSS Logo">
+            <img id="dcLogoImg" src="" alt="DOUBLE CROSS Logo">
           </div>
 
           <div class="titleWrap">
-            <h1 class="title">DOUBLE CROSS®</h1>
-            <div class="subtitle">STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009</div>
+            <h1 class="title" id="pageTitle">DOUBLE CROSS®</h1>
+            <div class="subtitle" id="pageSubtitle">STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009</div>
           </div>
         </div>
 
@@ -606,7 +689,6 @@
       <section class="heroImage" aria-label="Top hero image" id="hero">
         <div class="heroTrack" id="heroTrack"></div>
 
-        <!-- ✅ (B안) 1~2장만 강한 문구 -->
         <div class="heroGlow" aria-hidden="true">
           <div class="glowBox" id="glowBox"></div>
         </div>
@@ -618,37 +700,36 @@
           <div class="heroTag">Since 2009</div>
         </div>
 
-        <!-- ✅ dots -->
         <div class="dots" id="dots" aria-hidden="true"></div>
       </section>
 
       <section class="quick" aria-label="Top quick actions">
-        <a class="btn primary" href="https://tk7890kr12.wixsite.com/double-cross-officia/%EA%B3%B5%EC%8B%9D%EC%A7%80%EC%A0%95%EB%8F%84%EC%9E%A5-%EC%8B%A0%EC%B2%AD" target="_blank" rel="noopener">
+        <a class="btn primary" id="btnApply" href="#" target="_blank" rel="noopener">
           ✅ 공식지정도장 가입 문의(신청)
         </a>
 
-        <a class="btn verify" href="https://tk7890kr12.wixsite.com/double-cross-officia" target="_blank" rel="noopener">
+        <a class="btn verify" id="btnCheck" href="#" target="_blank" rel="noopener">
           🔎 공식지정도장 확인하기
         </a>
 
-        <a class="btn seminar" href="https://open.kakao.com/o/gPxTAxhi" target="_blank" rel="noopener">
+        <a class="btn seminar" id="btnSeminar" href="#" target="_blank" rel="noopener">
           <span class="liveDot"></span> 📣 세미나 안내 문의(카카오)
         </a>
 
-        <a class="btn source" href="https://www.band.us/n/a4a2b4Y8gaIfb" target="_blank" rel="noopener">
+        <a class="btn source" id="btnSource" href="#" target="_blank" rel="noopener">
           🧩 캐릭터 · 원본 문의(밴드)
         </a>
       </section>
 
       <section class="cta" aria-label="Quick actions">
-        <a class="btn" href="https://tk7890kr12.wixsite.com/double-cross-officia" target="_blank" rel="noopener">🌐 공식 홈페이지</a>
-        <a class="btn kakao" href="https://open.kakao.com/o/gPxTAxhi" target="_blank" rel="noopener">
+        <a class="btn" id="btnHome" href="#" target="_blank" rel="noopener">🌐 공식 홈페이지</a>
+        <a class="btn kakao" id="btnKakao" href="#" target="_blank" rel="noopener">
           <span class="liveDot"></span> 💬 실시간 카카오톡 상담
         </a>
-        <a class="btn band" href="https://www.band.us/n/a4a2b4Y8gaIfb" target="_blank" rel="noopener">🎟️ 밴드 참여</a>
-        <a class="btn news" href="https://www.news24.ai.kr/news/1203" target="_blank" rel="noopener">📰 신문 보기</a>
-        <a class="btn" href="https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ" target="_blank" rel="noopener">🎬 유튜브 채널</a>
-        <a class="btn" href="tel:010-4477-2772">📞 010-4477-2772</a>
+        <a class="btn band" id="btnBand" href="#" target="_blank" rel="noopener">🎟️ 밴드 참여</a>
+        <a class="btn news" id="btnNews" href="#" target="_blank" rel="noopener">📰 신문 보기</a>
+        <a class="btn" id="btnYoutube" href="#" target="_blank" rel="noopener">🎬 유튜브 채널</a>
+        <a class="btn" id="btnPhone" href="#">📞 010-4477-2772</a>
       </section>
 
       <section class="section" aria-label="Promo video">
@@ -660,7 +741,8 @@
         <div class="videoBox">
           <div class="videoWrap">
             <iframe
-              src="https://www.youtube.com/embed/y_uqYZEU9uw?rel=0&modestbranding=1"
+              id="youtubeFrame"
+              src=""
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
               title="DOUBLE CROSS Promo Video"></iframe>
@@ -674,10 +756,10 @@
           <div class="supportPill">Authority Layer • Since 2009</div>
         </div>
 
-        <a class="brandRowLink" href="https://tk7890kr12.wixsite.com/double-cross-officia" target="_blank" rel="noopener">
+        <a class="brandRowLink" id="brandRowLink" href="#" target="_blank" rel="noopener">
           <div class="brandRow">
             <div class="dcLogo">
-              <img src="https://static.wixstatic.com/media/abf917_0792f5404ec84ffc9368a8eff33b2a50~mv2.png" alt="DOUBLE CROSS Logo">
+              <img id="dcLogoImg2" src="" alt="DOUBLE CROSS Logo">
             </div>
             <div class="brandText">
               <div class="name">DOUBLE CROSS® Official Network</div>
@@ -686,47 +768,7 @@
           </div>
         </a>
 
-        <div class="logoGrid">
-          <a class="logoCardLink" href="https://tk7890kr12.wixsite.com/ipma" target="_blank" rel="noopener">
-            <div class="logoCard">
-              <div class="logoImgWrap">
-                <img src="https://static.wixstatic.com/media/abf917_5065003bfd5d4e55933374e8e122c7fc~mv2.png" alt="국제경찰무도연합회 로고">
-              </div>
-              <div class="logoLabel">국제경찰무도연합회</div>
-              <div class="logoSub">International Police Martial Arts Alliance</div>
-            </div>
-          </a>
-
-          <a class="logoCardLink" href="https://tk7890kr12.wixsite.com/tkkd" target="_blank" rel="noopener">
-            <div class="logoCard">
-              <div class="logoImgWrap">
-                <img src="https://static.wixstatic.com/media/abf917_022bb49ad81143f3bb3fb1d7de57cec3~mv2.png" alt="세계태권검도연맹 로고">
-              </div>
-              <div class="logoLabel">세계태권검도연맹</div>
-              <div class="logoSub">World TaekwonKumdo Federation</div>
-            </div>
-          </a>
-
-          <a class="logoCardLink" href="https://tk7890kr12.wixsite.com/ica-atic" target="_blank" rel="noopener">
-            <div class="logoCard">
-              <div class="logoImgWrap">
-                <img src="https://static.wixstatic.com/media/abf917_474049ab56494eb194d48aef7c5558b5~mv2.png" alt="국제자격관리본부 로고">
-              </div>
-              <div class="logoLabel">국제자격관리본부</div>
-              <div class="logoSub">International Certification Authority</div>
-            </div>
-          </a>
-
-          <a class="logoCardLink" href="https://www.news24.ai.kr/" target="_blank" rel="noopener">
-            <div class="logoCard">
-              <div class="logoImgWrap">
-                <img src="https://static.wixstatic.com/media/abf917_459f0009ee10433a9869ee30c49f8926~mv2.png" alt="글로벌뉴스24 로고">
-              </div>
-              <div class="logoLabel">글로벌뉴스24</div>
-              <div class="logoSub">GLOBAL NEWS 24</div>
-            </div>
-          </a>
-        </div>
+        <div class="logoGrid" id="partnerGrid"></div>
       </section>
 
       <div class="footer">© DOUBLE CROSS. All rights reserved.</div>
@@ -734,23 +776,54 @@
   </div>
 
   <script>
-    // ✅ HERO: 이미지 목록(순서 = 슬라이드 순서)
-    const imgs = [
-      "https://static.wixstatic.com/media/abf917_5ecb854dd47046a5ae26cb06192f2b43~mv2.png",
-      "https://static.wixstatic.com/media/abf917_9514788de8834dcbbe4f71a02c2b875a~mv2.png",
-      "https://static.wixstatic.com/media/abf917_69fa96351e9143c2bdb041b4b45b4086~mv2.png",
-      "https://static.wixstatic.com/media/abf917_fd4d9988b9b3420cae33180810fc5d6b~mv2.png",
-      "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png"
-    ];
+    // ✅ 0) CONFIG 적용(텍스트/링크/유튜브/로고)
+    document.getElementById("pageTitle").textContent = CONFIG.PAGE.TITLE;
+    document.getElementById("pageSubtitle").textContent = CONFIG.PAGE.SUBTITLE;
 
-    // ✅ (B안) 1~2장만 강하게(나머지는 null = 숨김)
-    const overlayText = [
-      "STRUCTURE >> 교차원리",
-      "교차원리 기반 무도",
-      null,
-      null,
-      null
-    ];
+    document.getElementById("dcLogoImg").src = CONFIG.IMAGES.DC_LOGO;
+    document.getElementById("dcLogoImg2").src = CONFIG.IMAGES.DC_LOGO;
+
+    // 버튼 링크 적용
+    document.getElementById("btnApply").href   = CONFIG.LINKS.OFFICIAL_APPLY;
+    document.getElementById("btnCheck").href   = CONFIG.LINKS.OFFICIAL_CHECK;
+    document.getElementById("btnSeminar").href = CONFIG.LINKS.SEMINAR_KAKAO;
+    document.getElementById("btnSource").href  = CONFIG.LINKS.BAND_SOURCE;
+
+    document.getElementById("btnHome").href    = CONFIG.LINKS.HOME;
+    document.getElementById("btnKakao").href   = CONFIG.LINKS.KAKAO;
+    document.getElementById("btnBand").href    = CONFIG.LINKS.BAND;
+    document.getElementById("btnNews").href    = CONFIG.LINKS.NEWS;
+    document.getElementById("btnYoutube").href = CONFIG.YOUTUBE.CHANNEL_URL;
+    document.getElementById("btnPhone").href   = CONFIG.LINKS.PHONE;
+    document.getElementById("brandRowLink").href = CONFIG.LINKS.HOME;
+
+    // 유튜브 임베드
+    document.getElementById("youtubeFrame").src =
+      `https://www.youtube.com/embed/${CONFIG.YOUTUBE.EMBED_ID}?rel=0&modestbranding=1`;
+
+    // 파트너 그리드 생성
+    const grid = document.getElementById("partnerGrid");
+    CONFIG.PARTNERS.forEach(p=>{
+      const a = document.createElement("a");
+      a.className = "logoCardLink";
+      a.href = p.href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.innerHTML = `
+        <div class="logoCard">
+          <div class="logoImgWrap">
+            <img src="${p.img}" alt="${p.name} 로고">
+          </div>
+          <div class="logoLabel">${p.name}</div>
+          <div class="logoSub">${p.sub}</div>
+        </div>
+      `;
+      grid.appendChild(a);
+    });
+
+    // ✅ HERO 슬라이드(기존 로직 유지) — CONFIG에서 가져오기
+    const imgs = CONFIG.HERO.IMGS;
+    const overlayText = CONFIG.HERO.OVERLAY_TEXT;
 
     const hero = document.getElementById("hero");
     const track = document.getElementById("heroTrack");
@@ -761,15 +834,13 @@
     let autoTimer = null;
     let resumeTimer = null;
 
-    // --- Build images ---
     imgs.forEach((src, i) => {
       const img = document.createElement("img");
       img.src = src;
-      img.alt = "DOUBLE CROSS Hero " + (i + 1);
+      img.alt = "Hero " + (i + 1);
       track.appendChild(img);
     });
 
-    // --- Build dots ---
     function buildDots(){
       dotsEl.innerHTML = "";
       for(let i=0;i<imgs.length;i++){
@@ -786,7 +857,6 @@
       }
     }
 
-    // --- Overlay (B안) ---
     function setOverlay(active){
       const text = overlayText[active] || "";
       if(!text){
@@ -795,13 +865,11 @@
         return;
       }
       glowBox.textContent = text;
-      // 애니메이션 리셋 후 재실행
       glowBox.classList.remove("show");
       void glowBox.offsetWidth;
       glowBox.classList.add("show");
     }
 
-    // --- Move ---
     function applyTransform(withTransition=true){
       track.classList.toggle("dragging", !withTransition);
       track.style.transform = `translateX(-${index * 100}%)`;
@@ -816,31 +884,25 @@
       applyTransform(withTransition);
     }
 
-    function next(){
-      goTo(index + 1, true);
-    }
+    function next(){ goTo(index + 1, true); }
 
-    // --- Auto slide ---
     function startAuto(){
       stopAuto();
-      autoTimer = setInterval(next, 4500);
+      autoTimer = setInterval(next, CONFIG.HERO.AUTO_MS);
     }
     function stopAuto(){
       if(autoTimer) clearInterval(autoTimer);
       autoTimer = null;
     }
-    // 사용자가 스와이프/드래그하면 자동을 잠깐 멈췄다가 재개
     function pauseThenResume(){
       stopAuto();
       if(resumeTimer) clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(startAuto, 6500);
+      resumeTimer = setTimeout(startAuto, CONFIG.HERO.RESUME_MS);
     }
 
-    // 초기 표시
     applyTransform(true);
     startAuto();
 
-    // --- Swipe support (touch + pointer) ---
     let isDown = false;
     let startX = 0;
     let currentX = 0;
@@ -861,8 +923,6 @@
       if(!isDown) return;
       currentX = clientX;
       deltaX = currentX - startX;
-
-      // 드래그 중에는 현재 index 기준으로 픽셀만큼 이동
       const percent = (deltaX / width) * 100;
       track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
     }
@@ -872,18 +932,16 @@
       isDown = false;
       track.classList.remove("dragging");
 
-      const threshold = Math.min(80, width * 0.18); // 스와이프 인정 기준
+      const threshold = Math.min(80, width * 0.18);
       if(deltaX <= -threshold){
         goTo(index + 1, true);
       }else if(deltaX >= threshold){
         goTo(index - 1, true);
       }else{
-        // 원래 자리로 복귀
         applyTransform(true);
       }
     }
 
-    // Touch events
     hero.addEventListener("touchstart", (e) => {
       if(!e.touches || !e.touches[0]) return;
       onDown(e.touches[0].clientX);
@@ -897,7 +955,6 @@
     hero.addEventListener("touchend", () => onUp(), {passive:true});
     hero.addEventListener("touchcancel", () => onUp(), {passive:true});
 
-    // Pointer events (PC 드래그도 자연스럽게)
     hero.addEventListener("pointerdown", (e) => {
       hero.setPointerCapture?.(e.pointerId);
       onDown(e.clientX);
