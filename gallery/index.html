@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>갤러리 | DOUBLE CROSS</title>
-  <meta name="description" content="DOUBLE CROSS 갤러리/영상" />
+  <meta name="description" content="갤러리/영상" />
 
   <!-- =========================
        ✅ CHANGE ZONE (여기만 수정!)
@@ -12,85 +12,94 @@
   <script>
     const CONFIG = {
       brand: "DOUBLE CROSS",
+      pageKey: "gallery",
       pageTitle: "갤러리",
       youtubeChannel: "https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ",
-      // 대표 영상(유튜브) ID만 넣으면 됨
       featuredYoutubeId: "y_uqYZEU9uw",
-      // 이미지 URL들 (없으면 빈 배열 [])
       images: [
         // "https://static.wixstatic.com/media/....png",
       ],
       links: {
+        home: "/index.html",
         check: "/check/index.html",
         gallery: "/gallery/index.html",
         about: "/about/index.html",
         apply: "/apply/index.html",
-        library: "/library/index.html",
-        home: "/index.html"
+        library: "/library/index.html"
       }
     };
   </script>
 
   <style>
     :root{
-      --bg:#0b0f19; --panel:#0f1628; --card:#121c33; --line:#24345a;
-      --text:#e9eefc; --muted:#a9b6d6; --accent:#ff7a18; --r:18px;
+      --bg:#0b0f19; --panel:rgba(18,28,51,.72); --panel2:rgba(15,22,40,.78);
+      --line:rgba(36,52,90,.65); --text:#e9eefc; --muted:#a9b6d6;
+      --accent:#ff7a18; --r:18px; --shadow:0 18px 60px rgba(0,0,0,.55);
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      background:radial-gradient(1200px 800px at 50% -200px, rgba(255,122,24,.16), transparent 55%),
-                 radial-gradient(900px 600px at 20% 0%, rgba(80,120,255,.12), transparent 55%),
-                 var(--bg);
+      background:
+        radial-gradient(1200px 800px at 50% -220px, rgba(255,122,24,.16), transparent 55%),
+        radial-gradient(900px 600px at 20% 0%, rgba(80,120,255,.12), transparent 55%),
+        var(--bg);
       color:var(--text);
       font-family:system-ui,-apple-system,"Segoe UI","Noto Sans KR",sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:980px;margin:0 auto;padding:18px 14px 30px}
+    .wrap{max-width:980px;margin:0 auto;padding:16px 14px 30px}
+
     .topbar{
       display:flex;align-items:center;gap:10px;
       background:rgba(18,28,51,.65);
-      border:1px solid rgba(36,52,90,.6);
+      border:1px solid rgba(36,52,90,.60);
       padding:12px 12px;border-radius:22px;
       backdrop-filter: blur(8px);
+      box-shadow:var(--shadow);
     }
-    .brand{font-weight:900;letter-spacing:.4px}
+    .brand{font-weight:1000;display:flex;align-items:center;gap:10px;min-width:0}
+    .mark{
+      width:34px;height:34px;border-radius:12px;
+      border:1px solid rgba(255,122,24,.35);
+      background:rgba(255,122,24,.08);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1000;color:rgba(255,122,24,.95);
+      flex:0 0 auto;
+    }
+    .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .badge{
       margin-left:auto;font-size:12px;color:var(--muted);
-      border:1px solid rgba(36,52,90,.7);
-      padding:7px 10px;border-radius:999px;
-      background:rgba(15,22,40,.7);
+      border:1px solid rgba(36,52,90,.70);
+      padding:7px 10px;border-radius:999px;background:rgba(15,22,40,.70);
       white-space:nowrap;
     }
     .nav{
       margin-top:12px;
-      display:grid;
-      grid-template-columns:repeat(5, minmax(0,1fr));
-      gap:8px;
+      display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:8px;
     }
     .nav a{
-      text-align:center;
-      padding:10px 8px;
-      border-radius:14px;
+      text-align:center;padding:10px 8px;border-radius:14px;
       background:rgba(15,22,40,.65);
       border:1px solid rgba(36,52,90,.55);
-      color:var(--muted);
-      font-weight:700;
-      font-size:13px;
+      color:var(--muted);font-weight:900;font-size:13px;user-select:none;
     }
     .nav a.active{
       color:var(--text);
       border-color:rgba(255,122,24,.55);
       box-shadow:0 0 0 1px rgba(255,122,24,.15) inset;
     }
+
     .hero{
-      margin-top:16px;
+      margin-top:14px;
       padding:16px;border-radius:22px;
       background:linear-gradient(180deg, rgba(18,28,51,.85), rgba(15,22,40,.65));
       border:1px solid rgba(36,52,90,.65);
+      box-shadow:var(--shadow);
     }
-    h1{margin:0 0 8px;font-size:22px;font-weight:900}
+    h1{margin:0 0 8px;font-size:22px;font-weight:1000}
     .sub{margin:0 0 14px;color:var(--muted);line-height:1.6}
+
     .grid{display:grid;grid-template-columns:1fr;gap:12px}
     @media(min-width:860px){ .grid{grid-template-columns:1.2fr .8fr;} }
     .card{
@@ -113,10 +122,9 @@
       padding:13px 14px;border-radius:14px;
       border:1px solid rgba(255,122,24,.55);
       background:linear-gradient(180deg, rgba(255,122,24,.95), rgba(255,122,24,.75));
-      color:#111;font-weight:900;text-align:center;
+      color:#111;font-weight:1000;text-align:center;user-select:none;
     }
     .imggrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-    @media(min-width:860px){ .imggrid{grid-template-columns:repeat(2,1fr);} }
     .ph{
       width:100%;aspect-ratio:4/3;
       border-radius:16px;overflow:hidden;
@@ -124,25 +132,28 @@
       background:rgba(15,22,40,.8);
       display:flex;align-items:center;justify-content:center;
       color:rgba(233,238,252,.5);
-      font-weight:800;font-size:12px;
+      font-weight:900;font-size:12px;
     }
     .ph img{width:100%;height:100%;object-fit:cover;display:block}
-    footer{margin-top:18px;color:rgba(233,238,252,.45);font-size:12px;text-align:center}
+    footer{margin-top:16px;color:rgba(233,238,252,.45);font-size:12px;text-align:center}
   </style>
 </head>
 
 <body>
 <div class="wrap">
   <div class="topbar">
-    <a class="brand" id="brand" href="/index.html">DOUBLE CROSS</a>
-    <div class="badge" id="badge">갤러리</div>
+    <a class="brand" id="homeLink" href="/index.html">
+      <span class="mark">DC</span>
+      <span class="name" id="brandName">DOUBLE CROSS</span>
+    </a>
+    <div class="badge" id="pageBadge">갤러리</div>
   </div>
 
   <div class="nav" id="nav"></div>
 
   <section class="hero">
     <h1>갤러리 & 영상</h1>
-    <p class="sub">대표 영상과 이미지 모음입니다. (이미지는 Wix에 올린 URL을 그대로 붙여넣으면 됩니다.)</p>
+    <p class="sub">대표 영상과 이미지 모음입니다. (이미지는 Wix에 올린 URL을 추가하면 자동 표시됩니다.)</p>
 
     <div class="grid">
       <div class="card">
@@ -162,15 +173,17 @@
 </div>
 
 <script>
-  document.getElementById("brand").textContent = CONFIG.brand;
-  document.getElementById("badge").textContent = CONFIG.pageTitle;
+  // header
+  document.getElementById("brandName").textContent = CONFIG.brand;
+  document.getElementById("pageBadge").textContent = CONFIG.pageTitle;
+  document.getElementById("homeLink").href = CONFIG.links.home;
   document.getElementById("year").textContent = new Date().getFullYear();
 
   // nav
   const nav = document.getElementById("nav");
   const items = [
     {k:"check", t:"조회"},
-    {k:"gallery", t:"갤러리", active:true},
+    {k:"gallery", t:"갤러리"},
     {k:"about", t:"소개"},
     {k:"apply", t:"문의"},
     {k:"library", t:"자료실"},
@@ -179,18 +192,17 @@
     const a = document.createElement("a");
     a.href = CONFIG.links[it.k];
     a.textContent = it.t;
-    if(it.active) a.classList.add("active");
+    if(it.k === CONFIG.pageKey) a.classList.add("active");
     nav.appendChild(a);
   });
 
   // youtube
-  const yt = document.getElementById("yt");
-  yt.src = `https://www.youtube.com/embed/${CONFIG.featuredYoutubeId}`;
-  const ytCh = document.getElementById("ytCh");
-  ytCh.href = CONFIG.youtubeChannel;
+  document.getElementById("yt").src = `https://www.youtube.com/embed/${CONFIG.featuredYoutubeId}`;
+  document.getElementById("ytCh").href = CONFIG.youtubeChannel;
 
   // images
   const grid = document.getElementById("imgGrid");
+  grid.innerHTML = "";
   if(!CONFIG.images || CONFIG.images.length===0){
     for(let i=0;i<4;i++){
       const d=document.createElement("div");
