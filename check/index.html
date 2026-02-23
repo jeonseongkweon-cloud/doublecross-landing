@@ -3,223 +3,399 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>조회 | DOUBLE CROSS</title>
-  <meta name="description" content="공식 지정도장/지도자 조회" />
+  <title>조회/검색 | DOUBLE CROSS</title>
 
-  <!-- =========================
-       ✅ CHANGE ZONE (여기만 수정!)
-       ========================= -->
+  <!-- ===================================================
+    🔴🔴🔴 CHANGE ZONE (여기만 수정하세요!) 🔴🔴🔴
+    ✅ Ctrl+F 로 "CHANGE ZONE" 검색
+  =================================================== -->
   <script>
     const CONFIG = {
-      brand: "DOUBLE CROSS",
-      pageKey: "check",               // check | gallery | about | apply | library
-      pageTitle: "조회",
-      noticeTitle: "공식 확인/조회",
-      noticeDesc: "공식 지정도장 및 지도자 확인을 위한 페이지입니다. (추후 데이터 기반 검색으로 고도화 예정)",
-      // 필요시 외부 링크 추가(선택)
-      kakaoLink: "https://open.kakao.com/o/gPxTAxhi",
-      links: {
-        home: "/index.html",
-        check: "/check/index.html",
-        gallery: "/gallery/index.html",
-        about: "/about/index.html",
-        apply: "/apply/index.html",
-        library: "/library/index.html"
+      BRAND: {
+        TITLE: "DOUBLE CROSS®",
+        SUBTITLE: "STRUCTURE >> 교차원리 · 교차원리 기반 무도"
+      },
+      // ✅ 상단으로 돌아가기(대문)
+      LINKS: {
+        HOME: "https://doublecross.kr/"
+      },
+      // ✅ 기본 안내 문구
+      TEXT: {
+        PLACEHOLDER: "도장명 / 관장명 / 지역 / 인증번호 입력",
+        TIP: "도장·지부는 이름/지역으로 검색 가능 · 단증/자격증은 인증번호로 확인"
       }
     };
   </script>
+  <!-- 🔴🔴🔴 CHANGE ZONE END 🔴🔴🔴 -->
 
   <style>
     :root{
-      --bg:#0b0f19;
-      --panel:rgba(18,28,51,.72);
-      --panel2:rgba(15,22,40,.78);
-      --line:rgba(36,52,90,.65);
-      --text:#e9eefc;
-      --muted:#a9b6d6;
-      --accent:#ff7a18;
-      --r:18px;
-      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --bg:#070a10;
+      --card:rgba(16,24,38,.72);
+      --line:rgba(255,255,255,.12);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.72);
+      --gold:#ffd36a;
+      --shadow:0 22px 70px rgba(0,0,0,.55);
+      --r:22px;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      background:
-        radial-gradient(1200px 800px at 50% -220px, rgba(255,122,24,.16), transparent 55%),
-        radial-gradient(900px 600px at 20% 0%, rgba(80,120,255,.12), transparent 55%),
-        var(--bg);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Malgun Gothic,sans-serif;
       color:var(--text);
-      font-family:system-ui,-apple-system,"Segoe UI","Noto Sans KR",sans-serif;
+      background:
+        radial-gradient(1100px 700px at 10% 0%, rgba(255,211,106,.18), transparent 60%),
+        radial-gradient(1100px 700px at 90% 0%, rgba(103,183,255,.14), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(141,98,255,.08), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:980px;margin:0 auto;padding:16px 14px 30px}
-
-    /* ✅ 공통 상단바 */
-    .topbar{
-      display:flex;align-items:center;gap:10px;
-      background:rgba(18,28,51,.65);
-      border:1px solid rgba(36,52,90,.60);
-      padding:12px 12px;
-      border-radius:22px;
-      backdrop-filter: blur(8px);
-      box-shadow:var(--shadow);
+    .wrap{
+      min-height:100%;
+      display:flex;
+      justify-content:center;
+      padding:14px 10px 60px;
     }
-    .brand{
-      font-weight:1000; letter-spacing:.4px;
-      display:flex; align-items:center; gap:10px;
-      min-width:0;
+    .panel{
+      width:min(520px, 100%);
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(16,24,38,.86), rgba(16,24,38,.46));
+      box-shadow:0 30px 90px rgba(0,0,0,.62);
+      overflow:hidden;
+      position:relative;
     }
-    .brand .mark{
-      width:34px;height:34px;border-radius:12px;
-      border:1px solid rgba(255,122,24,.35);
-      background:rgba(255,122,24,.08);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:1000;color:rgba(255,122,24,.95);
-      flex:0 0 auto;
-    }
-    .brand .name{
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    header{
+      padding:16px 16px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
     .badge{
-      margin-left:auto;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 12px;border-radius:999px;
+      border:1px solid rgba(255,211,106,.35);
+      background:rgba(255,211,106,.10);
+      font-weight:950;font-size:12px;letter-spacing:.3px;
+    }
+    h1{
+      margin:12px 0 6px;
+      font-size:22px;
+      font-weight:1000;
+      letter-spacing:.4px;
+    }
+    .sub{
+      color:var(--muted);
       font-size:12px;
-      color:var(--muted);
-      border:1px solid rgba(36,52,90,.70);
-      padding:7px 10px;border-radius:999px;
-      background:rgba(15,22,40,.70);
-      white-space:nowrap;
+      font-weight:850;
+      line-height:1.35;
     }
-
-    .nav{
-      margin-top:12px;
+    .searchBox{
+      padding:14px 16px 16px;
       display:grid;
-      grid-template-columns:repeat(5, minmax(0,1fr));
-      gap:8px;
+      gap:10px;
     }
-    .nav a{
-      text-align:center;
-      padding:10px 8px;
-      border-radius:14px;
-      background:rgba(15,22,40,.65);
-      border:1px solid rgba(36,52,90,.55);
-      color:var(--muted);
-      font-weight:900;
-      font-size:13px;
-      user-select:none;
-    }
-    .nav a.active{
+    .input{
+      width:100%;
+      padding:14px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.25);
       color:var(--text);
-      border-color:rgba(255,122,24,.55);
-      box-shadow:0 0 0 1px rgba(255,122,24,.15) inset;
+      outline:none;
+      font-weight:900;
+      font-size:14px;
     }
-
-    /* ✅ 페이지 카드 */
-    .hero{
-      margin-top:14px;
-      padding:18px;
-      border-radius:22px;
-      background:linear-gradient(180deg, rgba(18,28,51,.85), rgba(15,22,40,.65));
-      border:1px solid rgba(36,52,90,.65);
-      box-shadow:var(--shadow);
-    }
-    h1{margin:0 0 8px;font-size:22px;font-weight:1000}
-    .sub{margin:0 0 14px;color:var(--muted);line-height:1.6}
-
-    .card{
-      margin-top:12px;
-      padding:16px;border-radius:22px;
-      background:rgba(18,28,51,.72);
-      border:1px solid rgba(36,52,90,.65);
+    .btnRow{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
     }
     .btn{
-      display:block;
-      padding:13px 14px;border-radius:14px;
-      border:1px solid rgba(255,122,24,.55);
-      background:linear-gradient(180deg, rgba(255,122,24,.95), rgba(255,122,24,.75));
-      color:#111;
+      display:flex;align-items:center;justify-content:center;
+      gap:10px;
+      padding:13px 14px;
+      border-radius:16px;
+      text-decoration:none;
       font-weight:1000;
-      text-align:center;
-      user-select:none;
-    }
-    .btn2{
-      display:block;margin-top:10px;
-      padding:13px 14px;border-radius:14px;
-      border:1px solid rgba(36,52,90,.75);
-      background:rgba(15,22,40,.85);
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
       color:var(--text);
-      font-weight:1000;
-      text-align:center;
       user-select:none;
+      cursor:pointer;
     }
-    footer{margin-top:16px;color:rgba(233,238,252,.45);font-size:12px;text-align:center}
+    .btn:active{transform:scale(.985)}
+    .btn.primary{
+      border-color:rgba(255,211,106,.65);
+      background:linear-gradient(135deg, rgba(255,211,106,.42), rgba(184,135,26,.14));
+      color:#111;
+    }
+    .hint{
+      color:rgba(234,240,255,.65);
+      font-size:12px;
+      font-weight:800;
+      line-height:1.4;
+    }
+    .results{
+      padding:0 16px 18px;
+      display:grid;
+      gap:10px;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:rgba(0,0,0,.22);
+      padding:12px 12px;
+      box-shadow:0 10px 30px rgba(0,0,0,.45);
+    }
+    .type{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      font-size:11px;
+      font-weight:1000;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.08);
+      color:rgba(255,211,106,.95);
+      margin-bottom:10px;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      padding:7px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      font-size:13px;
+    }
+    .row:last-child{border-bottom:none}
+    .k{
+      color:rgba(234,240,255,.68);
+      font-weight:850;
+      min-width:92px;
+    }
+    .v{
+      color:var(--text);
+      font-weight:950;
+      text-align:right;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
+    .miniLink{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .miniLink a{
+      flex:1;
+      min-width:120px;
+      text-align:center;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:1000;
+      font-size:12px;
+    }
+    .miniLink a.gold{
+      border-color:rgba(255,211,106,.55);
+      background:rgba(255,211,106,.14);
+      color:#111;
+    }
+    .empty{
+      padding:14px 16px 22px;
+      color:rgba(234,240,255,.70);
+      font-weight:850;
+      font-size:13px;
+      line-height:1.5;
+    }
+    footer{
+      padding:12px 16px 16px;
+      text-align:center;
+      color:rgba(234,240,255,.55);
+      font-size:11px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
   </style>
+
+  <!-- ✅ data.js 불러오기 (같은 폴더) -->
+  <script src="./data.js"></script>
 </head>
 
 <body>
   <div class="wrap">
-    <!-- ✅ 공통 상단바 -->
-    <div class="topbar">
-      <a class="brand" id="homeLink" href="/index.html">
-        <span class="mark">DC</span>
-        <span class="name" id="brandName">DOUBLE CROSS</span>
-      </a>
-      <div class="badge" id="pageBadge">조회</div>
-    </div>
+    <main class="panel" aria-label="DOUBLE CROSS 통합 조회">
 
-    <!-- ✅ 공통 메뉴 -->
-    <div class="nav" id="nav"></div>
+      <header>
+        <div class="badge">🔎 통합 조회/검색</div>
+        <h1 id="title">공식 지정도장 / 지부 / 단증 / 자격증</h1>
+        <div class="sub" id="subtitle"></div>
+      </header>
 
-    <!-- ✅ 본문 -->
-    <section class="hero">
-      <h1 id="title">공식 확인/조회</h1>
-      <p class="sub" id="desc"></p>
+      <section class="searchBox">
+        <input id="q" class="input" type="text" autocomplete="off" />
+        <div class="btnRow">
+          <button class="btn primary" id="btnSearch">조회하기</button>
+          <a class="btn" id="btnHome" href="#" target="_blank" rel="noopener">대문으로</a>
+        </div>
+        <div class="hint" id="tip"></div>
+      </section>
 
-      <div class="card">
-        <a class="btn" href="/apply/index.html">문의/신청하기</a>
-        <a class="btn2" id="kakaoBtn" href="#" target="_blank" rel="noopener">카카오로 문의</a>
-      </div>
+      <section class="results" id="results"></section>
 
-      <footer>© <span id="year"></span> DOUBLE CROSS. All rights reserved.</footer>
-    </section>
+      <div class="empty" id="emptyBox" style="display:none;"></div>
+
+      <footer>© DOUBLE CROSS. All rights reserved.</footer>
+    </main>
   </div>
 
-<script>
-  // header
-  document.getElementById("brandName").textContent = CONFIG.brand;
-  document.getElementById("pageBadge").textContent = CONFIG.pageTitle;
-  document.getElementById("homeLink").href = CONFIG.links.home;
-  document.getElementById("year").textContent = new Date().getFullYear();
+  <script>
+    // ====== UI 텍스트 적용 ======
+    document.getElementById("subtitle").textContent = CONFIG.BRAND.SUBTITLE;
+    document.getElementById("q").placeholder = CONFIG.TEXT.PLACEHOLDER;
+    document.getElementById("tip").textContent = "💡 " + CONFIG.TEXT.TIP;
+    document.getElementById("btnHome").href = CONFIG.LINKS.HOME;
 
-  // nav
-  const nav = document.getElementById("nav");
-  const items = [
-    {k:"check", t:"조회"},
-    {k:"gallery", t:"갤러리"},
-    {k:"about", t:"소개"},
-    {k:"apply", t:"문의"},
-    {k:"library", t:"자료실"},
-  ];
-  items.forEach(it=>{
-    const a = document.createElement("a");
-    a.href = CONFIG.links[it.k];
-    a.textContent = it.t;
-    if(it.k === CONFIG.pageKey) a.classList.add("active");
-    nav.appendChild(a);
-  });
+    // ====== 유틸 ======
+    const $results = document.getElementById("results");
+    const $empty = document.getElementById("emptyBox");
 
-  // content
-  document.getElementById("title").textContent = CONFIG.noticeTitle;
-  document.getElementById("desc").textContent = CONFIG.noticeDesc;
+    function norm(s){
+      return String(s ?? "").trim().toLowerCase();
+    }
 
-  // kakao
-  const kb = document.getElementById("kakaoBtn");
-  if(CONFIG.kakaoLink){
-    kb.href = CONFIG.kakaoLink;
-  }else{
-    kb.href = "/apply/index.html";
-    kb.removeAttribute("target");
-  }
-</script>
+    function includesAny(target, keyword){
+      const t = norm(target);
+      const k = norm(keyword);
+      return k && t.includes(k);
+    }
+
+    function isCertType(t){
+      return t === "단증" || t === "자격증";
+    }
+
+    function renderCard(item){
+      const type = item.type || "기타";
+
+      // 카드에 표시할 필드 목록(타입별)
+      let fields = [];
+
+      if(type === "도장"){
+        fields = [
+          ["도장명", item.도장명],
+          ["지역", item.지역],
+          ["관장명", item.관장명],
+          ["연락처", item.연락처],
+        ];
+      }else if(type === "지부"){
+        fields = [
+          ["구분", item.구분],
+          ["국가", item.국가],
+          ["지역", item.지역],
+          ["지부명", item.지부명],
+          ["책임자", item.책임자],
+        ];
+      }else if(type === "단증"){
+        fields = [
+          ["종목", item.종목],
+          ["이름", item.이름],
+          ["단", item.단],
+          ["인증번호", item.인증번호],
+        ];
+      }else if(type === "자격증"){
+        fields = [
+          ["자격분류", item.자격분류],
+          ["자격명", item.자격명],
+          ["이름", item.이름],
+          ["인증번호", item.인증번호],
+        ];
+      }else{
+        // fallback
+        fields = Object.keys(item).filter(k=>k!=="type").slice(0,6).map(k=>[k, item[k]]);
+      }
+
+      const rows = fields
+        .filter(([k,v]) => v !== undefined && v !== null && String(v).trim() !== "")
+        .map(([k,v]) => `<div class="row"><div class="k">${k}</div><div class="v">${String(v)}</div></div>`)
+        .join("");
+
+      const photo = item.사진 ? `<div class="row"><div class="k">사진</div><div class="v"><a href="${item.사진}" target="_blank" rel="noopener">보기</a></div></div>` : "";
+
+      const go = item.바로가기 ? `<a class="gold" href="${item.바로가기}" target="_blank" rel="noopener">바로가기</a>` : "";
+
+      return `
+        <div class="card">
+          <div class="type">✅ ${type}</div>
+          ${photo}
+          ${rows}
+          <div class="miniLink">
+            ${go}
+            <a href="${CONFIG.LINKS.HOME}" target="_blank" rel="noopener">대문</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function showEmpty(msg){
+      $results.innerHTML = "";
+      $empty.style.display = "block";
+      $empty.textContent = msg;
+    }
+
+    function showResults(list){
+      $empty.style.display = "none";
+      $results.innerHTML = list.map(renderCard).join("");
+    }
+
+    function search(){
+      const keyword = document.getElementById("q").value.trim();
+      if(!keyword){
+        showEmpty("검색어를 입력해 주세요.\n예) 도장명 / 관장명 / 지역 / 인증번호");
+        return;
+      }
+
+      // 1) 1차: 전체에서 키워드 포함 찾기
+      const hits = (window.DB || []).filter(item=>{
+        const t = item.type || "";
+
+        // 단증/자격증은 인증번호 중심(보안/정확)
+        if(isCertType(t)){
+          return includesAny(item.인증번호, keyword);
+        }
+
+        // 도장/지부는 여러 필드에 포함되면 ok
+        const blob = Object.values(item).join(" ");
+        return includesAny(blob, keyword);
+      });
+
+      if(hits.length){
+        showResults(hits);
+        return;
+      }
+
+      // 2) 단증/자격증인데 인증번호가 아닌 것으로 검색하려는 경우 안내
+      const maybeCert = (window.DB || []).some(x => isCertType(x.type));
+      if(maybeCert){
+        showEmpty("검색 결과가 없습니다.\n\n💡 단증/자격증은 '인증번호'로 조회됩니다.\n인증번호를 입력해 주세요.");
+        return;
+      }
+
+      showEmpty("검색 결과가 없습니다.\n다른 검색어로 다시 시도해 주세요.");
+    }
+
+    document.getElementById("btnSearch").addEventListener("click", search);
+    document.getElementById("q").addEventListener("keydown", (e)=>{
+      if(e.key === "Enter") search();
+    });
+
+    // 첫 안내
+    showEmpty("검색어를 입력하면 결과가 카드로 표시됩니다.\n\n✅ 도장/지부: 이름·지역·도장명\n✅ 단증/자격증: 인증번호");
+  </script>
 </body>
 </html>
