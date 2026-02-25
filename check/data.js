@@ -1,21 +1,21 @@
 /* ===================================================
-🔴🔴🔴 DOUBLE CROSS 통합 조회 데이터 🔴🔴🔴
+🔴🔴🔴 IPMA 통합 조회 데이터 🔴🔴🔴
 여기만 수정하세요.
 
-1) 도장/지부는 DOJANGS 배열에 추가
-2) 단증/자격증은 CERTS 배열에 추가
-3) 쉼표(,) 빠지지 않도록 주의
+1) 공식 지정도장(협력도장/지정도장)은 DOJANGS 배열에 추가
+2) 지부/지역조직은 BRANCHES 배열에 추가
+3) 임원은 OFFICERS 배열에 추가
+4) 자격/인증/등록(카드/ID)은 CERTS 배열에 추가
+5) 쉼표(,) 빠지지 않도록 주의
 =================================================== */
 
 /* ===============================
-1️⃣ 공식 지정도장 / 지부
-이름/지역/도장명/관장명 등으로 검색 가능
+1️⃣ 공식 지정도장 / 협력도장
+이름/지역/도장명/대표자 등으로 검색 가능
 =============================== */
-
 window.DOJANGS = [
-
   {
-    type: "도장",
+    type: "지정도장",
     country: "대한민국",
     region: "울산",
     city: "울산",
@@ -23,59 +23,82 @@ window.DOJANGS = [
     masterName: "전성권",
     contact: "010-4477-2772",
     photo: "",
-    link: "https://doublecross.kr"
-  },
+    link: "../" // ✅ IPMA 사이트 내부 링크로 연결하려면 상대경로 추천(외부면 https://... 도 OK)
+  }
+];
 
+/* ===============================
+2️⃣ 지부(국내/해외)
+이름/지역/지부명/대표자 등으로 검색 가능
+=============================== */
+window.BRANCHES = [
   {
     type: "지부",
     country: "대한민국",
     region: "대구",
     city: "대구",
-    dojangName: "더블크로스 대구지부",
+    branchName: "IPMA 대구지부",
     masterName: "홍길동",
     contact: "010-0000-0000",
     photo: "",
-    link: "https://doublecross.kr"
+    link: "../"
   }
-
 ];
 
+/* ===============================
+3️⃣ 임원(연합회 임원)
+이름/직책/지역 등으로 검색 가능
+=============================== */
+window.OFFICERS = [
+  {
+    type: "임원",
+    officerName: "전성권",
+    role: "총재",
+    country: "대한민국",
+    region: "울산",
+    city: "울산",
+    contact: "010-4477-2772",
+    photo: "",
+    link: "../leadership/"
+  }
+];
 
 /* ===============================
-2️⃣ 단증 / 자격증
-⚠ 인증번호로만 검색됩니다.
+4️⃣ 자격 / 인증 / 등록
+⚠ 가장 정확한 조회는 인증번호(certNo) 입니다.
 =============================== */
-
 window.CERTS = [
-
-  {
-    type: "단증",
-    category: "태권도",
-    certNo: "TK-2026-0001",
-    name: "홍길동",
-    issuedBy: "DOUBLE CROSS",
-    issuedAt: "2026-02-24",
-    link: "https://doublecross.kr"
-  },
-
-  {
-    type: "단증",
-    category: "태권검도",
-    certNo: "TKK-2026-0001",
-    name: "김태권",
-    issuedBy: "DOUBLE CROSS",
-    issuedAt: "2026-02-24",
-    link: "https://doublecross.kr"
-  },
-
   {
     type: "자격증",
     category: "지도자",
-    certNo: "LIC-2026-0001",
+    kind: "국제경찰무도 지도자",
+    certNo: "IPMA-LIC-2026-0001",
     name: "전성권",
-    issuedBy: "DOUBLE CROSS",
+    issuedBy: "IPMA",
     issuedAt: "2026-02-24",
-    link: "https://doublecross.kr"
+    link: "../verification/"
+  },
+  {
+    type: "인증",
+    category: "지정도장",
+    kind: "공식 지정도장 인증",
+    certNo: "IPMA-DOJ-2026-0001",
+    name: "계명태권도",
+    issuedBy: "IPMA",
+    issuedAt: "2026-02-24",
+    link: "../verification/"
   }
+];
 
+/* ===============================
+(선택) 5️⃣ DB 통합 배열
+- index.html이 DB를 먼저 읽도록 되어있어도,
+  아래처럼 합쳐두면 관리/확장이 편합니다.
+- 원하시면 앞으로는 DB만 쓰는 구조로 더 깔끔하게 정리 가능!
+=============================== */
+window.DB = [
+  ...window.DOJANGS.map(x => ({ ...x })),
+  ...window.BRANCHES.map(x => ({ ...x })),
+  ...window.OFFICERS.map(x => ({ ...x })),
+  ...window.CERTS.map(x => ({ ...x }))
 ];
