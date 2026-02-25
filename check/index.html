@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>조회/검색 | DOUBLE CROSS</title>
+  <title>조회/검색 | IPMA</title>
 
   <!-- =========================================
    🔴🔴🔴 CHANGE ZONE (여기만 자주 수정) 🔴🔴🔴
@@ -12,22 +12,39 @@
   <script>
     const CONFIG = {
       BRAND: {
-        TITLE: "DOUBLE CROSS",
+        TITLE: "IPMA",
         SUBTITLE: "STRUCTURE >> 교차원리 · 교차원리 기반 무도"
       },
+
+      // ✅ GitHub Pages(프로젝트 페이지)에서도 깨지지 않게 상대경로 권장
       LINKS: {
-        HOME: "https://doublecross.kr/"
+        // verification/ 폴더에서 홈(루트 index.html)로 이동
+        HOME: "../"
       },
+
       TEXT: {
-        PLACEHOLDER: "도장명 / 관장명 / 지역 / 인증번호 입력",
-        TIP: "도장·지부는 이름/지역/도장명으로 검색 가능 · 단증/자격증은 인증번호로 확인",
+        PLACEHOLDER: "도장명 / 지부명 / 임원명 / 지역 / 인증번호 입력",
+        TIP: "도장·지부·임원은 이름/지역으로 검색 · 자격/인증은 인증번호로 확인",
         EMPTY: "검색 결과가 없습니다. 다른 검색어로 다시 시도해 주세요.",
-        NEED_CERT_NO: "단증/자격증은 '인증번호'로 조회됩니다.\n인증번호를 입력해 주세요."
+        NEED_CERT_NO: "자격/인증 조회는 '인증번호'로 가장 정확합니다.\n인증번호를 입력해 주세요."
       },
+
       DATA: {
         // ✅ data.js 캐시 갱신용(수정 후 숫자만 올리면 즉시 반영됨)
-        VERSION: "3" // 예: "4", "5" ...
-      }
+        VERSION: "1"
+      },
+
+      // ✅ 메뉴 경로(verification 폴더 기준)
+      MENU: [
+        { label: "조회", href: "./", active: true },
+        { label: "연합회 소개", href: "../about/" },
+        { label: "임원소개", href: "../leadership/" },
+        { label: "프로그램", href: "../programs/" },
+        { label: "자료실", href: "../resources/" },
+        { label: "갤러리&영상", href: "../media/" },
+        { label: "산하&협력기관", href: "../partners/" },
+        { label: "신청&문의", href: "../contact/" }
+      ]
     };
   </script>
   <!-- 🔴🔴🔴 CHANGE ZONE END 🔴🔴🔴 -->
@@ -136,9 +153,7 @@
       box-shadow:0 0 0 1px rgba(255,211,106,.08);
     }
 
-    .body{
-      padding:14px;
-    }
+    .body{ padding:14px; }
     h1{
       margin:10px 0 6px;
       font-size:20px;
@@ -201,11 +216,7 @@
       line-height:1.35;
     }
 
-    .results{
-      margin-top:12px;
-      display:grid;
-      gap:10px;
-    }
+    .results{ margin-top:12px; display:grid; gap:10px; }
     .resultCard{
       border-radius:18px;
       border:1px solid rgba(255,255,255,.12);
@@ -272,6 +283,7 @@
       font-weight:900;
       font-size:12px;
       line-height:1.45;
+      white-space:pre-line;
     }
 
     .footer{
@@ -286,38 +298,33 @@
 
 <body>
   <div class="stage">
-    <main class="card" aria-label="DOUBLE CROSS 조회/검색">
+    <main class="card" aria-label="IPMA 조회/검색">
 
       <!-- 상단바 -->
       <div class="topbar">
         <div class="brand">
-          <div class="logo">DC</div>
+          <div class="logo">IP</div>
           <div class="brandText">
-            <div class="brandTitle" id="brandTitle">DOUBLE CROSS</div>
+            <div class="brandTitle" id="brandTitle">IPMA</div>
           </div>
         </div>
         <div class="pill">조회</div>
       </div>
 
-      <!-- 공통 메뉴 -->
-      <nav class="menu" aria-label="Common menu">
-        <a class="active" href="/check/">조회</a>
-        <a href="/gallery/">갤러리</a>
-        <a href="/about/">소개</a>
-        <a href="/apply/">문의</a>
-        <a href="/library/">자료실</a>
-      </nav>
+      <!-- 메뉴 (JS로 생성) -->
+      <nav class="menu" id="menu" aria-label="IPMA menu"></nav>
 
       <section class="body">
-        <h1>공식 지정도장 / 지부 / 단증 / 자격증</h1>
+        <h1>공식 지정도장 / 지부 / 임원 / 자격·인증</h1>
         <p class="sub" id="brandSubtitle">STRUCTURE >> 교차원리 · 교차원리 기반 무도</p>
 
         <div class="searchWrap">
           <input class="input" id="q" type="text" autocomplete="off" />
           <div class="row">
             <button class="btn primary" id="btnSearch" type="button">조회하기</button>
-            <a class="btn" id="btnHome" href="#" target="_blank" rel="noopener">대문으로</a>
+            <a class="btn" id="btnHome" href="#" target="_self" rel="noopener">홈으로</a>
           </div>
+
           <div class="tip" id="tipText"></div>
 
           <div class="results" id="results"></div>
@@ -325,13 +332,12 @@
         </div>
       </section>
 
-      <div class="footer">© 2026 DOUBLE CROSS. All rights reserved.</div>
+      <div class="footer">© 2026 IPMA. All rights reserved.</div>
     </main>
   </div>
 
   <!-- ✅✅✅ (가장 중요) 데이터 먼저 로드 -->
   <script>
-    // data.js 캐시 우회 버전 적용
     const s = document.createElement("script");
     s.src = "./data.js?v=" + encodeURIComponent(CONFIG.DATA.VERSION);
     document.body.appendChild(s);
@@ -343,6 +349,13 @@
     document.getElementById("brandTitle").textContent = CONFIG.BRAND.TITLE;
     document.getElementById("brandSubtitle").textContent = CONFIG.BRAND.SUBTITLE;
     document.getElementById("btnHome").href = CONFIG.LINKS.HOME;
+
+    // 메뉴 생성
+    const menuEl = document.getElementById("menu");
+    menuEl.innerHTML = CONFIG.MENU.map(m => {
+      const cls = m.active ? "active" : "";
+      return `<a class="${cls}" href="${m.href}">${m.label}</a>`;
+    }).join("");
 
     const input = document.getElementById("q");
     const tip = document.getElementById("tipText");
@@ -369,7 +382,8 @@
     }
 
     function isCertType(t){
-      return ["단증","자격증","CERT","CERTS","DAN","LICENSE"].some(k => norm(t).includes(norm(k)));
+      // IPMA에서는 자격/인증/등록 계열을 인증번호 우선으로 유도
+      return ["자격","인증","등록","CERT","LICENSE","ID","CARD"].some(k => norm(t).includes(norm(k)));
     }
 
     function showEmpty(msg){
@@ -385,19 +399,26 @@
       list.forEach(item=>{
         const type = item.type || "정보";
         const title =
-          item.dojangName || item.branchName || item.name || item.title || "결과";
+          item.dojangName ||
+          item.branchName ||
+          item.officerName ||
+          item.name ||
+          item.title ||
+          "결과";
 
         const regionText = [item.country, item.region, item.city].filter(Boolean).join(" / ");
-        const master = item.masterName ? `관장: ${item.masterName}` : "";
+        const master = item.masterName ? `대표/관장: ${item.masterName}` : "";
+        const role = item.role ? `직책: ${item.role}` : "";
         const contact = item.contact ? `연락처: ${item.contact}` : "";
         const certNo = item.certNo ? `인증번호: ${item.certNo}` : "";
-        const kind = item.kind ? `종목: ${item.kind}` : "";
+        const kind = item.kind ? `분류: ${item.kind}` : "";
 
         const link = item.link || "";
         const photo = item.photo || "";
 
         const metaLines = [
           regionText ? `지역: ${regionText}` : "",
+          role,
           master,
           contact,
           kind,
@@ -421,18 +442,24 @@
       });
     }
 
-    // ✅ data.js 로드 완료 확인 후 이벤트 연결
     function bootWhenDataReady(){
-      const hasData = Array.isArray(window.DOJANGS) || Array.isArray(window.CERTS) || Array.isArray(window.DB);
-      if(!hasData){
-        // 아직 로딩중이면 조금 기다림
-        return false;
-      }
+      // ✅ data.js 에서 아래 중 하나(또는 여러 개)를 제공하면 됨
+      // - window.DB (통합 배열)
+      // - window.DOJANGS / window.BRANCHES / window.OFFICERS / window.CERTS
+      const hasData =
+        Array.isArray(window.DB) ||
+        Array.isArray(window.DOJANGS) ||
+        Array.isArray(window.BRANCHES) ||
+        Array.isArray(window.OFFICERS) ||
+        Array.isArray(window.CERTS);
 
-      // 통합 DB 구성
+      if(!hasData) return false;
+
       const list = [];
       if(Array.isArray(window.DB)) list.push(...window.DB);
       if(Array.isArray(window.DOJANGS)) list.push(...window.DOJANGS);
+      if(Array.isArray(window.BRANCHES)) list.push(...window.BRANCHES);
+      if(Array.isArray(window.OFFICERS)) list.push(...window.OFFICERS);
       if(Array.isArray(window.CERTS)) list.push(...window.CERTS);
 
       function search(){
@@ -445,19 +472,18 @@
         const nq = norm(q);
 
         const hits = list.filter(x=>{
-          // 도장/지부: 이름/지역/도장명/관장명
-          const pool =
-            [
-              x.type,
-              x.country, x.region, x.city,
-              x.dojangName, x.branchName, x.name, x.title,
-              x.masterName, x.contact,
-              x.kind,
-              x.certNo, x.id
-            ].filter(Boolean).join(" ");
+          const pool = [
+            x.type,
+            x.country, x.region, x.city,
+            x.dojangName, x.branchName,
+            x.officerName, x.masterName,
+            x.role,
+            x.name, x.title,
+            x.contact,
+            x.kind,
+            x.certNo, x.id
+          ].filter(Boolean).join(" ");
 
-          // 인증번호 전용(단증/자격증) 안내 로직
-          // 입력이 한글(이름/지역)인데 cert 타입만 존재하면 안내
           return norm(pool).includes(nq);
         });
 
@@ -466,7 +492,7 @@
           return;
         }
 
-        // 단증/자격증은 인증번호만으로 찾게 유도
+        // 자격/인증 계열은 인증번호 유도
         const maybeCert = list.some(x => isCertType(x.type));
         if(maybeCert){
           showEmpty(CONFIG.TEXT.EMPTY + "\n\n💡 " + CONFIG.TEXT.NEED_CERT_NO);
@@ -479,12 +505,14 @@
       document.getElementById("btnSearch").addEventListener("click", search);
       input.addEventListener("keydown", (e)=>{ if(e.key==="Enter") search(); });
 
-      // 첫 안내
-      showEmpty("검색어를 입력하면 결과가 카드로 표시됩니다.\n✅ 도장/지부: 이름·지역·도장명\n✅ 단증/자격증: 인증번호");
+      showEmpty(
+        "검색어를 입력하면 결과가 카드로 표시됩니다.\n" +
+        "✅ 도장/지부/임원: 이름·지역·기관명\n" +
+        "✅ 자격/인증: 인증번호"
+      );
       return true;
     }
 
-    // 최대 3초 동안 data.js 로드 기다리기
     let tries = 0;
     const timer = setInterval(()=>{
       tries++;
@@ -492,7 +520,11 @@
         clearInterval(timer);
       }else if(tries > 60){
         clearInterval(timer);
-        showEmpty("데이터 로드에 실패했습니다.\n(data.js 경로 또는 문법 오류 가능)\n\n✅ 확인: /check/data.js 가 열리는지 확인해주세요.");
+        showEmpty(
+          "데이터 로드에 실패했습니다.\n" +
+          "(data.js 경로 또는 문법 오류 가능)\n\n" +
+          "✅ 확인: verification/data.js 가 브라우저에서 열리는지 확인해주세요."
+        );
       }
     }, 50);
   </script>
