@@ -12,7 +12,7 @@
   -->
 
   <title id="pageTitleTag">DOUBLE CROSS® | 공식 포털</title>
-  <meta id="pageDescTag" name="description" content="DOUBLE CROSS® 공식 포털 - 핵심 바로가기 + 영상 + 파트너" />
+  <meta id="pageDescTag" name="description" content="DOUBLE CROSS® 공식 포털 - 핵심 바로가기 + 영상 + Q&A + 파트너" />
 
   <!-- ✅ NAVER / GOOGLE site verification (필요시만 변경) -->
   <meta name="naver-site-verification" content="a94ef3fb8b8bcf4f51fc7b475f0791878a4e0218" />
@@ -20,7 +20,7 @@
 
   <!-- OG (공유 썸네일/설명) -->
   <meta property="og:title" content="DOUBLE CROSS® | 공식 포털" />
-  <meta property="og:description" content="핵심 바로가기 + 영상 + 파트너" />
+  <meta property="og:description" content="핵심 바로가기 + 영상 + Q&A + 파트너" />
   <meta property="og:image" content="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" />
 
   <script>
@@ -30,7 +30,7 @@
         BADGE: "⚡ OFFICIAL VISION PORTAL",
         TITLE: "DOUBLE CROSS®",
         SUBTITLE: "STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009",
-        META_CHIPS: ["핵심 바로가기", "모바일 최적화", "Vision + Video"]
+        META_CHIPS: ["핵심 바로가기", "모바일 최적화", "Vision + Video", "Q&A 지원"]
       },
 
       // 🔴 2) 로고 이미지
@@ -50,9 +50,9 @@
         OVERLAY_TEXT: [
           "STRUCTURE >> 교차원리",
           "교차원리 기반 무도",
-          null,
-          null,
-          null
+          "심사 이후, 새로운 도전의 흐름",
+          "태권도장 연계 프로그램",
+          "안전성과 흥미를 함께 설계하다"
         ],
         AUTO_MS: 4500,
         RESUME_MS: 6500
@@ -66,21 +66,24 @@
 
       // 🔴 5) 핵심 바로가기(= GitHub 내부 공통페이지 링크)
       // ✅ 흰 화면 방지: "/폴더/index.html" 형태로 통일
+      // ✅ Q&A는 별도 페이지 없이 현재 index 내부 FAQ 섹션으로 이동
       CORE_LINKS: [
-        { label: "공식 확인/조회", icon: "🔎", href: "/check/index.html", style: "primary" },
-        { label: "가입/신청",     icon: "✅", href: "/apply/index.html", style: "gold" },
-        { label: "소개",         icon: "📌", href: "/about/index.html", style: "basic" },
-        { label: "갤러리/영상",   icon: "🎬", href: "/gallery/index.html", style: "blue" },
-        { label: "자료실",       icon: "📚", href: "/library/index.html", style: "basic" },
+        { label: "공식 확인/조회", icon: "🔎", href: "/check/index.html", style: "primary", sub: "공식 정보 확인" },
+        { label: "가입/신청",     icon: "✅", href: "/apply/index.html", style: "gold", sub: "도입 및 신청" },
+        { label: "소개",         icon: "📌", href: "/about/index.html", style: "basic", sub: "프로그램 안내" },
+        { label: "갤러리/영상",   icon: "🎬", href: "/gallery/index.html", style: "blue", sub: "사진과 영상 보기" },
+        { label: "자료실",       icon: "📚", href: "/library/index.html", style: "basic", sub: "운영 자료 확인" },
+        { label: "Q&A",         icon: "❓", href: "#faqSection", style: "blue", sub: "자주 묻는 질문" }
       ],
 
       // 🔴 6) 연락/채널(덜 중요한 것들은 아래로)
+      // ✅ 신문 보기 주소를 개별 기사 -> 뉴스24 메인 홈페이지로 수정
       CHANNELS: [
         { label: "실시간 카카오톡 상담", icon: "💬", href: "https://open.kakao.com/o/gPxTAxhi", style: "kakao", live: true },
         { label: "밴드 참여",           icon: "🎟️", href: "https://www.band.us/n/a4a2b4Y8gaIfb", style: "band" },
-        { label: "신문 보기",           icon: "📰", href: "https://www.news24.ai.kr/news/1203", style: "news" },
+        { label: "뉴스24 바로가기",     icon: "📰", href: "https://news24.ai.kr/", style: "news" },
         { label: "유튜브 채널",         icon: "▶️", href: "https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ", style: "basic" },
-        { label: "전화 연결",           icon: "📞", href: "tel:010-4477-2772", style: "basic" },
+        { label: "전화 연결",           icon: "📞", href: "tel:010-4477-2772", style: "basic" }
       ],
 
       // 🔴 7) 파트너 로고
@@ -106,10 +109,38 @@
         {
           name: "글로벌뉴스24",
           sub: "GLOBAL NEWS 24",
-          href: "https://www.news24.ai.kr/",
+          href: "https://news24.ai.kr/",
           img: "https://static.wixstatic.com/media/abf917_459f0009ee10433a9869ee30c49f8926~mv2.png"
         }
-      ]
+      ],
+
+      // 🔴 8) FAQ
+      FAQ: [
+        {
+          q: "DOUBLE CROSS는 어떤 프로그램인가요?",
+          a: "DOUBLE CROSS는 구조 >> 교차원리, 교차원리 기반 무도라는 흐름 위에서 설계된 프로그램으로, 태권도장의 교육 흐름 안에서 새로운 도전의식과 집중력을 확장할 수 있도록 구성된 연계 프로그램입니다."
+        },
+        {
+          q: "태권도장에서도 쉽게 운영할 수 있나요?",
+          a: "네. 태권도장의 기존 수련 흐름과 완전히 분리되는 방식이 아니라, 심사 이후 또는 동기 부여가 필요한 시점에 연결 프로그램으로 활용할 수 있도록 방향을 잡고 있습니다."
+        },
+        {
+          q: "위험하지는 않나요?",
+          a: "DOUBLE CROSS는 무리한 접근보다 안전성과 단계별 접근을 우선합니다. 지도자의 통제 아래 질서와 절제, 집중을 바탕으로 운영하는 것이 핵심입니다."
+        },
+        {
+          q: "아이들에게 어떤 도움이 되나요?",
+          a: "새로운 목표의식, 집중력, 반응력, 자세의 긴장감, 도전 의식을 높이는 데 도움이 됩니다. 특히 심사 이후 느슨해질 수 있는 흐름을 다시 살리는 데 강점이 있습니다."
+        },
+        {
+          q: "학부모에게는 어떻게 설명하면 좋을까요?",
+          a: "단순히 무기 개념으로 접근하기보다, 안전하게 설계된 집중력·절제력·도전정신 강화 프로그램이며 태권도 수련의 확장 프로그램이라고 설명하시면 좋습니다."
+        },
+        {
+          q: "어떤 도장에 특히 잘 맞나요?",
+          a: "심사 이후 공백기를 줄이고 싶거나, 상위 띠 수련생에게 새로운 동기를 주고 싶거나, 도장만의 차별화된 콘텐츠가 필요한 곳에 특히 잘 맞습니다."
+        }
+      }
     };
   </script>
   <!-- 🔴🔴🔴 CHANGE ZONE END 🔴🔴🔴 -->
@@ -127,9 +158,13 @@
       --blue:#67b7ff;
       --shadow:0 22px 70px rgba(0,0,0,.55);
       --r:26px;
+      --nav-offset: 18px;
     }
 
     *{box-sizing:border-box}
+    html{
+      scroll-behavior:smooth;
+    }
     html,body{height:100%}
     body{
       margin:0;
@@ -241,6 +276,41 @@
       box-shadow:0 0 12px rgba(255,211,106,.70);
     }
 
+    .heroIntro{
+      position:relative;
+      margin:0 16px 14px;
+      padding:16px 16px 14px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 18px 50px rgba(0,0,0,.42);
+      overflow:hidden;
+    }
+    .heroIntro::before{
+      content:"";
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(240px 120px at 15% 0%, rgba(255,211,106,.13), transparent 60%),
+        radial-gradient(260px 140px at 100% 10%, rgba(103,183,255,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .heroIntro h2{
+      position:relative;
+      margin:0;
+      font-size:18px;
+      line-height:1.35;
+      font-weight:1000;
+      letter-spacing:-.2px;
+    }
+    .heroIntro p{
+      position:relative;
+      margin:10px 0 0;
+      color:rgba(234,240,255,.80);
+      font-size:13px;
+      line-height:1.7;
+      font-weight:700;
+    }
+
     .heroImage{
       position:relative;
       margin:0 16px 12px;
@@ -344,7 +414,6 @@
       box-shadow:0 0 12px rgba(255,211,106,.35), 0 10px 20px rgba(0,0,0,.35);
     }
 
-    /* ✅ 버튼 공통 */
     .btn{
       display:flex;align-items:center;justify-content:center;gap:10px;
       padding:14px 14px;border-radius:16px;
@@ -371,7 +440,6 @@
       100%{transform:scale(1);opacity:1}
     }
 
-    /* ✅ 섹션 카드 */
     .block{
       position:relative;
       margin:0 16px 14px;
@@ -380,6 +448,7 @@
       background:linear-gradient(180deg, rgba(16,24,38,.62), rgba(16,24,38,.40));
       box-shadow:var(--shadow);
       overflow:hidden;
+      scroll-margin-top: calc(var(--nav-offset) + 12px);
     }
     .blockHeader{
       display:flex;align-items:center;justify-content:space-between;
@@ -400,7 +469,6 @@
       white-space:nowrap;
     }
 
-    /* ✅ 핵심 바로가기: 2열 그리드 */
     .coreWrap{ padding:12px; display:grid; gap:10px; }
     .coreGrid{
       display:grid;
@@ -411,11 +479,11 @@
       padding:16px 12px;
       border-radius:18px;
       line-height:1.1;
+      min-height:92px;
     }
     .coreBtn .big{ font-size:14px; font-weight:1000; }
     .coreBtn .sub{ font-size:11px; color:rgba(234,240,255,.70); font-weight:900; margin-top:6px; }
 
-    /* ✅ 핵심 버튼 색감(고급 톤 유지) */
     .coreBtn.primary{
       border-color:rgba(255,211,106,.65);
       background:linear-gradient(135deg, rgba(255,211,106,.40), rgba(184,135,26,.14));
@@ -431,7 +499,6 @@
       background:linear-gradient(135deg, rgba(103,183,255,.20), rgba(0,0,0,.22));
     }
 
-    /* ✅ 채널 버튼 스타일 */
     .channelWrap{ padding:12px; display:grid; gap:10px; }
     .btn.kakao{
       border-color:rgba(254,229,0,.75);
@@ -447,7 +514,6 @@
       background:linear-gradient(135deg, rgba(255,211,106,.18), rgba(103,183,255,.12));
     }
 
-    /* ✅ 영상 */
     .videoBox{padding:12px}
     .videoWrap{
       position:relative;
@@ -464,7 +530,62 @@
       border:0;
     }
 
-    /* ✅ 파트너 */
+    .faqWrap{
+      padding:12px;
+      display:grid;
+      gap:10px;
+    }
+    .faqItem{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.18));
+      overflow:hidden;
+    }
+    .faqQuestion{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:var(--text);
+      text-align:left;
+      padding:16px 14px;
+      font-size:14px;
+      font-weight:1000;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .faqQuestion span.icon{
+      flex:0 0 auto;
+      width:28px;height:28px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.08);
+      color:var(--gold);
+      font-size:15px;
+      transition:transform .2s ease;
+    }
+    .faqItem.open .faqQuestion span.icon{
+      transform:rotate(45deg);
+    }
+    .faqAnswer{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .28s ease;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .faqAnswerInner{
+      padding:14px 14px 16px;
+      font-size:13px;
+      line-height:1.78;
+      color:rgba(234,240,255,.80);
+      font-weight:700;
+    }
+
     .support{
       position:relative;
       margin:0 16px 14px;
@@ -585,6 +706,9 @@
     @media (min-width: 900px){
       .poster{ width:min(980px, 100%); }
       .heroImage{ aspect-ratio: 16/9; }
+      .coreGrid{
+        grid-template-columns:repeat(3, 1fr);
+      }
     }
   </style>
 </head>
@@ -610,6 +734,14 @@
         <div class="metaRow" id="metaRow"></div>
       </header>
 
+      <section class="heroIntro" aria-label="DOUBLE CROSS intro">
+        <h2>심사 이후, 아이들에게 새로운 목표와 흐름을 연결하는 프로그램</h2>
+        <p>
+          DOUBLE CROSS는 구조 >> 교차원리, 교차원리 기반 무도라는 철학을 바탕으로
+          태권도장의 동기 부여, 집중력, 도전의식을 확장할 수 있도록 설계된 연계 프로그램입니다.
+        </p>
+      </section>
+
       <section class="heroImage" aria-label="Top hero image" id="hero">
         <div class="heroTrack" id="heroTrack"></div>
 
@@ -620,7 +752,7 @@
         <div class="dots" id="dots" aria-hidden="true"></div>
       </section>
 
-      <!-- ✅ 핵심 바로가기(위로 올림) -->
+      <!-- ✅ 핵심 바로가기 -->
       <section class="block" aria-label="Core shortcuts">
         <div class="blockHeader">
           <div class="blockTitle">⭐ 핵심 바로가기 <span class="pill">공통페이지</span></div>
@@ -632,7 +764,7 @@
         </div>
       </section>
 
-      <!-- ✅ 연락/채널(덜 중요한 것 아래로) -->
+      <!-- ✅ 연락/채널 -->
       <section class="block" aria-label="Channels">
         <div class="blockHeader">
           <div class="blockTitle">💬 문의/채널 <span class="pill">연락</span></div>
@@ -661,6 +793,16 @@
         </div>
       </section>
 
+      <!-- ✅ FAQ / Q&A -->
+      <section class="block" id="faqSection" aria-label="Q&A and FAQ">
+        <div class="blockHeader">
+          <div class="blockTitle">❓ Q&A <span class="pill">자주 묻는 질문</span></div>
+          <span class="pill">빠른 이해</span>
+        </div>
+
+        <div class="faqWrap" id="faqWrap"></div>
+      </section>
+
       <!-- ✅ 파트너 -->
       <section class="support" aria-label="Supported by organizations">
         <div class="supportTop">
@@ -681,6 +823,8 @@
     document.getElementById("pageTitle").textContent = CONFIG.PAGE.TITLE;
     document.getElementById("pageSubtitle").textContent = CONFIG.PAGE.SUBTITLE;
     document.getElementById("dcLogoImg").src = CONFIG.IMAGES.DC_LOGO;
+    document.getElementById("pageTitleTag").textContent = CONFIG.PAGE.TITLE + " | 공식 포털";
+    document.getElementById("pageDescTag").setAttribute("content", "DOUBLE CROSS® 공식 포털 - 핵심 바로가기 + 영상 + Q&A + 파트너");
 
     // 상단 칩(메타)
     const metaRow = document.getElementById("metaRow");
@@ -700,11 +844,16 @@
       const style = item.style || "basic";
       a.className = `btn coreBtn ${style}`;
       a.href = item.href;
-      a.rel = "noopener";
+
+      const isHash = String(item.href || "").startsWith("#");
+      if (!isHash && !String(item.href || "").startsWith("tel:")) {
+        a.rel = "noopener";
+      }
+
       a.innerHTML = `
         <div style="display:grid;gap:6px;width:100%;">
           <div class="big">${item.icon} ${item.label}</div>
-          <div class="sub">바로 열기</div>
+          <div class="sub">${item.sub || "바로 열기"}</div>
         </div>
       `;
       coreGrid.appendChild(a);
@@ -729,7 +878,47 @@
     document.getElementById("youtubeFrame").src =
       `https://www.youtube.com/embed/${CONFIG.YOUTUBE.EMBED_ID}?rel=0&modestbranding=1`;
 
-    // ✅ 4) 파트너 그리드 생성
+    // ✅ 4) FAQ 생성
+    const faqWrap = document.getElementById("faqWrap");
+    faqWrap.innerHTML = "";
+    (CONFIG.FAQ || []).forEach((item, idx) => {
+      const box = document.createElement("div");
+      box.className = "faqItem" + (idx === 0 ? " open" : "");
+      box.innerHTML = `
+        <button class="faqQuestion" type="button" aria-expanded="${idx === 0 ? "true" : "false"}">
+          <span>${item.q}</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faqAnswer" style="${idx === 0 ? "max-height: 260px;" : ""}">
+          <div class="faqAnswerInner">${item.a}</div>
+        </div>
+      `;
+      faqWrap.appendChild(box);
+    });
+
+    faqWrap.addEventListener("click", (e) => {
+      const btn = e.target.closest(".faqQuestion");
+      if (!btn) return;
+
+      const item = btn.closest(".faqItem");
+      const answer = item.querySelector(".faqAnswer");
+      const isOpen = item.classList.contains("open");
+
+      document.querySelectorAll(".faqItem").forEach(el => {
+        el.classList.remove("open");
+        el.querySelector(".faqQuestion")?.setAttribute("aria-expanded", "false");
+        const ans = el.querySelector(".faqAnswer");
+        if (ans) ans.style.maxHeight = "0px";
+      });
+
+      if (!isOpen) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+
+    // ✅ 5) 파트너 그리드 생성
     const grid = document.getElementById("partnerGrid");
     grid.innerHTML = "";
     (CONFIG.PARTNERS || []).forEach(p=>{
@@ -750,7 +939,7 @@
       grid.appendChild(a);
     });
 
-    // ✅ 5) HERO 슬라이드(기존 로직 유지)
+    // ✅ 6) HERO 슬라이드
     const imgs = CONFIG.HERO.IMGS;
     const overlayText = CONFIG.HERO.OVERLAY_TEXT;
 
