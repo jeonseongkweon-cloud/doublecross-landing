@@ -3,113 +3,1029 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#05070a" />
-  <meta name="description" content="경찰무도, 태권검도, 드론순찰대를 연결하는 글로벌 네트워크 게이트웨이" />
-  <title>IPMA GATEWAY</title>
-  <link rel="preload" as="image" href="assets/images/00-gateway.png" />
-  <link rel="stylesheet" href="style.css" />
+
+  <!--
+  🔴🔴🔴 CHANGE ZONE (여기만 자주 수정하세요!) 🔴🔴🔴
+  ✅ Ctrl+F 로 "CHANGE ZONE" 또는 "🔴" 검색하면 바로 찾음
+  ✅ 메뉴명/버튼링크/이미지/유튜브/파트너 로고 등 “바뀌는 것”만 모아둠
+  ✅ 아래 본문은 웬만하면 건드리지 않아도 됨
+  -->
+
+  <title id="pageTitleTag">DOUBLE CROSS® | 공식 포털</title>
+  <meta id="pageDescTag" name="description" content="DOUBLE CROSS® 공식 포털 - 핵심 바로가기 + 영상 + 파트너" />
+
+  <!-- ✅ NAVER / GOOGLE site verification (필요시만 변경) -->
+  <meta name="naver-site-verification" content="a94ef3fb8b8bcf4f51fc7b475f0791878a4e0218" />
+  <meta name="google-site-verification" content="_CDEvm1X63aFd6KAohpT32QK5ICbTRUTSFZ7jGNo9Rk" />
+
+  <!-- OG (공유 썸네일/설명) -->
+  <meta property="og:title" content="DOUBLE CROSS® | 공식 포털" />
+  <meta property="og:description" content="핵심 바로가기 + 영상 + 파트너" />
+  <meta property="og:image" content="https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png" />
+
+  <script>
+    const CONFIG = {
+      // 🔴 1) 상단 표기
+      PAGE: {
+        BADGE: "⚡ OFFICIAL VISION PORTAL",
+        TITLE: "DOUBLE CROSS®",
+        SUBTITLE: "STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009",
+        META_CHIPS: ["핵심 바로가기", "모바일 최적화", "Vision + Video"]
+      },
+
+      // 🔴 2) 로고 이미지
+      IMAGES: {
+        DC_LOGO: "https://static.wixstatic.com/media/abf917_0792f5404ec84ffc9368a8eff33b2a50~mv2.png",
+      },
+
+      // 🔴 3) 히어로 슬라이드(순서=노출 순서)
+      HERO: {
+        IMGS: [
+          "https://static.wixstatic.com/media/abf917_5ecb854dd47046a5ae26cb06192f2b43~mv2.png",
+          "https://static.wixstatic.com/media/abf917_9514788de8834dcbbe4f71a02c2b875a~mv2.png",
+          "https://static.wixstatic.com/media/abf917_69fa96351e9143c2bdb041b4b45b4086~mv2.png",
+          "https://static.wixstatic.com/media/abf917_fd4d9988b9b3420cae33180810fc5d6b~mv2.png",
+          "https://static.wixstatic.com/media/abf917_9d2438ce53124a119d94e48b4f4ad3d5~mv2.png"
+        ],
+        OVERLAY_TEXT: [
+          "STRUCTURE >> 교차원리",
+          "교차원리 기반 무도",
+          null,
+          null,
+          null
+        ],
+        AUTO_MS: 4500,
+        RESUME_MS: 6500
+      },
+
+      // 🔴 4) 유튜브
+      YOUTUBE: {
+        EMBED_ID: "y_uqYZEU9uw",
+        CHANNEL_URL: "https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ"
+      },
+
+      // 🔴 5) 핵심 바로가기(= GitHub 내부 공통페이지 링크)
+      // ✅ 기존 구조 최대 유지 + Q&A만 추가
+      CORE_LINKS: [
+        { label: "공식 확인/조회", icon: "🔎", href: "/check/index.html", style: "primary" },
+        { label: "가입/신청",     icon: "✅", href: "/apply/index.html", style: "gold" },
+        { label: "소개",         icon: "📌", href: "/about/index.html", style: "basic" },
+        { label: "갤러리/영상",   icon: "🎬", href: "/gallery/index.html", style: "blue" },
+        { label: "자료실",       icon: "📚", href: "/library/index.html", style: "basic" },
+        { label: "Q&A",         icon: "❓", href: "#faqBlock", style: "blue" }
+      ],
+
+      // 🔴 6) 연락/채널(덜 중요한 것들은 아래로)
+      CHANNELS: [
+        { label: "실시간 카카오톡 상담", icon: "💬", href: "https://open.kakao.com/o/gPxTAxhi", style: "kakao", live: true },
+        { label: "밴드 참여",           icon: "🎟️", href: "https://www.band.us/n/a4a2b4Y8gaIfb", style: "band" },
+
+        // ✅ 수정: 개별 기사 페이지 -> 뉴스24 메인 홈페이지
+        { label: "신문 보기",           icon: "📰", href: "https://news24.ai.kr/", style: "news" },
+
+        { label: "유튜브 채널",         icon: "▶️", href: "https://www.youtube.com/channel/UChUhSc6TbNhvdLVrtNOTQhQ", style: "basic" },
+        { label: "전화 연결",           icon: "📞", href: "tel:010-4477-2772", style: "basic" },
+      ],
+
+      // 🔴 7) 파트너 로고
+      PARTNERS: [
+        {
+          name: "국제경찰무도연합회",
+          sub: "International Police Martial Arts Alliance",
+          href: "https://tk7890kr12.wixsite.com/ipma",
+          img: "https://static.wixstatic.com/media/abf917_5065003bfd5d4e55933374e8e122c7fc~mv2.png"
+        },
+        {
+          name: "세계태권검도연맹",
+          sub: "World TaekwonKumdo Federation",
+          href: "https://tk7890kr12.wixsite.com/tkkd",
+          img: "https://static.wixstatic.com/media/abf917_022bb49ad81143f3bb3fb1d7de57cec3~mv2.png"
+        },
+        {
+          name: "국제자격관리본부",
+          sub: "International Certification Authority",
+          href: "https://tk7890kr12.wixsite.com/ica-atic",
+          img: "https://static.wixstatic.com/media/abf917_474049ab56494eb194d48aef7c5558b5~mv2.png"
+        },
+        {
+          name: "글로벌뉴스24",
+          sub: "GLOBAL NEWS 24",
+          href: "https://www.news24.ai.kr/",
+          img: "https://static.wixstatic.com/media/abf917_459f0009ee10433a9869ee30c49f8926~mv2.png"
+        }
+      ],
+
+      // ✅ 추가: 간단 Q&A
+      FAQ: [
+        {
+          q: "DOUBLE CROSS는 어떤 프로그램인가요?",
+          a: "DOUBLE CROSS는 구조 >> 교차원리, 교차원리 기반 무도라는 흐름 위에서 설계된 프로그램으로, 태권도장의 교육 흐름 안에서 새로운 도전의식과 집중력을 확장할 수 있도록 구성된 연계 프로그램입니다."
+        },
+        {
+          q: "태권도장에서도 쉽게 운영할 수 있나요?",
+          a: "네. 기존 태권도 수련 흐름과 완전히 분리되는 방식이 아니라, 심사 이후 또는 동기 부여가 필요한 시점에 연결 프로그램으로 활용할 수 있도록 방향을 잡고 있습니다."
+        },
+        {
+          q: "위험하지는 않나요?",
+          a: "DOUBLE CROSS는 무리한 접근보다 안전성과 단계별 접근을 우선합니다. 지도자의 통제 아래 질서와 절제, 집중을 바탕으로 운영하는 것이 핵심입니다."
+        },
+        {
+          q: "아이들에게 어떤 도움이 되나요?",
+          a: "새로운 목표의식, 집중력, 반응력, 자세의 긴장감, 도전 의식을 높이는 데 도움이 됩니다. 특히 심사 이후 느슨해질 수 있는 흐름을 다시 살리는 데 강점이 있습니다."
+        }
+      ]
+    };
+  </script>
+  <!-- 🔴🔴🔴 CHANGE ZONE END 🔴🔴🔴 -->
+
+  <style>
+    :root{
+      --bg:#070a10;
+      --panel:rgba(16,24,38,.70);
+      --panel2:rgba(0,0,0,.35);
+      --line:rgba(255,255,255,.12);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.72);
+      --muted2:rgba(234,240,255,.58);
+      --gold:#ffd36a;
+      --blue:#67b7ff;
+      --shadow:0 22px 70px rgba(0,0,0,.55);
+      --r:26px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Malgun Gothic,sans-serif;
+      background:
+        radial-gradient(1100px 700px at 10% 0%, rgba(255,211,106,.20), transparent 60%),
+        radial-gradient(1100px 700px at 90% 0%, rgba(103,183,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 50% 120%, rgba(141,98,255,.10), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .stage{
+      min-height:100%;
+      display:flex;
+      justify-content:center;
+      padding:14px 10px 52px;
+    }
+    .poster{
+      width:min(460px, 100%);
+      border-radius:var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(16,24,38,.86), rgba(16,24,38,.48));
+      box-shadow:0 30px 90px rgba(0,0,0,.62);
+      overflow:hidden;
+      position:relative;
+      transform:translateZ(0);
+    }
+    .poster::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(800px 420px at 30% -10%, rgba(255,211,106,.20), transparent 55%),
+        radial-gradient(700px 380px at 90% 0%, rgba(103,183,255,.18), transparent 55%),
+        radial-gradient(700px 380px at 50% 110%, rgba(141,98,255,.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    header.top{
+      position:relative;
+      padding:16px 16px 10px;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 12px;border-radius:999px;
+      border:1px solid rgba(255,211,106,.35);
+      background:rgba(255,211,106,.10);
+      font-weight:950;font-size:12px;letter-spacing:.3px;
+    }
+    .heroRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top:12px;
+    }
+    .dcMark{
+      width:52px;height:52px;border-radius:16px;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.06);
+      overflow:hidden;
+      flex:0 0 auto;
+      box-shadow:0 14px 40px rgba(0,0,0,.45);
+      position:relative;
+      z-index:1;
+    }
+    .dcMark img{
+      width:100%;height:100%;
+      object-fit:cover;
+      transform:scale(1.05);
+    }
+    .titleWrap{min-width:0}
+    .title{
+      margin:0;
+      font-size:26px;
+      line-height:1.08;
+      letter-spacing:.6px;
+      font-weight:1000;
+      text-shadow:0 10px 36px rgba(0,0,0,.55);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .subtitle{
+      margin:6px 0 0;
+      font-size:12px;
+      color:rgba(234,240,255,.72);
+      font-weight:900;
+      letter-spacing:.15px;
+    }
+    .metaRow{
+      display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;
+      color:rgba(234,240,255,.70);font-size:12px;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      backdrop-filter: blur(6px);
+      font-weight:900;
+    }
+    .dot{
+      width:7px;height:7px;border-radius:50%;
+      background:rgba(255,211,106,.95);
+      box-shadow:0 0 12px rgba(255,211,106,.70);
+    }
+
+    .heroImage{
+      position:relative;
+      margin:0 16px 12px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 22px 70px rgba(0,0,0,.55);
+      background:#000;
+      aspect-ratio: 9/16;
+      user-select:none;
+      touch-action: pan-y;
+    }
+    .heroImage::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 480px at 50% 0%, rgba(255,211,106,.14), transparent 60%),
+        radial-gradient(800px 420px at 90% 10%, rgba(103,183,255,.12), transparent 60%);
+      pointer-events:none;
+      z-index:3;
+    }
+
+    .heroTrack{
+      display:flex;
+      width:100%;
+      height:100%;
+      transform:translateX(0);
+      transition:transform .65s ease;
+      will-change:transform;
+    }
+    .heroTrack.dragging{ transition:none; }
+    .heroTrack img{
+      width:100%;
+      height:100%;
+      flex:0 0 100%;
+      object-fit:contain;
+      background:#000;
+      filter:saturate(1.02) contrast(1.04);
+      pointer-events:none;
+    }
+
+    .heroGlow{
+      position:absolute;
+      left:12px; right:12px;
+      top:12px;
+      z-index:4;
+      display:flex;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .heroGlow .glowBox{
+      max-width:100%;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,211,106,.30);
+      background:rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      font-weight:1000;
+      font-size:12px;
+      letter-spacing:.2px;
+      color:rgba(255,211,106,.98);
+      text-shadow:
+        0 0 12px rgba(255,211,106,.22),
+        0 0 24px rgba(255,211,106,.14);
+      opacity:0;
+      transform:translateY(-6px);
+    }
+    .heroGlow .glowBox.show{
+      animation: glowIn .9s ease forwards;
+    }
+    @keyframes glowIn{
+      0%{opacity:0; transform:translateY(-8px); filter:blur(2px);}
+      60%{opacity:1; transform:translateY(0); filter:blur(0);}
+      100%{opacity:1; transform:translateY(0); filter:blur(0);}
+    }
+
+    .dots{
+      position:absolute;
+      left:0; right:0;
+      bottom:10px;
+      display:flex;
+      justify-content:center;
+      gap:7px;
+      z-index:4;
+      pointer-events:none;
+    }
+    .dots span{
+      width:7px;height:7px;border-radius:999px;
+      background:rgba(255,255,255,.28);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+      transform:scale(1);
+      transition:transform .18s ease, background .18s ease, opacity .18s ease;
+      opacity:.9;
+    }
+    .dots span.active{
+      background:rgba(255,211,106,.95);
+      border-color:rgba(255,211,106,.55);
+      transform:scale(1.35);
+      opacity:1;
+      box-shadow:0 0 12px rgba(255,211,106,.35), 0 10px 20px rgba(0,0,0,.35);
+    }
+
+    /* ✅ 버튼 공통 */
+    .btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 14px;border-radius:16px;
+      text-decoration:none;font-weight:1000;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      transition:transform .12s ease, background .12s ease, filter .12s ease;
+      backdrop-filter: blur(6px);
+      user-select:none;
+      text-align:center;
+    }
+    .btn:active{transform:scale(.985); filter:brightness(1.05);}
+
+    .liveDot{
+      width:9px;height:9px;border-radius:50%;
+      background:#ff3b30;
+      box-shadow:0 0 12px rgba(255,59,48,.85);
+      animation:pulse 1.2s infinite;
+    }
+    @keyframes pulse{
+      0%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.35);opacity:.55}
+      100%{transform:scale(1);opacity:1}
+    }
+
+    /* ✅ 섹션 카드 */
+    .block{
+      position:relative;
+      margin:0 16px 14px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(16,24,38,.62), rgba(16,24,38,.40));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .blockHeader{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 12px;border-bottom:1px solid rgba(255,255,255,.10);
+      gap:10px;
+    }
+    .blockTitle{
+      font-weight:1000;font-size:12px;letter-spacing:.2px;
+      display:flex;align-items:center;gap:8px;
+      min-width:0;
+    }
+    .pill{
+      font-size:11px;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(234,240,255,.72);
+      font-weight:1000;
+      white-space:nowrap;
+    }
+
+    /* ✅ 핵심 바로가기: 2열 그리드 */
+    .coreWrap{ padding:12px; display:grid; gap:10px; }
+    .coreGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .coreBtn{
+      padding:16px 12px;
+      border-radius:18px;
+      line-height:1.1;
+    }
+    .coreBtn .big{ font-size:14px; font-weight:1000; }
+    .coreBtn .sub{ font-size:11px; color:rgba(234,240,255,.70); font-weight:900; margin-top:6px; }
+
+    /* ✅ 핵심 버튼 색감(고급 톤 유지) */
+    .coreBtn.primary{
+      border-color:rgba(255,211,106,.65);
+      background:linear-gradient(135deg, rgba(255,211,106,.40), rgba(184,135,26,.14));
+      color:#111;
+      box-shadow:0 0 0 1px rgba(255,211,106,.12), 0 18px 55px rgba(255,211,106,.10);
+    }
+    .coreBtn.gold{
+      border-color:rgba(255,211,106,.40);
+      background:linear-gradient(135deg, rgba(255,211,106,.18), rgba(0,0,0,.20));
+    }
+    .coreBtn.blue{
+      border-color:rgba(103,183,255,.45);
+      background:linear-gradient(135deg, rgba(103,183,255,.20), rgba(0,0,0,.22));
+    }
+
+    /* ✅ 채널 버튼 스타일 */
+    .channelWrap{ padding:12px; display:grid; gap:10px; }
+    .btn.kakao{
+      border-color:rgba(254,229,0,.75);
+      background:linear-gradient(135deg, rgba(254,229,0,.55), rgba(255,211,106,.12));
+      color:#111;
+    }
+    .btn.news{
+      border-color:rgba(103,183,255,.45);
+      background:linear-gradient(135deg, rgba(103,183,255,.22), rgba(60,120,255,.10));
+    }
+    .btn.band{
+      border-color:rgba(255,211,106,.45);
+      background:linear-gradient(135deg, rgba(255,211,106,.18), rgba(103,183,255,.12));
+    }
+
+    /* ✅ 영상 */
+    .videoBox{padding:12px}
+    .videoWrap{
+      position:relative;
+      width:100%;
+      padding-bottom:56.25%;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:#000;
+    }
+    .videoWrap iframe{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
+    }
+
+    /* ✅ FAQ */
+    .faqWrap{
+      padding:12px;
+      display:grid;
+      gap:10px;
+    }
+    .faqItem{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.18));
+      overflow:hidden;
+    }
+    .faqQuestion{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:var(--text);
+      text-align:left;
+      padding:15px 14px;
+      font-size:13px;
+      font-weight:1000;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .faqQuestion .icon{
+      width:24px;height:24px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.08);
+      color:var(--gold);
+      font-size:14px;
+      flex:0 0 auto;
+      transition:transform .2s ease;
+    }
+    .faqItem.open .faqQuestion .icon{
+      transform:rotate(45deg);
+    }
+    .faqAnswer{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .28s ease;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .faqAnswerInner{
+      padding:13px 14px 15px;
+      font-size:12px;
+      line-height:1.75;
+      color:rgba(234,240,255,.80);
+      font-weight:700;
+    }
+
+    /* ✅ 파트너 */
+    .support{
+      position:relative;
+      margin:0 16px 14px;
+      padding:12px 12px;
+      border-radius:22px;
+      border:1px solid rgba(255,211,106,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.32));
+      box-shadow:0 18px 60px rgba(0,0,0,.55);
+      overflow:hidden;
+      transform:translateZ(0);
+    }
+    .support::before{
+      content:"";
+      position:absolute; inset:-60px -40px;
+      background:
+        radial-gradient(280px 160px at 20% 0%, rgba(255,211,106,.14), transparent 60%),
+        radial-gradient(260px 160px at 95% 20%, rgba(103,183,255,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .supportTop{
+      position:relative;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .supportTitle{
+      font-weight:1000;font-size:12px;letter-spacing:.4px;
+      color:rgba(234,240,255,.82);
+    }
+    .supportTitle b{ color:var(--gold); text-shadow:0 0 18px rgba(255,211,106,.22); }
+    .supportPill{
+      font-size:11px;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,211,106,.28);
+      background:rgba(255,211,106,.08);
+      color:rgba(255,211,106,.95);
+      font-weight:1000;
+      white-space:nowrap;
+    }
+
+    .logoGrid{
+      position:relative;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .logoCardLink{display:block; text-decoration:none; color:inherit;}
+    .logoCard{
+      position:relative;
+      padding:12px 12px 30px;
+      border-radius:20px;
+      border:1px solid rgba(255,211,106,.18);
+      background:linear-gradient(180deg, rgba(0,0,0,.26), rgba(0,0,0,.55));
+      box-shadow:0 18px 45px rgba(0,0,0,.65);
+      overflow:hidden;
+      transition:transform .12s ease, filter .12s ease;
+    }
+    .logoCard:active{transform:scale(.985); filter:brightness(1.07);}
+    .logoImgWrap{
+      height:92px;
+      border-radius:16px;
+      overflow:hidden;
+      background:radial-gradient(circle at 50% 40%, rgba(255,211,106,.15), transparent 70%);
+      display:flex; align-items:center; justify-content:center;
+      padding:10px;
+    }
+    .logoImgWrap img{
+      width:100%; height:100%;
+      object-fit:contain;
+      filter:drop-shadow(0 10px 22px rgba(0,0,0,.40));
+    }
+    .logoLabel{
+      margin-top:10px;
+      font-size:11px;
+      font-weight:1000;
+      color:#fff;
+      letter-spacing:.1px;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+      line-height:1.18;
+      min-height: calc(1.18em * 1);
+    }
+    .logoSub{
+      margin-top:6px;
+      font-size:10px;
+      font-weight:800;
+      color:rgba(255,255,255,.60);
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+      line-height:1.2;
+      min-height: calc(1.2em * 2);
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
+    .logoCard::after{
+      content:"OFFICIAL PARTNER • VERIFIED";
+      position:absolute;
+      left:12px;
+      bottom:10px;
+      font-size:9px;
+      font-weight:1000;
+      color:rgba(255,211,106,.90);
+      letter-spacing:.35px;
+      text-shadow:0 0 10px rgba(255,211,106,.18);
+      pointer-events:none;
+    }
+
+    .footer{
+      margin:10px 16px 16px;
+      text-align:center;
+      font-size:11px;
+      color:rgba(234,240,255,.55);
+    }
+
+    @media (min-width: 900px){
+      .poster{ width:min(980px, 100%); }
+      .heroImage{ aspect-ratio: 16/9; }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="noise" aria-hidden="true"></div>
-  <header class="topbar" id="top">
-    <a class="brand" href="#top" aria-label="IPMA Gateway 홈">
-      <span class="brand-mark">I</span><span>IPMA GATEWAY</span>
-    </a>
-    <nav class="quick-nav" aria-label="주요 메뉴">
-      <a href="#top">HOME</a>
-      <a href="#police">경찰무도</a>
-      <a href="#taekwonkumdo">태권검도</a>
-      <a href="#drone">드론순찰대</a>
-      <a href="#network">NETWORK</a>
-      <a href="#enter">바로가기</a>
-    </nav>
-    <button class="sound-btn" id="soundBtn" type="button" aria-pressed="false" title="배경 사운드 켜기">SOUND ○</button>
-  </header>
+  <div class="stage">
+    <main class="poster" aria-label="DOUBLE CROSS Official Portal">
 
-  <main>
-    <section class="hero" aria-label="시네마틱 갤러리">
-      <div class="slides" id="slides"></div>
-      <div class="hero-shade"></div>
-      <div class="hero-content">
-        <p class="eyebrow" id="heroEyebrow">IPMA GATEWAY</p>
-        <h1 id="heroTitle">ONE NETWORK. THREE MISSIONS.</h1>
-        <p class="hero-note" id="heroNote">경찰무도 · 태권검도 · 드론순찰대</p>
-      </div>
-      <div class="hero-controls">
-        <button id="prevBtn" type="button" aria-label="이전 이미지">←</button>
-        <div class="slide-count"><strong id="slideNow">01</strong><span>/</span><span id="slideTotal">12</span></div>
-        <button id="nextBtn" type="button" aria-label="다음 이미지">→</button>
-      </div>
-      <div class="progress"><i id="progressBar"></i></div>
-      <a class="scroll-cue" href="#network"><span>SCROLL</span><i></i></a>
-    </section>
+      <header class="top">
+        <div class="badge" id="badgeText">⚡ OFFICIAL VISION PORTAL</div>
 
-    <section class="network" id="network">
-      <div class="section-kicker">LIVE NETWORK BOARD</div>
-      <h2>숫자가 말해주는 <em>성장하는 네트워크</em></h2>
-      <p class="section-lead">규모를 설명하지 않습니다. 계속 변하는 숫자로 보여줍니다.</p>
-      <div class="counter-grid">
-        <article class="counter-card">
-          <span class="counter-label">COUNTRIES</span>
-          <strong class="counter glow" data-counter="countries">00</strong>
-          <small>GLOBAL NETWORK</small>
-        </article>
-        <article class="counter-card featured">
-          <span class="live-dot"><i></i> NETWORK MEMBERS</span>
-          <strong class="counter glow member-counter" data-counter="members">----</strong>
-          <small id="memberStatus">SUPABASE 연결 전</small>
-        </article>
-        <article class="counter-card">
-          <span class="counter-label">BRANCHES</span>
-          <strong class="counter glow" data-counter="branches">000+</strong>
-          <small>WORLDWIDE</small>
-        </article>
-      </div>
-      <div class="ticker" aria-label="네트워크 안내"><span>IPMA GLOBAL NETWORK</span><i></i><span>POLICE MARTIAL ARTS</span><i></i><span>TAEKWONKUMDO</span><i></i><span>DRONE PATROL</span></div>
-    </section>
+        <div class="heroRow">
+          <div class="dcMark" aria-hidden="true">
+            <img id="dcLogoImg" src="" alt="DOUBLE CROSS Logo">
+          </div>
 
-    <section class="world-section" id="police" data-bg="assets/images/02-police-detail.png">
-      <div class="world-copy left"><span>01</span><p>POLICE MARTIAL ARTS</p><h2>경찰무도</h2><small>기술 · 체력 · 정신력 · 현장 대응</small><button data-enter="police">사이트 입장 →</button></div>
-    </section>
+          <div class="titleWrap">
+            <h1 class="title" id="pageTitle">DOUBLE CROSS®</h1>
+            <div class="subtitle" id="pageSubtitle">STRUCTURE • FUTURE • DISCIPLINE • SINCE 2009</div>
+          </div>
+        </div>
 
-    <section class="world-section" id="taekwonkumdo" data-bg="assets/images/05-taekwonkumdo-action.png">
-      <div class="world-copy right"><span>02</span><p>WORLD TAEKWONKUMDO</p><h2>태권검도</h2><small>전통 · 정신 · 문화 · 미래세대</small><button data-enter="taekwonkumdo">사이트 입장 →</button></div>
-    </section>
+        <div class="metaRow" id="metaRow"></div>
+      </header>
 
-    <section class="world-section" id="drone" data-bg="assets/images/09-drone-safety.png">
-      <div class="world-copy left"><span>03</span><p>INTERNATIONAL DRONE PATROL</p><h2>드론순찰대</h2><small>첨단기술 · 감시 · 수색 · 구조 · 안전</small><button data-enter="drone">사이트 입장 →</button></div>
-    </section>
+      <section class="heroImage" aria-label="Top hero image" id="hero">
+        <div class="heroTrack" id="heroTrack"></div>
 
-    <section class="enter" id="enter">
-      <div class="section-kicker">CHOOSE YOUR GATE</div>
-      <h2>세 개의 세계, 하나의 관문</h2>
-      <div class="gate-grid">
-        <button class="gate-card" data-enter="police">
-          <img src="assets/logos/ipma-logo.jpg" alt="국제경찰무도연합회 로고" />
-          <span>POLICE MARTIAL ARTS</span><strong>경찰무도</strong><small>ENTER →</small>
+        <div class="heroGlow" aria-hidden="true">
+          <div class="glowBox" id="glowBox"></div>
+        </div>
+
+        <div class="dots" id="dots" aria-hidden="true"></div>
+      </section>
+
+      <!-- ✅ 핵심 바로가기(위로 올림) -->
+      <section class="block" aria-label="Core shortcuts">
+        <div class="blockHeader">
+          <div class="blockTitle">⭐ 핵심 바로가기 <span class="pill">공통페이지</span></div>
+          <span class="pill">빠른 이동</span>
+        </div>
+
+        <div class="coreWrap">
+          <div class="coreGrid" id="coreGrid"></div>
+        </div>
+      </section>
+
+      <!-- ✅ 연락/채널(덜 중요한 것 아래로) -->
+      <section class="block" aria-label="Channels">
+        <div class="blockHeader">
+          <div class="blockTitle">💬 문의/채널 <span class="pill">연락</span></div>
+          <span class="pill">필요할 때</span>
+        </div>
+
+        <div class="channelWrap" id="channelWrap"></div>
+      </section>
+
+      <!-- ✅ 영상 -->
+      <section class="block" aria-label="Promo video">
+        <div class="blockHeader">
+          <div class="blockTitle">🎬 홍보 영상 <span class="pill">YouTube</span></div>
+          <span class="pill">Official</span>
+        </div>
+
+        <div class="videoBox">
+          <div class="videoWrap">
+            <iframe
+              id="youtubeFrame"
+              src=""
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              title="DOUBLE CROSS Promo Video"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ Q&A 추가 (기존 구조 유지 + 블록만 추가) -->
+      <section class="block" id="faqBlock" aria-label="Q&A">
+        <div class="blockHeader">
+          <div class="blockTitle">❓ Q&A <span class="pill">자주 묻는 질문</span></div>
+          <span class="pill">빠른 이해</span>
+        </div>
+
+        <div class="faqWrap" id="faqWrap"></div>
+      </section>
+
+      <!-- ✅ 파트너 -->
+      <section class="support" aria-label="Supported by organizations">
+        <div class="supportTop">
+          <div class="supportTitle">SUPPORTED BY <b>TRUSTED PARTNERS</b></div>
+          <div class="supportPill">Authority Layer • Since 2009</div>
+        </div>
+
+        <div class="logoGrid" id="partnerGrid"></div>
+      </section>
+
+      <div class="footer">© DOUBLE CROSS. All rights reserved.</div>
+    </main>
+  </div>
+
+  <script>
+    // ✅ 0) 상단 텍스트/로고 적용
+    document.getElementById("badgeText").textContent = CONFIG.PAGE.BADGE;
+    document.getElementById("pageTitle").textContent = CONFIG.PAGE.TITLE;
+    document.getElementById("pageSubtitle").textContent = CONFIG.PAGE.SUBTITLE;
+    document.getElementById("dcLogoImg").src = CONFIG.IMAGES.DC_LOGO;
+
+    // 상단 칩(메타)
+    const metaRow = document.getElementById("metaRow");
+    metaRow.innerHTML = "";
+    (CONFIG.PAGE.META_CHIPS || []).forEach((t, i) => {
+      const d = document.createElement("div");
+      d.className = "chip";
+      d.innerHTML = (i===0) ? `<span class="dot"></span> ${t}` : `${t}`;
+      metaRow.appendChild(d);
+    });
+
+    // ✅ 1) 핵심 바로가기 생성
+    const coreGrid = document.getElementById("coreGrid");
+    coreGrid.innerHTML = "";
+    (CONFIG.CORE_LINKS || []).forEach(item => {
+      const a = document.createElement("a");
+      const style = item.style || "basic";
+      a.className = `btn coreBtn ${style}`;
+      a.href = item.href;
+      a.rel = "noopener";
+      a.innerHTML = `
+        <div style="display:grid;gap:6px;width:100%;">
+          <div class="big">${item.icon} ${item.label}</div>
+          <div class="sub">바로 열기</div>
+        </div>
+      `;
+      coreGrid.appendChild(a);
+    });
+
+    // ✅ 2) 문의/채널 생성
+    const channelWrap = document.getElementById("channelWrap");
+    channelWrap.innerHTML = "";
+    (CONFIG.CHANNELS || []).forEach(item => {
+      const a = document.createElement("a");
+      const style = item.style || "basic";
+      a.className = `btn ${style}`;
+      a.href = item.href;
+      a.target = item.href.startsWith("tel:") || item.href.startsWith("#") ? "_self" : "_blank";
+      a.rel = "noopener";
+      const live = item.live ? `<span class="liveDot"></span>` : "";
+      a.innerHTML = `${live} ${item.icon} ${item.label}`;
+      channelWrap.appendChild(a);
+    });
+
+    // ✅ 3) 유튜브 임베드
+    document.getElementById("youtubeFrame").src =
+      `https://www.youtube.com/embed/${CONFIG.YOUTUBE.EMBED_ID}?rel=0&modestbranding=1`;
+
+    // ✅ 4) FAQ 생성
+    const faqWrap = document.getElementById("faqWrap");
+    faqWrap.innerHTML = "";
+    (CONFIG.FAQ || []).forEach((item, idx) => {
+      const box = document.createElement("div");
+      box.className = "faqItem" + (idx === 0 ? " open" : "");
+      box.innerHTML = `
+        <button class="faqQuestion" type="button" aria-expanded="${idx === 0 ? "true" : "false"}">
+          <span>${item.q}</span>
+          <span class="icon">+</span>
         </button>
-        <button class="gate-card" data-enter="taekwonkumdo">
-          <img src="assets/logos/wtkf-logo.png" alt="세계태권검도연맹 로고" />
-          <span>TAEKWONKUMDO</span><strong>태권검도</strong><small>ENTER →</small>
-        </button>
-        <button class="gate-card" data-enter="drone">
-          <img src="assets/logos/idp-logo.png" alt="국제드론순찰대 로고" />
-          <span>DRONE PATROL</span><strong>드론순찰대</strong><small>ENTER →</small>
-        </button>
-      </div>
-    </section>
+        <div class="faqAnswer" style="${idx === 0 ? "max-height: 220px;" : ""}">
+          <div class="faqAnswerInner">${item.a}</div>
+        </div>
+      `;
+      faqWrap.appendChild(box);
+    });
 
-    <section class="finale">
-      <img src="assets/images/11-finale.png" alt="세 조직 글로벌 네트워크" />
-      <div class="finale-overlay"><span>TOGETHER</span><h2>ONE MISSION.<br>ONE NETWORK.<br>ONE FUTURE.</h2><a href="#top">BACK TO TOP ↑</a></div>
-    </section>
-  </main>
+    faqWrap.addEventListener("click", (e) => {
+      const btn = e.target.closest(".faqQuestion");
+      if (!btn) return;
 
-  <footer><span>IPMA GATEWAY</span><small>Police Martial Arts · TaekwonKumdo · Drone Patrol</small><b id="version">v1.0.0</b></footer>
+      const item = btn.closest(".faqItem");
+      const answer = item.querySelector(".faqAnswer");
+      const isOpen = item.classList.contains("open");
 
-  <dialog id="linkDialog"><button class="dialog-x" id="dialogClose" aria-label="닫기">×</button><h3>사이트 연결 준비</h3><p>경찰무도 홈페이지의 최종 연결 주소를 <code>config.js</code>에 입력하면 이 버튼이 바로 작동합니다.</p><button id="dialogOk">확인</button></dialog>
+      document.querySelectorAll(".faqItem").forEach(el => {
+        el.classList.remove("open");
+        el.querySelector(".faqQuestion")?.setAttribute("aria-expanded", "false");
+        const ans = el.querySelector(".faqAnswer");
+        if (ans) ans.style.maxHeight = "0px";
+      });
 
-  <script src="config.js"></script>
-  <script src="script.js"></script>
+      if (!isOpen) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+
+    // ✅ 5) 파트너 그리드 생성
+    const grid = document.getElementById("partnerGrid");
+    grid.innerHTML = "";
+    (CONFIG.PARTNERS || []).forEach(p=>{
+      const a = document.createElement("a");
+      a.className = "logoCardLink";
+      a.href = p.href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.innerHTML = `
+        <div class="logoCard">
+          <div class="logoImgWrap">
+            <img src="${p.img}" alt="${p.name} 로고">
+          </div>
+          <div class="logoLabel">${p.name}</div>
+          <div class="logoSub">${p.sub}</div>
+        </div>
+      `;
+      grid.appendChild(a);
+    });
+
+    // ✅ 6) HERO 슬라이드(기존 로직 유지)
+    const imgs = CONFIG.HERO.IMGS;
+    const overlayText = CONFIG.HERO.OVERLAY_TEXT;
+
+    const hero = document.getElementById("hero");
+    const track = document.getElementById("heroTrack");
+    const dotsEl = document.getElementById("dots");
+    const glowBox = document.getElementById("glowBox");
+
+    let index = 0;
+    let autoTimer = null;
+    let resumeTimer = null;
+
+    track.innerHTML = "";
+    imgs.forEach((src, i) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "Hero " + (i + 1);
+      track.appendChild(img);
+    });
+
+    function buildDots(){
+      dotsEl.innerHTML = "";
+      for(let i=0;i<imgs.length;i++){
+        const s = document.createElement("span");
+        dotsEl.appendChild(s);
+      }
+    }
+    buildDots();
+
+    function setDots(active){
+      const children = dotsEl.children;
+      for(let i=0;i<children.length;i++){
+        children[i].classList.toggle("active", i === active);
+      }
+    }
+
+    function setOverlay(active){
+      const text = overlayText[active] || "";
+      if(!text){
+        glowBox.classList.remove("show");
+        glowBox.textContent = "";
+        return;
+      }
+      glowBox.textContent = text;
+      glowBox.classList.remove("show");
+      void glowBox.offsetWidth;
+      glowBox.classList.add("show");
+    }
+
+    function applyTransform(withTransition=true){
+      track.classList.toggle("dragging", !withTransition);
+      track.style.transform = `translateX(-${index * 100}%)`;
+      setDots(index);
+      setOverlay(index);
+    }
+
+    function goTo(newIndex, withTransition=true){
+      if(newIndex < 0) newIndex = imgs.length - 1;
+      if(newIndex >= imgs.length) newIndex = 0;
+      index = newIndex;
+      applyTransform(withTransition);
+    }
+
+    function next(){ goTo(index + 1, true); }
+
+    function startAuto(){
+      stopAuto();
+      autoTimer = setInterval(next, CONFIG.HERO.AUTO_MS);
+    }
+    function stopAuto(){
+      if(autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    }
+    function pauseThenResume(){
+      stopAuto();
+      if(resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(startAuto, CONFIG.HERO.RESUME_MS);
+    }
+
+    applyTransform(true);
+    startAuto();
+
+    let isDown = false;
+    let startX = 0;
+    let currentX = 0;
+    let deltaX = 0;
+    let width = 1;
+
+    function onDown(clientX){
+      isDown = true;
+      startX = clientX;
+      currentX = clientX;
+      deltaX = 0;
+      width = hero.getBoundingClientRect().width || 1;
+      track.classList.add("dragging");
+      pauseThenResume();
+    }
+
+    function onMove(clientX){
+      if(!isDown) return;
+      currentX = clientX;
+      deltaX = currentX - startX;
+      const percent = (deltaX / width) * 100;
+      track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
+    }
+
+    function onUp(){
+      if(!isDown) return;
+      isDown = false;
+      track.classList.remove("dragging");
+
+      const threshold = Math.min(80, width * 0.18);
+      if(deltaX <= -threshold){
+        goTo(index + 1, true);
+      }else if(deltaX >= threshold){
+        goTo(index - 1, true);
+      }else{
+        applyTransform(true);
+      }
+    }
+
+    hero.addEventListener("touchstart", (e) => {
+      if(!e.touches || !e.touches[0]) return;
+      onDown(e.touches[0].clientX);
+    }, {passive:true});
+
+    hero.addEventListener("touchmove", (e) => {
+      if(!e.touches || !e.touches[0]) return;
+      onMove(e.touches[0].clientX);
+    }, {passive:true});
+
+    hero.addEventListener("touchend", () => onUp(), {passive:true});
+    hero.addEventListener("touchcancel", () => onUp(), {passive:true});
+
+    hero.addEventListener("pointerdown", (e) => {
+      hero.setPointerCapture?.(e.pointerId);
+      onDown(e.clientX);
+    });
+
+    hero.addEventListener("pointermove", (e) => onMove(e.clientX));
+    hero.addEventListener("pointerup", () => onUp());
+    hero.addEventListener("pointercancel", () => onUp());
+    hero.addEventListener("pointerleave", () => onUp());
+  </script>
 </body>
 </html>
